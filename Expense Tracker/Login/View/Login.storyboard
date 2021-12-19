@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HnO-nw-gjZ">
-                                <rect key="frame" x="20" y="255.5" width="374" height="385.5"/>
+                                <rect key="frame" x="20" y="235.5" width="374" height="425.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Tracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rP-1u-fiQ">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -135,6 +135,9 @@
                                             <constraint firstAttribute="bottom" secondItem="YAy-8q-oXZ" secondAttribute="bottom" id="s7y-0Y-8pN"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Xhm-hP-3ke" userLabel="Activity Indicator">
+                                        <rect key="frame" x="0.0" y="405.5" width="374" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -153,9 +156,11 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Xhm-hP-3ke" id="uLp-92-SFH"/>
                         <outlet property="emailTextField" destination="N7b-eN-g83" id="b6Y-du-1zx"/>
                         <outlet property="loginButton" destination="4Ob-9h-lNj" id="YWI-vS-lCu"/>
                         <outlet property="passwordTextfield" destination="Yfc-kK-DsH" id="o6r-aU-sd6"/>
+                        <outlet property="signupButton" destination="Izz-Bn-Fpe" id="xxf-39-6UV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPz-Ww-JNZ" sceneMemberID="firstResponder"/>

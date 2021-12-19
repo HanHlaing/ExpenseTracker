@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -13,6 +14,11 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+//        do{
+//            try Auth.auth().signOut()
+//        }catch{
+//            print("log out error")
+//        }
     }
     
 
