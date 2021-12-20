@@ -29,13 +29,14 @@
 		FFBCCF67276F491F00C298FC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF66276F491F00C298FC /* Date.swift */; };
 		FFBCCF69276F496A00C298FC /* Model+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF68276F496A00C298FC /* Model+Extension.swift */; };
 		FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF6B276F4AA900C298FC /* Model.swift */; };
-		FFBCCF6E276F4AF600C298FC /* MonthlyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF6D276F4AF600C298FC /* MonthlyData.swift */; };
 		FFBCCF72276F4C2100C298FC /* transactionDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFBCCF71276F4C2100C298FC /* transactionDataTableViewCell.xib */; };
 		FFBCCF74276F4C5B00C298FC /* transactionDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF73276F4C5B00C298FC /* transactionDataTableViewCell.swift */; };
 		FFBCCF76276F4CAD00C298FC /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF75276F4CAD00C298FC /* AddTransactionViewController.swift */; };
 		FFBCCF78276F4D2300C298FC /* ExpenseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF77276F4D2300C298FC /* ExpenseCategoryViewController.swift */; };
 		FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */; };
 		FFBCCF7C276F4DCF00C298FC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */; };
+		FFBD310F277059CF0061322E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD310E277059CF0061322E /* ProfileViewController.swift */; };
+		FFBD3111277064540061322E /* MonthlyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD3110277064540061322E /* MonthlyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,13 +66,14 @@
 		FFBCCF66276F491F00C298FC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		FFBCCF68276F496A00C298FC /* Model+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+Extension.swift"; sourceTree = "<group>"; };
 		FFBCCF6B276F4AA900C298FC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		FFBCCF6D276F4AF600C298FC /* MonthlyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyData.swift; sourceTree = "<group>"; };
 		FFBCCF71276F4C2100C298FC /* transactionDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = transactionDataTableViewCell.xib; sourceTree = "<group>"; };
 		FFBCCF73276F4C5B00C298FC /* transactionDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transactionDataTableViewCell.swift; sourceTree = "<group>"; };
 		FFBCCF75276F4CAD00C298FC /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		FFBCCF77276F4D2300C298FC /* ExpenseCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryViewController.swift; sourceTree = "<group>"; };
 		FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCategoryViewController.swift; sourceTree = "<group>"; };
 		FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		FFBD310E277059CF0061322E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FFBD3110277064540061322E /* MonthlyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				FFBCCF77276F4D2300C298FC /* ExpenseCategoryViewController.swift */,
 				FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */,
 				FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */,
+				FFBD310E277059CF0061322E /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -232,7 +235,7 @@
 			children = (
 				FFBCCF5C276F2A9E00C298FC /* User.swift */,
 				FFBCCF5E276F2ACB00C298FC /* Transaction.swift */,
-				FFBCCF6D276F4AF600C298FC /* MonthlyData.swift */,
+				FFBD3110277064540061322E /* MonthlyData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -369,15 +372,16 @@
 				FF5D8877276DF30B00EFA568 /* UIApplication.swift in Sources */,
 				FF4A2A66276DED6100602E30 /* SignupViewController.swift in Sources */,
 				FFBCCF5F276F2ACB00C298FC /* Transaction.swift in Sources */,
+				FFBD3111277064540061322E /* MonthlyData.swift in Sources */,
 				FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */,
 				FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */,
 				FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */,
 				FFBCCF74276F4C5B00C298FC /* transactionDataTableViewCell.swift in Sources */,
-				FFBCCF6E276F4AF600C298FC /* MonthlyData.swift in Sources */,
 				FF5D8881276E049600EFA568 /* HomeViewController.swift in Sources */,
 				FF4A2A4B276DD1C500602E30 /* AppDelegate.swift in Sources */,
 				FFBCCF5D276F2A9E00C298FC /* User.swift in Sources */,
 				FFBCCF67276F491F00C298FC /* Date.swift in Sources */,
+				FFBD310F277059CF0061322E /* ProfileViewController.swift in Sources */,
 				FFBCCF63276F48DA00C298FC /* RaisedTabBarViewController.swift in Sources */,
 				FF5D8874276DF2DE00EFA568 /* AppStoryboard.swift in Sources */,
 				FFBCCF76276F4CAD00C298FC /* AddTransactionViewController.swift in Sources */,

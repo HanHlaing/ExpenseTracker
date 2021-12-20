@@ -42,7 +42,7 @@ extension UITextField {
 
 extension UIButton {
     func makecoloredButton() {
-        self.layer.shadowColor = #colorLiteral(red: 0.3699039817, green: 0.7330554724, blue: 0.9979006648, alpha: 1).cgColor
+        self.layer.shadowColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1).cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.5

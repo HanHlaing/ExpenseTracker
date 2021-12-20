@@ -378,11 +378,28 @@
             </objects>
             <point key="canvasLocation" x="212" y="-427"/>
         </scene>
-        <!--Stats-->
+        <!--Profile-->
+        <scene sceneID="TPz-e4-c43">
+            <objects>
+                <navigationController id="fpx-iP-wDb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" id="Avt-s8-ExI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yvy-yh-tC1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kM5-Db-onG" kind="relationship" relationship="rootViewController" id="FM5-Y4-erv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AdK-16-FRS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-671" y="1040"/>
+        </scene>
+        <!--Chart-->
         <scene sceneID="gjG-2y-kdO">
             <objects>
                 <navigationController id="Qrj-G9-x9c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stats" image="chart.bar.xaxis" catalog="system" id="Qdy-e2-V49"/>
+                    <tabBarItem key="tabBarItem" title="Chart" image="chart.line.uptrend.xyaxis.circle.fill" catalog="system" id="Qdy-e2-V49"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NiR-He-yAg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -393,7 +410,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FK4-xH-9tU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-879" y="325"/>
+            <point key="canvasLocation" x="-670" y="275"/>
         </scene>
         <!--Chart View Controller-->
         <scene sceneID="4Ee-74-ni6">
@@ -555,7 +572,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0o-jm-IlQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="283" y="559"/>
+            <point key="canvasLocation" x="326" y="257"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MP8-6g-b83">
@@ -643,24 +660,90 @@
                     <connections>
                         <segue destination="lRb-Uk-PSq" kind="relationship" relationship="viewControllers" id="z0f-RP-ylP"/>
                         <segue destination="Qrj-G9-x9c" kind="relationship" relationship="viewControllers" id="Grb-ut-LXJ"/>
+                        <segue destination="fpx-iP-wDb" kind="relationship" relationship="viewControllers" id="lSE-Yk-gHv"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaw-s7-wYE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1813" y="-89"/>
+            <point key="canvasLocation" x="-2693" y="302"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="KM8-ba-nj7">
+            <objects>
+                <viewController id="kM5-Db-onG" customClass="ProfileViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b70-Qi-k3Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="uqj-7Y-jbh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UkK-ZH-W7V">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwY-8h-whk" userLabel="Username">
+                                <rect key="frame" x="161.5" y="401.5" width="91" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="joedoe@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAQ-eZ-WXK" userLabel="Email">
+                                <rect key="frame" x="123.5" y="438.5" width="167.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-pD-Vde" userLabel="profile">
+                                <rect key="frame" x="157" y="278" width="100" height="99"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rhh-pD-Vde" secondAttribute="height" multiplier="1:1" id="851-Dd-QBS"/>
+                                    <constraint firstAttribute="height" constant="100" id="cXu-jd-T3g"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oRL-P3-Hpe"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bAQ-eZ-WXK" firstAttribute="top" secondItem="zwY-8h-whk" secondAttribute="bottom" constant="8" id="8HZ-zM-uSr"/>
+                            <constraint firstItem="rhh-pD-Vde" firstAttribute="centerX" secondItem="oRL-P3-Hpe" secondAttribute="centerX" id="IT1-7z-Bs9"/>
+                            <constraint firstItem="bAQ-eZ-WXK" firstAttribute="centerX" secondItem="UkK-ZH-W7V" secondAttribute="centerX" id="OBX-X0-hak"/>
+                            <constraint firstItem="zwY-8h-whk" firstAttribute="top" secondItem="rhh-pD-Vde" secondAttribute="bottom" constant="24" id="W7o-Ud-OQ1"/>
+                            <constraint firstItem="zwY-8h-whk" firstAttribute="centerX" secondItem="UkK-ZH-W7V" secondAttribute="centerX" id="oSn-9V-SPW"/>
+                            <constraint firstItem="bAQ-eZ-WXK" firstAttribute="centerY" secondItem="oRL-P3-Hpe" secondAttribute="centerY" id="yvn-Gr-x8T"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YcH-Up-WrQ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="7Ze-ch-HMA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sign out" id="oXG-Cg-XIa" userLabel="Sign out">
+                            <connections>
+                                <action selector="signoutTapped:" destination="kM5-Db-onG" id="5GA-Nx-7gW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailLabel" destination="bAQ-eZ-WXK" id="VL9-X0-XyE"/>
+                        <outlet property="usernameLabel" destination="zwY-8h-whk" id="GoF-We-8sq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k4E-Ws-027" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="501" y="1040"/>
         </scene>
     </scenes>
     <resources>
         <image name="Backward" width="10" height="17"/>
         <image name="Forward" width="10" height="17"/>
-        <image name="chart.bar.xaxis" catalog="system" width="128" height="98"/>
+        <image name="chart.line.uptrend.xyaxis.circle.fill" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

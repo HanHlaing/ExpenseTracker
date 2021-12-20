@@ -29,7 +29,6 @@ class SigninViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //viewModel.delegate = self
         configureUI()
         
     }
@@ -57,15 +56,9 @@ class SigninViewController: UIViewController {
                    (user,error) in
                     
                     self.setLoggingIn(false)
-                    if user != nil{
+                    if error != nil, let myerr = error?.localizedDescription {
                         
-                    
-                    }
-                    else
-                    {
-                        if let myerr = error?.localizedDescription{
-                            self.showErrorAlert( "Warning!", myerr)
-                        }
+                        self.showErrorAlert( "Warning!", myerr)
                     }
                 })
             } else {

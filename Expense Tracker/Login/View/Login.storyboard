@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -67,14 +68,14 @@
                                                 <rect key="frame" x="258" y="0.0" width="116" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Forgot password?">
-                                                    <color key="titleColor" red="0.30980392159999998" green="0.6705882353" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" name="AccentColor"/>
                                                 </state>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ob-9h-lNj">
                                         <rect key="frame" x="0.0" y="246" width="374" height="50"/>
-                                        <color key="backgroundColor" red="0.30980392159999998" green="0.6705882353" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="n5s-HI-9wQ"/>
                                         </constraints>
@@ -109,7 +110,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Izz-Bn-Fpe">
                                                         <rect key="frame" x="198" y="0.0" width="48" height="30"/>
                                                         <state key="normal" title="Signup">
-                                                            <color key="titleColor" red="0.30980392159999998" green="0.6705882353" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" name="AccentColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="SignupTapped:" destination="02Y-hK-f0l" eventType="touchUpInside" id="ZAU-4O-tYR"/>
@@ -228,7 +229,7 @@
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNa-cq-v4U">
                                         <rect key="frame" x="0.0" y="328" width="374" height="50"/>
-                                        <color key="backgroundColor" red="0.30980392159999998" green="0.6705882353" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="poj-6T-c0H"/>
                                         </constraints>
@@ -260,7 +261,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IP-3a-cEJ">
                                                         <rect key="frame" x="219" y="0.0" width="38" height="30"/>
                                                         <state key="normal" title="Login">
-                                                            <color key="titleColor" red="0.30980392159999998" green="0.6705882353" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" name="AccentColor"/>
                                                         </state>
                                                     </button>
                                                 </subviews>
@@ -327,6 +328,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
