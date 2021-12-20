@@ -25,8 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
                         // Show home page
-                        let homeVC = HomeViewController.instantiate(from: .Home)
-                        window.rootViewController = UINavigationController(rootViewController: homeVC)
+                        let homeVC = RaisedTabBarViewController.instantiate(from: .Home)
+                        window.rootViewController = homeVC
                         self.window = window
                         window.makeKeyAndVisible()
                     } else {

@@ -24,6 +24,18 @@
 		FFBCCF5D276F2A9E00C298FC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF5C276F2A9E00C298FC /* User.swift */; };
 		FFBCCF5F276F2ACB00C298FC /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF5E276F2ACB00C298FC /* Transaction.swift */; };
 		FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF60276F2F4500C298FC /* NetworkStatus.swift */; };
+		FFBCCF63276F48DA00C298FC /* RaisedTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF62276F48DA00C298FC /* RaisedTabBarViewController.swift */; };
+		FFBCCF65276F490700C298FC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF64276F490700C298FC /* String.swift */; };
+		FFBCCF67276F491F00C298FC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF66276F491F00C298FC /* Date.swift */; };
+		FFBCCF69276F496A00C298FC /* Model+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF68276F496A00C298FC /* Model+Extension.swift */; };
+		FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF6B276F4AA900C298FC /* Model.swift */; };
+		FFBCCF6E276F4AF600C298FC /* MonthlyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF6D276F4AF600C298FC /* MonthlyData.swift */; };
+		FFBCCF72276F4C2100C298FC /* transactionDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFBCCF71276F4C2100C298FC /* transactionDataTableViewCell.xib */; };
+		FFBCCF74276F4C5B00C298FC /* transactionDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF73276F4C5B00C298FC /* transactionDataTableViewCell.swift */; };
+		FFBCCF76276F4CAD00C298FC /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF75276F4CAD00C298FC /* AddTransactionViewController.swift */; };
+		FFBCCF78276F4D2300C298FC /* ExpenseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF77276F4D2300C298FC /* ExpenseCategoryViewController.swift */; };
+		FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */; };
+		FFBCCF7C276F4DCF00C298FC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +60,18 @@
 		FFBCCF5C276F2A9E00C298FC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FFBCCF5E276F2ACB00C298FC /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		FFBCCF60276F2F4500C298FC /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
+		FFBCCF62276F48DA00C298FC /* RaisedTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaisedTabBarViewController.swift; sourceTree = "<group>"; };
+		FFBCCF64276F490700C298FC /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		FFBCCF66276F491F00C298FC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		FFBCCF68276F496A00C298FC /* Model+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+Extension.swift"; sourceTree = "<group>"; };
+		FFBCCF6B276F4AA900C298FC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		FFBCCF6D276F4AF600C298FC /* MonthlyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyData.swift; sourceTree = "<group>"; };
+		FFBCCF71276F4C2100C298FC /* transactionDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = transactionDataTableViewCell.xib; sourceTree = "<group>"; };
+		FFBCCF73276F4C5B00C298FC /* transactionDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transactionDataTableViewCell.swift; sourceTree = "<group>"; };
+		FFBCCF75276F4CAD00C298FC /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		FFBCCF77276F4D2300C298FC /* ExpenseCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryViewController.swift; sourceTree = "<group>"; };
+		FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCategoryViewController.swift; sourceTree = "<group>"; };
+		FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +187,9 @@
 			children = (
 				FF5D8876276DF30B00EFA568 /* UIApplication.swift */,
 				FF5D8878276DF4C200EFA568 /* UIViewController.swift */,
+				FFBCCF64276F490700C298FC /* String.swift */,
+				FFBCCF66276F491F00C298FC /* Date.swift */,
+				FFBCCF68276F496A00C298FC /* Model+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -171,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				FF5D887D276E046D00EFA568 /* Home.storyboard */,
+				FFBCCF71276F4C2100C298FC /* transactionDataTableViewCell.xib */,
+				FFBCCF73276F4C5B00C298FC /* transactionDataTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +208,11 @@
 			isa = PBXGroup;
 			children = (
 				FF5D8880276E049600EFA568 /* HomeViewController.swift */,
+				FFBCCF62276F48DA00C298FC /* RaisedTabBarViewController.swift */,
+				FFBCCF75276F4CAD00C298FC /* AddTransactionViewController.swift */,
+				FFBCCF77276F4D2300C298FC /* ExpenseCategoryViewController.swift */,
+				FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */,
+				FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +220,7 @@
 		FFBCCF54276F1AE900C298FC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FFBCCF6A276F4A9D00C298FC /* Enum */,
 				FF5D8875276DF2F200EFA568 /* Extension */,
 				FFBCCF60276F2F4500C298FC /* NetworkStatus.swift */,
 			);
@@ -197,8 +232,17 @@
 			children = (
 				FFBCCF5C276F2A9E00C298FC /* User.swift */,
 				FFBCCF5E276F2ACB00C298FC /* Transaction.swift */,
+				FFBCCF6D276F4AF600C298FC /* MonthlyData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FFBCCF6A276F4A9D00C298FC /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				FFBCCF6B276F4AA900C298FC /* Model.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +307,7 @@
 			files = (
 				FF4A2A61276DECFF00602E30 /* Login.storyboard in Resources */,
 				FF5D887E276E046D00EFA568 /* Home.storyboard in Resources */,
+				FFBCCF72276F4C2100C298FC /* transactionDataTableViewCell.xib in Resources */,
 				FF4A2A57276DD1C700602E30 /* LaunchScreen.storyboard in Resources */,
 				FF5D887B276E03D200EFA568 /* GoogleService-Info.plist in Resources */,
 				FF4A2A54276DD1C700602E30 /* Assets.xcassets in Resources */,
@@ -318,17 +363,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFBCCF69276F496A00C298FC /* Model+Extension.swift in Sources */,
 				FF4A2A64276DED4E00602E30 /* SigninViewController.swift in Sources */,
+				FFBCCF65276F490700C298FC /* String.swift in Sources */,
 				FF5D8877276DF30B00EFA568 /* UIApplication.swift in Sources */,
 				FF4A2A66276DED6100602E30 /* SignupViewController.swift in Sources */,
 				FFBCCF5F276F2ACB00C298FC /* Transaction.swift in Sources */,
 				FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */,
+				FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */,
+				FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */,
+				FFBCCF74276F4C5B00C298FC /* transactionDataTableViewCell.swift in Sources */,
+				FFBCCF6E276F4AF600C298FC /* MonthlyData.swift in Sources */,
 				FF5D8881276E049600EFA568 /* HomeViewController.swift in Sources */,
 				FF4A2A4B276DD1C500602E30 /* AppDelegate.swift in Sources */,
 				FFBCCF5D276F2A9E00C298FC /* User.swift in Sources */,
+				FFBCCF67276F491F00C298FC /* Date.swift in Sources */,
+				FFBCCF63276F48DA00C298FC /* RaisedTabBarViewController.swift in Sources */,
 				FF5D8874276DF2DE00EFA568 /* AppStoryboard.swift in Sources */,
+				FFBCCF76276F4CAD00C298FC /* AddTransactionViewController.swift in Sources */,
 				FF5D8879276DF4C200EFA568 /* UIViewController.swift in Sources */,
 				FF4A2A4D276DD1C500602E30 /* SceneDelegate.swift in Sources */,
+				FFBCCF78276F4D2300C298FC /* ExpenseCategoryViewController.swift in Sources */,
+				FFBCCF7C276F4DCF00C298FC /* ChartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -452,7 +508,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

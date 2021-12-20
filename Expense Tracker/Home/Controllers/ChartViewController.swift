@@ -1,25 +1,31 @@
 //
-//  HomeViewController.swift
+//  ChartViewController.swift
 //  Expense Tracker
 //
-//  Created by Han Hlaing Moe on 18/12/2021.
+//  Created by Han Hlaing Moe on 19/12/2021.
 //
 
 import UIKit
-import FirebaseAuth
 import Firebase
-import Foundation
+import Charts
 
-class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITableViewDelegate, UITableViewDataSource {
+class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
+    
+    // MARK: variables
+    var statsCategory = [String: Int]() // get category from firebase
+    //let ref = Database.database().reference(withPath:"transaction-data")
+    let ref = Database.database().reference(withPath:"transactions").child("DZIGIY2mpYdVVRyGcBmZGEnzRHm1")
+    var tempCategory = ""
+    var transType: String = "expense"
+    
     // MARK: Outlets
-    @IBOutlet weak var balanceDisplay: UILabel!
-    @IBOutlet weak var incomeDisplay: UILabel!
-    @IBOutlet weak var expenseDisplay: UILabel!
-    @IBOutlet weak var transactionDataTableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var currentMonth: UILabel!
+    @IBOutlet weak var currentSum: UILabel!
+    @IBOutlet weak var expenseCategory: UITableView!
+    @IBOutlet weak var pieChart: PieChartView!
     
-    
-    @IBOutlet weak var btnAddTransaction: UIButton!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var backwardBtn: UIButton!
     @IBOutlet weak var forwardBtn: UIButton!
@@ -27,14 +33,10 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     var segment: UISegmentedControl!
     var empty = [String]()
     var now = Foundation.Date()
-    
-    // MARK: Variables
-    var transactionDataArr = [Transaction]()
-    let ref = Database.database().reference(withPath:"transactions").child("DZIGIY2mpYdVVRyGcBmZGEnzRHm1") // firebase
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let tabBar = tabBarController as! RaisedTabBarViewController
         segment = UISegmentedControl(items: ["Week", "Month", "Year"])
         segment.sizeToFit()
@@ -56,61 +58,21 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         
         
         
-        // initialize balance on first day of month
-        if Calendar.current.component(.day, from: Date()) == 1 {
-            initBalance()
-        }
-        
-        // calculate current balance
-        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: "incomeBalance") - UserDefaults.standard.integer(forKey: "expenseBalance"), forKey: "currentBalance")
-        
-        // display balance
-        balanceDisplay.text = "$" + String(UserDefaults.standard.integer(forKey: "currentBalance"))
-        expenseDisplay.text = "$" + String( UserDefaults.standard.integer(forKey: "expenseBalance"))
-        incomeDisplay.text = "$" + String(UserDefaults.standard.integer(forKey: "incomeBalance"))
-        
-        //currentDate.text = formatter.string(from: date)
+        // display month
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM"
+        currentMonth.text = formatter.string(from: date)
+       
+       
         
         // display table
-        transactionDataTableView.delegate = self
-        transactionDataTableView.dataSource = self
-        
-        transactionDataTableView.register(UINib(nibName: "transactionDataTableViewCell", bundle: nil), forCellReuseIdentifier: "transactionDataTableViewCell")
+        expenseCategory.delegate = self
+        expenseCategory.dataSource = self
         
         let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
         let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
-        loadData(start,end)
-        // Do any additional setup after loading the view.
-    }
-        
-    func loadData(_ start: Int, _ end: Int){
-        // synchronize data to table view from firebase
-        ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe( .value, with: { snapshot in
-          var newItems: [Transaction] = []
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-               let nestedItem = Transaction(snapshot:snapshot){
-                
-                newItems.append(nestedItem)
-            }
-          }
-            self.transactionDataArr = newItems
-            self.transactionDataTableView.reloadData()
-            
-            let filteredIncome = self.transactionDataArr.filter( {$0.transType == "income"} )
-            let amountArr = filteredIncome.map( {Int($0.amount)! })
-            let totalIncome = String(amountArr.reduce(0, +))
-            self.incomeDisplay.text = "$" + totalIncome
-            
-            
-            let filteredExpense = self.transactionDataArr.filter( {$0.transType == "expense"} )
-            let amountArr1 = filteredExpense.map( {Int($0.amount)! })
-            let totalExpense = String(amountArr1.reduce(0, +))
-            self.expenseDisplay.text = "$" + totalExpense
-            
-            let currentBalance = String(Int(totalIncome)! - Int(totalExpense)!)
-            self.balanceDisplay.text = "$" + currentBalance
-        })
+        loadStaticstic(start,end,transType)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,6 +91,63 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         }
     }
     
+    func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
+        
+        // display sum
+        currentSum.text = "$" + String(UserDefaults.standard.integer(forKey: transType == "expense" ? "expenseBalance":"incomeBalance"))
+        let year = Calendar.current.component(.year, from: Date())
+        let month = Calendar.current.component(.month, from: Date())
+        var sum = monthlyData[YearMonth(year:year, month:month)]
+        
+        ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
+            var newItems = [String: Int]()
+            var actualData = [String]()
+            var intData = [Int]()
+            var keyArray = [String]()
+            var valueArray = [Int]()
+            var percentArray = [Double]()
+            var totalAmount = 0
+            
+            for child in snapshot.children.allObjects {
+                
+                if let nestedSnapshot = child as? DataSnapshot,
+                   let type = nestedSnapshot.childSnapshot(forPath: "transType").value as? String,
+                   let item = nestedSnapshot.childSnapshot(forPath: "category").value as? String,
+                   let amount = nestedSnapshot.childSnapshot(forPath: "amount").value as? String {
+                    
+                    
+                    if(transType == type){
+                        
+                        if(self.tempCategory != item) {
+                            actualData.removeAll() // initialze array
+                        }
+                        
+                        actualData.append(amount)
+                        totalAmount += Int(amount)!
+                        intData = actualData.compactMap{ Int($0) }
+                        sum = intData.reduce(0, +)
+                        newItems[item] = sum // add to dictonary
+                        self.tempCategory = item
+                    }
+                 }
+    
+            }
+          
+            
+            self.statsCategory = newItems
+           
+            for (key, value) in self.statsCategory {
+                keyArray.append(key)
+                valueArray.append(value)
+                percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
+            }
+            self.currentSum.text = "$" + String(valueArray.reduce(0, +))
+            self.expenseCategory.reloadData()
+            // pie chart
+            self.customizeChart(dataPoints: keyArray, values: percentArray)
+
+        })
+    }
     
     @IBAction func backwardBtnWasPressed(_ sender: Any) {
         
@@ -146,9 +165,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         default:
             break
         }
-        
     }
-    
     
     @IBAction func forwardBtnWasPressed(_ sender: Any) {
         
@@ -166,7 +183,20 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         default:
             break
         }
-
+    }
+    
+    @IBAction func segmentedControl(_ sender: Any) {
+        let tabBar = tabBarController as! RaisedTabBarViewController
+        let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
+        let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
+        
+        switch segmentedControl.selectedSegmentIndex{
+        case 0: loadStaticstic(start,end,"expense")
+            transType = "expense"
+        case 1: loadStaticstic(start,end,"income")
+            transType = "income"
+        default: break;
+        }
     }
     
     @objc func changeSegment(sender: UISegmentedControl) {
@@ -183,7 +213,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             tabBar.currentEndWeek = endWeek?.convertDateToString()
             tabBar.selectedSegment = 0
             dateLbl.text = "\(tabBar.currentStartWeek!) - \(tabBar.currentEndWeek!)"
-            loadData(Int(startWeek!.timeIntervalSince1970 * 1000), Int(endWeek!.timeIntervalSince1970 * 1000) )
+            loadStaticstic(Int(startWeek!.timeIntervalSince1970 * 1000), Int(endWeek!.timeIntervalSince1970 * 1000),transType)
         case 1:
             let startMonth = now.startOfMonth
             let endMonth = now.endOfMonth
@@ -191,15 +221,14 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             tabBar.currentMonth = startMonth?.getMonthName()
             tabBar.selectedSegment = 1
             dateLbl.text = tabBar.currentMonth
-            loadData(Int(startMonth!.timeIntervalSince1970 * 1000), Int(endMonth!.timeIntervalSince1970 * 1000) )
+            loadStaticstic(Int(startMonth!.timeIntervalSince1970 * 1000), Int(endMonth!.timeIntervalSince1970 * 1000),transType)
         default:
             let startOfYear = now.startOfYear
             let endOfYear = now.endOfYear
-            
             tabBar.currentYear = startOfYear?.getYear()
             tabBar.selectedSegment = 2
             dateLbl.text = tabBar.currentYear
-            loadData(Int(startOfYear!.timeIntervalSince1970 * 1000), Int(endOfYear!.timeIntervalSince1970 * 1000) )
+            loadStaticstic(Int(startOfYear!.timeIntervalSince1970 * 1000), Int(endOfYear!.timeIntervalSince1970 * 1000),transType)
         }
     
     }
@@ -279,85 +308,61 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         let startTime = Int(nextStart.timeIntervalSince1970 * 1000)
         let endTime = Int(nextEnd.timeIntervalSince1970 * 1000)
         
-        loadData(startTime, endTime )
+        loadStaticstic(startTime, endTime,transType)
     
     }
     
-    
-    // initialze balance and store to monthlyData table
-    func initBalance(){
-   
-        // initialize current month balance
-        let defaults = UserDefaults.standard
-        defaults.set(0, forKey: "currentBalance")
-        defaults.set(0, forKey: "expenseBalance")
-        defaults.set(0, forKey: "incomeBalance")
-    }
-    
-    // update expense
-    func updateExpense(date: String, expenseAmount: String, notes: String, category: String,transDate: Int, transType: String) {
-        let updatedExpense:Int = Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance")
-        UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
-        // add entry to table
-        
-        
-        let item = Transaction(date: date, amount:  expenseAmount, notes: notes, category: category,transDate: transDate, transType: transType)
-        let itemRef = self.ref.childByAutoId()//.child("expense")
-        itemRef.setValue(item.toAnyObject())
-        
-        // transactionDataArr.append(TransactionItem(date: transDate, amount: "-¥" + expenseAmount))
-        // transactionDataTableView.reloadData()
-        
-        viewDidLoad()
-        
-    }
-    
-    // update income
-    func updateIncome(date: String, incomeAmount: String, notes: String, category: String, transDate: Int, transType: String) {
-        let updatedIncome: Int = Int(incomeAmount)! + UserDefaults.standard.integer(forKey: "incomeBalance")
-        UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
-        // add entry to table
-        
-        
-        let item = Transaction(date: date, amount: incomeAmount, notes: notes, category: category,transDate: transDate,transType: transType)
-        let itemRef = self.ref.childByAutoId()//.child("income")
-        itemRef.setValue(item.toAnyObject())
-        
-        // transactionDataArr.append(TransactionItem(date: transDate, amount: "+¥" + incomeAmount))
-        // transactionDataTableView.reloadData()
-        
-        viewDidLoad()
-    }
-
-    // UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return transactionDataArr.count
+        return self.statsCategory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionDataTableViewCell", for: indexPath) as! transactionDataTableViewCell
-        cell.dateCell.text = transactionDataArr[indexPath.row].date
-        cell.categoryCell.text = transactionDataArr[indexPath.row].category
-        cell.amountCell.text = (transactionDataArr[indexPath.row].transType == "income" ? "+ ": "- ") + "$" + transactionDataArr[indexPath.row].amount
-        
-        if transactionDataArr[indexPath.row].notes.isEmpty == true {
-            cell.notesCell.text = transactionDataArr[indexPath.row].category
+        var keyArray = [String]()
+        var valueArray = [Int]()
+        for (key, value) in self.statsCategory {
+            keyArray.append(key)
+            valueArray.append(value)
         }
-        else {
-            cell.notesCell.text = transactionDataArr[indexPath.row].notes
-        }
+        valueArray = valueArray.sorted { $0 > $1 }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
+        cell.textLabel?.text = keyArray[indexPath.row]
+        cell.detailTextLabel?.text = "$" +  String(valueArray[indexPath.row])
         return cell
     }
     
-    // segue
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "addInput" {
-        let destinationNavigationController = segue.destination as! UINavigationController
-        let targetController = destinationNavigationController.topViewController as! AddTransactionViewController
-           targetController.delegate = self
-       }
-   }
+    // pie chart
+    func customizeChart(dataPoints: [String], values: [Double]) {
+        var dataEntries = [ChartDataEntry]()
+        for i in 0..<dataPoints.count {
+            let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
+                dataEntries.append(dataEntry)
+        }
+        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
+        pieChartDataSet.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
+        
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        let format = NumberFormatter()
+        format.numberStyle = .percent
+        format.maximumFractionDigits = 1
+        format.multiplier = 1.0
+        format.percentSymbol = " %"
+        let formatter = DefaultValueFormatter(formatter: format)
+        pieChartData.setValueFont(.systemFont(ofSize: 11, weight: .bold))
+        pieChartData.setValueTextColor(.white)
+        pieChartData.setValueFormatter(formatter)
+        pieChart.data = pieChartData
+        pieChart.setNeedsDisplay()
+    }
     
+    private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
+      var colors: [UIColor] = []
+      for _ in 0..<numbersOfColor {
+        let red = Double(arc4random_uniform(256))
+        let green = Double(arc4random_uniform(256))
+        let blue = Double(arc4random_uniform(256))
+        let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+        colors.append(color)
+      }
+      return colors
+    }
 }

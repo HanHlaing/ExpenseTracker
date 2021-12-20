@@ -60,3 +60,25 @@ extension UIButton {
         self.layer.shadowOpacity = 0.5
     }
 }
+
+extension UIView {
+    func leftTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+                                                            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.push
+        animation.subtype = CATransitionSubtype.fromRight
+        animation.duration = duration
+        layer.add(animation, forKey: kCATransition)
+    }
+    
+    func rightTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+                                                            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.push
+        animation.subtype = CATransitionSubtype.fromLeft
+        animation.duration = duration
+        layer.add(animation, forKey: kCATransition)
+    }
+}
