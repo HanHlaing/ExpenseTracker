@@ -667,7 +667,7 @@
             </objects>
             <point key="canvasLocation" x="-2693" y="302"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="KM8-ba-nj7">
             <objects>
                 <viewController id="kM5-Db-onG" customClass="ProfileViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -701,7 +701,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oRL-P3-Hpe"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bAQ-eZ-WXK" firstAttribute="top" secondItem="zwY-8h-whk" secondAttribute="bottom" constant="8" id="8HZ-zM-uSr"/>
                             <constraint firstItem="rhh-pD-Vde" firstAttribute="centerX" secondItem="oRL-P3-Hpe" secondAttribute="centerX" id="IT1-7z-Bs9"/>
@@ -711,7 +711,7 @@
                             <constraint firstItem="bAQ-eZ-WXK" firstAttribute="centerY" secondItem="oRL-P3-Hpe" secondAttribute="centerY" id="yvn-Gr-x8T"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YcH-Up-WrQ">
+                    <navigationItem key="navigationItem" title="Profile" id="YcH-Up-WrQ">
                         <barButtonItem key="backBarButtonItem" title=" " id="7Ze-ch-HMA"/>
                         <barButtonItem key="rightBarButtonItem" title="Sign out" id="oXG-Cg-XIa" userLabel="Sign out">
                             <connections>
