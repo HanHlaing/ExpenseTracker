@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 
 class SigninViewController: UIViewController {
-
+    
     // MARK: - Properties
     
     @IBOutlet var emailTextField: UITextField!
@@ -18,7 +18,7 @@ class SigninViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -56,20 +56,23 @@ class SigninViewController: UIViewController {
         case (_, true):
             showErrorAlert( "Required Filed!", "Please enter password")
         default:
-            
-            handleSignIn()
+            if(!isValidEmail(email)) {
+                showErrorAlert( "Required Filed!", "Please enter valid email")
+            } else {
+                handleSignIn()
+            }
         }
         
     }
     
     @IBAction func SignupTapped(_ sender: Any) {
-    
+        
         let identifier = "SignupViewController"
         let vc = storyboard?.instantiateViewController(identifier: identifier) as! SignupViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-   
-    //MARK: - Private methods
+    
+    //MARK: - Private Methods
     
     private func configureUI() {
         emailTextField.delegate = self
@@ -88,12 +91,12 @@ class SigninViewController: UIViewController {
             
             setLoggingIn(true)
             Auth.auth().signIn(withEmail: email, password: password, completion: {
-               (user,error) in
+                (user,error) in
                 
                 self.setLoggingIn(false)
                 if error != nil, let myerr = error?.localizedDescription {
                     
-                    self.showErrorAlert( "Warning!", myerr)
+                    self.showErrorAlert( "Error!", myerr)
                 }
             })
         } else {
@@ -123,10 +126,10 @@ class SigninViewController: UIViewController {
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         loginButton.center = CGPoint(x: view.center.x,
-                                        y: view.frame.height - keyboardFrame.height - 16.0 - loginButton.frame.height / 2)
+                                     y: view.frame.height - keyboardFrame.height - 16.0 - loginButton.frame.height / 2)
     }
     
-
+    
 }
 
 //MARK: - Extensions

@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let user = Auth.auth().currentUser{
+        if let user = Auth.auth().currentUser {
             self.usernameLabel.text = user.displayName
             self.emailLabel.text = user.email
             userRoot = userRoot.child(user.uid)
