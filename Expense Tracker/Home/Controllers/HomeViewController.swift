@@ -65,9 +65,9 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         UserDefaults.standard.set(UserDefaults.standard.integer(forKey: "incomeBalance") - UserDefaults.standard.integer(forKey: "expenseBalance"), forKey: "currentBalance")
         
         // display balance
-        balanceDisplay.text = "$" + String(UserDefaults.standard.integer(forKey: "currentBalance"))
-        expenseDisplay.text = "$" + String( UserDefaults.standard.integer(forKey: "expenseBalance"))
-        incomeDisplay.text = "$" + String(UserDefaults.standard.integer(forKey: "incomeBalance"))
+        balanceDisplay.text = String(UserDefaults.standard.integer(forKey: "currentBalance"))
+        expenseDisplay.text = String( UserDefaults.standard.integer(forKey: "expenseBalance"))
+        incomeDisplay.text = String(UserDefaults.standard.integer(forKey: "incomeBalance"))
         
         //currentDate.text = formatter.string(from: date)
         
@@ -100,16 +100,16 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             let filteredIncome = self.transactionDataArr.filter( {$0.transType == "income"} )
             let amountArr = filteredIncome.map( {Int($0.amount)! })
             let totalIncome = String(amountArr.reduce(0, +))
-            self.incomeDisplay.text = "$" + totalIncome
+            self.incomeDisplay.text = totalIncome
             
             
             let filteredExpense = self.transactionDataArr.filter( {$0.transType == "expense"} )
             let amountArr1 = filteredExpense.map( {Int($0.amount)! })
             let totalExpense = String(amountArr1.reduce(0, +))
-            self.expenseDisplay.text = "$" + totalExpense
+            self.expenseDisplay.text = totalExpense
             
             let currentBalance = String(Int(totalIncome)! - Int(totalExpense)!)
-            self.balanceDisplay.text = "$" + currentBalance
+            self.balanceDisplay.text = currentBalance
         })
     }
     
@@ -340,7 +340,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionDataTableViewCell", for: indexPath) as! transactionDataTableViewCell
         cell.dateCell.text = transactionDataArr[indexPath.row].date
         cell.categoryCell.text = transactionDataArr[indexPath.row].category
-        cell.amountCell.text = (transactionDataArr[indexPath.row].transType == "income" ? "+ ": "- ") + "$" + transactionDataArr[indexPath.row].amount
+        cell.amountCell.text = (transactionDataArr[indexPath.row].transType == "income" ? "+ ": "- ") + transactionDataArr[indexPath.row].amount
         
         if transactionDataArr[indexPath.row].notes.isEmpty == true {
             cell.notesCell.text = transactionDataArr[indexPath.row].category

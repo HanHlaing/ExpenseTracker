@@ -82,7 +82,7 @@ class SigninViewController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextfield.text else { return }
         
-        if NetworkStatus.isConnectedToNetwork() {
+       // if NetworkStatus.isConnectedToNetwork() {
             
             setLoggingIn(true)
             Auth.auth().signIn(withEmail: email, password: password, completion: {
@@ -94,9 +94,9 @@ class SigninViewController: UIViewController {
                     self.showErrorAlert( "Warning!", myerr)
                 }
             })
-        } else {
-            showErrorAlert( "No internet!", "Please check your internet connection.")
-        }
+//        } else {
+//            showErrorAlert( "No internet!", "Please check your internet connection.")
+//        }
     }
     
     func actualInput(for textField: UITextField) -> String {

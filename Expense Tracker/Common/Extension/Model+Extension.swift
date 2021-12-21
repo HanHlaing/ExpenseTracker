@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIDevice {
     
-    public var type: Model {
+    var type: Model {
         
         var systemInfo = utsname()
         uname(&systemInfo)
@@ -19,7 +19,7 @@ public extension UIDevice {
                 
             }
         }
-        var modelMap : [ String : Model ] = [
+        let modelMap : [ String : Model ] = [
             "i386"      : .simulator,
             "x86_64"    : .simulator,
             "iPod1,1"   : .iPod1,

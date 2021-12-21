@@ -94,7 +94,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
         
         // display sum
-        currentSum.text = "$" + String(UserDefaults.standard.integer(forKey: transType == "expense" ? "expenseBalance":"incomeBalance"))
+        currentSum.text = String(UserDefaults.standard.integer(forKey: transType == "expense" ? "expenseBalance":"incomeBalance"))
         let year = Calendar.current.component(.year, from: Date())
         let month = Calendar.current.component(.month, from: Date())
         var sum = monthlyData[YearMonth(year:year, month:month)]
@@ -141,7 +141,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 valueArray.append(value)
                 percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
             }
-            self.currentSum.text = "$" + String(valueArray.reduce(0, +))
+            self.currentSum.text = String(valueArray.reduce(0, +))
             self.expenseCategory.reloadData()
             // pie chart
             self.customizeChart(dataPoints: keyArray, values: percentArray)
@@ -326,7 +326,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         valueArray = valueArray.sorted { $0 > $1 }
         let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
         cell.textLabel?.text = keyArray[indexPath.row]
-        cell.detailTextLabel?.text = "$" +  String(valueArray[indexPath.row])
+        cell.detailTextLabel?.text = String(valueArray[indexPath.row])
         return cell
     }
     

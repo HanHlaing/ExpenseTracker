@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func signoutTapped(_ sender: Any) {
         
+        
         let singoutAlert = UIAlertController(title: "Sign out", message: "Are you sure want sign out?", preferredStyle: UIAlertController.Style.alert)
 
         singoutAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
