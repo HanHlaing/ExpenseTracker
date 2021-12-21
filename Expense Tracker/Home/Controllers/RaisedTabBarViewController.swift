@@ -10,7 +10,6 @@ import UIKit
 class RaisedTabBarViewController: UITabBarController {
     
     var selectedSegment: Int = 1
-    
     var currentStartWeek: String?
     var currentEndWeek: String?
     var currentMonth: String?
@@ -19,7 +18,6 @@ class RaisedTabBarViewController: UITabBarController {
     var endOfMonth: NSDate!
     
     var now = Foundation.Date()
-    
     var dateChanged: Bool?
     
     override func viewDidLoad() {

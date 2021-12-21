@@ -22,7 +22,8 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     @IBOutlet weak var notes: UITextField!
     @IBOutlet weak var inputCategory: UIButton!
     
-    // MARK: Variables
+    // MARK: - Variables
+    
     var delegate: MyDataSendingDelegateProtocol? = nil
     var inputStatus: String = "expense" // set to expense by default
     var categoryInput: String = ""
@@ -32,7 +33,9 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
         datePicker.timeZone = TimeZone.init(identifier: "UTC")
         // Do any additional setup after loading the view.
     }
-    // MARK: Actions
+    
+    // MARK: - Actions
+    
     // done button
     @IBAction func finishInput(_ sender: Any) {
         // alert if textfield is empty
@@ -103,6 +106,8 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             self.performSegue(withIdentifier: "addIncomeCategory", sender: Any?.self)
         }
     }
+    
+    // MARK: - Private Methods
     
     func getCategory(category: String) {
         categoryInput = category

@@ -51,6 +51,4 @@ class ExpenseCategoryViewController: UIViewController, UITableViewDelegate, UITa
         self.delegate?.getCategory(category: selectedCategory)
     }
     
-    
-
 }

@@ -10,6 +10,7 @@ import UIKit
 class transactionDataTableViewCell: UITableViewCell {
 
     // MARK: Outlets
+    
     @IBOutlet weak var categoryCell: UILabel!
     @IBOutlet weak var dateCell: UILabel!
     @IBOutlet weak var amountCell: UILabel!

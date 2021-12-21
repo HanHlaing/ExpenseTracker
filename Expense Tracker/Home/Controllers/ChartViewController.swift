@@ -11,15 +11,8 @@ import Charts
 
 class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
-    
-    // MARK: variables
-    var statsCategory = [String: Int]() // get category from firebase
-    //let ref = Database.database().reference(withPath:"transaction-data")
-    let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!)
-    var tempCategory = ""
-    var transType: String = "expense"
-    
     // MARK: Outlets
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var currentMonth: UILabel!
     @IBOutlet weak var currentSum: UILabel!
@@ -30,9 +23,17 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var backwardBtn: UIButton!
     @IBOutlet weak var forwardBtn: UIButton!
     
+    // MARK: variables
+    
+    var statsCategory = [String: Int]()
+    let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!)
+    var tempCategory = ""
+    var transType: String = "expense"
     var segment: UISegmentedControl!
     var empty = [String]()
     var now = Foundation.Date()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         segment.sizeToFit()
         segment.tintColor = #colorLiteral(red: 0, green: 0.007843137255, blue: 0.1450980392, alpha: 1)
         segment.selectedSegmentIndex = tabBar.selectedSegment
-        //        segment.frame = CGRect(x: 0, y: 0, width: 250, height: 10)
+       
         switch (UIDevice().type) {
         case .iPhoneX, .iPhone6, .iPhone6S, .iPhone7, .iPhone8: //big screen iPhones
             segment.frame = CGRect(x: 0, y: 0, width: 220, height: 10)
@@ -55,8 +56,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         segment.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Avenir Next", size: 15)!], for: .normal)
         self.navigationItem.titleView = segment
         segment.addTarget(self, action: #selector(changeSegment(sender:)), for: .valueChanged)
-        
-        
         
         // display month
         let date = Date()
@@ -90,61 +89,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
-        
-        let year = Calendar.current.component(.year, from: Date())
-        let month = Calendar.current.component(.month, from: Date())
-        var sum = monthlyData[YearMonth(year:year, month:month)]
-        
-        ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
-            var newItems = [String: Int]()
-            var actualData = [String]()
-            var intData = [Int]()
-            var keyArray = [String]()
-            var valueArray = [Int]()
-            var percentArray = [Double]()
-            var totalAmount = 0
-            
-            for child in snapshot.children.allObjects {
-                
-                if let nestedSnapshot = child as? DataSnapshot,
-                   let type = nestedSnapshot.childSnapshot(forPath: "transType").value as? String,
-                   let item = nestedSnapshot.childSnapshot(forPath: "category").value as? String,
-                   let amount = nestedSnapshot.childSnapshot(forPath: "amount").value as? String {
-                    
-                    
-                    if(transType == type){
-                        
-                        if(self.tempCategory != item) {
-                            actualData.removeAll() // initialze array
-                        }
-                        
-                        actualData.append(amount)
-                        totalAmount += Int(amount)!
-                        intData = actualData.compactMap{ Int($0) }
-                        sum = intData.reduce(0, +)
-                        newItems[item] = sum // add to dictonary
-                        self.tempCategory = item
-                    }
-                }
-                
-            }
-            
-            
-            self.statsCategory = newItems
-            
-            for (key, value) in self.statsCategory {
-                keyArray.append(key)
-                valueArray.append(value)
-                percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
-            }
-            self.currentSum.text = String(valueArray.reduce(0, +))
-            self.expenseCategory.reloadData()
-            // pie chart
-            self.customizeChart(dataPoints: keyArray, values: percentArray)
-            
-        })
-    }
+    //MARK: - Actions
     
     @IBAction func backwardBtnWasPressed(_ sender: Any) {
         
@@ -194,6 +139,63 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             transType = "income"
         default: break;
         }
+    }
+    
+    //MARK: - Private Methods
+    
+    func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
+        
+        let year = Calendar.current.component(.year, from: Date())
+        let month = Calendar.current.component(.month, from: Date())
+        var sum = monthlyData[YearMonth(year:year, month:month)]
+        
+        ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
+            var newItems = [String: Int]()
+            var actualData = [String]()
+            var intData = [Int]()
+            var keyArray = [String]()
+            var valueArray = [Int]()
+            var percentArray = [Double]()
+            var totalAmount = 0
+            
+            for child in snapshot.children.allObjects {
+                
+                if let nestedSnapshot = child as? DataSnapshot,
+                   let type = nestedSnapshot.childSnapshot(forPath: "transType").value as? String,
+                   let item = nestedSnapshot.childSnapshot(forPath: "category").value as? String,
+                   let amount = nestedSnapshot.childSnapshot(forPath: "amount").value as? String {
+                    
+                    
+                    if(transType == type){
+                        
+                        if(self.tempCategory != item) {
+                            actualData.removeAll() // initialze array
+                        }
+                        
+                        actualData.append(amount)
+                        totalAmount += Int(amount)!
+                        intData = actualData.compactMap{ Int($0) }
+                        sum = intData.reduce(0, +)
+                        newItems[item] = sum // add to dictonary
+                        self.tempCategory = item
+                    }
+                }
+                
+            }
+            
+            self.statsCategory = newItems
+            
+            for (key, value) in self.statsCategory {
+                keyArray.append(key)
+                valueArray.append(value)
+                percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
+            }
+            self.currentSum.text = String(valueArray.reduce(0, +))
+            self.expenseCategory.reloadData()
+            // pie chart
+            self.customizeChart(dataPoints: keyArray, values: percentArray)
+            
+        })
     }
     
     @objc func changeSegment(sender: UISegmentedControl) {
@@ -309,24 +311,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.statsCategory.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var keyArray = [String]()
-        var valueArray = [Int]()
-        for (key, value) in self.statsCategory {
-            keyArray.append(key)
-            valueArray.append(value)
-        }
-        valueArray = valueArray.sorted { $0 > $1 }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
-        cell.textLabel?.text = keyArray[indexPath.row]
-        cell.detailTextLabel?.text = String(valueArray[indexPath.row])
-        return cell
-    }
-    
     // pie chart
     func customizeChart(dataPoints: [String], values: [Double]) {
         var dataEntries = [ChartDataEntry]()
@@ -361,5 +345,25 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             colors.append(color)
         }
         return colors
+    }
+    
+    //MARK: - Delegate methods
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.statsCategory.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var keyArray = [String]()
+        var valueArray = [Int]()
+        for (key, value) in self.statsCategory {
+            keyArray.append(key)
+            valueArray.append(value)
+        }
+        valueArray = valueArray.sorted { $0 > $1 }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
+        cell.textLabel?.text = keyArray[indexPath.row]
+        cell.detailTextLabel?.text = String(valueArray[indexPath.row])
+        return cell
     }
 }

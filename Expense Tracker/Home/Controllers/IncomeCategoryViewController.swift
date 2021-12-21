@@ -50,7 +50,4 @@ class IncomeCategoryViewController: UIViewController, UITableViewDelegate, UITab
         let selectedCategory = self.incomeCategory[indexPath.row]
         self.delegate?.getIncomeCategory(category: selectedCategory)
     }
-    
-    
-
 }
