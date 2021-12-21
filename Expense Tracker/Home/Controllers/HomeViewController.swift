@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 import Firebase
 import Foundation
 
@@ -30,6 +29,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     var empty = [String]()
     var now = Foundation.Date()
     var transactionDataArr = [Transaction]()
+    var _refHandle: DatabaseHandle!
     let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!) // firebase
     
     // MARK: - Life Cycle
@@ -85,6 +85,9 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         }
     }
     
+    deinit {
+        ref.removeObserver(withHandle: _refHandle)
+    }
     //MARK: - Actions
     
     @IBAction func backwardBtnWasPressed(_ sender: Any) {
@@ -130,7 +133,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     func loadTransactions(_ start: Int, _ end: Int) {
         
         // synchronize data to table view from firebase
-        ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe( .value, with: { snapshot in
+        _refHandle = ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe( .value, with: { snapshot in
             var newItems: [Transaction] = []
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,

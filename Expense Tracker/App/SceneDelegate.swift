@@ -11,7 +11,7 @@ import Firebase
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var _authHandle: AuthStateDidChangeListenerHandle!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
                 let window = UIWindow(windowScene: windowScene)
             
-            Auth.auth().addStateDidChangeListener() { auth, user in
+            _authHandle = Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
                         // Show home page
                         UserManager.shared.userID = user?.uid
@@ -71,6 +71,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    deinit {
+        Auth.auth().removeStateDidChangeListener(_authHandle)
+    }
 
 }
 

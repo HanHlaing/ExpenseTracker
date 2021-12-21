@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		684754CE47FEC52B5CBD43F5 /* Pods_Expense_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C074297A095E28D642536B /* Pods_Expense_Tracker.framework */; };
 		FF3F9E4827719C2500A9BCD8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F9E4727719C2500A9BCD8 /* UserManager.swift */; };
+		FF3F9E4A2771EFAD00A9BCD8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F9E492771EFAD00A9BCD8 /* SplashViewController.swift */; };
 		FF4A2A4B276DD1C500602E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4A2A4A276DD1C500602E30 /* AppDelegate.swift */; };
 		FF4A2A4D276DD1C500602E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4A2A4C276DD1C500602E30 /* SceneDelegate.swift */; };
 		FF4A2A54276DD1C700602E30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4A2A53276DD1C700602E30 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		8F2816EE792B9CA54ACD5584 /* Pods-Expense Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expense Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Expense Tracker/Pods-Expense Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		D2C074297A095E28D642536B /* Pods_Expense_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expense_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3F9E4727719C2500A9BCD8 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		FF3F9E492771EFAD00A9BCD8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FF4A2A47276DD1C500602E30 /* Expense Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expense Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4A2A4A276DD1C500602E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF4A2A4C276DD1C500602E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				FF4A2A63276DED4E00602E30 /* SigninViewController.swift */,
 				FF4A2A65276DED6100602E30 /* SignupViewController.swift */,
+				FF3F9E492771EFAD00A9BCD8 /* SplashViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				FF3F9E4827719C2500A9BCD8 /* UserManager.swift in Sources */,
 				FFBD3111277064540061322E /* MonthlyData.swift in Sources */,
 				FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */,
+				FF3F9E4A2771EFAD00A9BCD8 /* SplashViewController.swift in Sources */,
 				FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */,
 				FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */,
 				FFBCCF74276F4C5B00C298FC /* transactionDataTableViewCell.swift in Sources */,

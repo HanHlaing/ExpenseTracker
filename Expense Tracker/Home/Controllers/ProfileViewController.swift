@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
         let singoutAlert = UIAlertController(title: "Sign out", message: "Are you sure want sign out?", preferredStyle: UIAlertController.Style.alert)
 
         singoutAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+            UserManager.shared.clearUserID()
             try! Auth.auth().signOut()
         }))
 

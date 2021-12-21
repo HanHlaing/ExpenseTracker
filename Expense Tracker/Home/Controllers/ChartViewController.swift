@@ -26,6 +26,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: variables
     
     var statsCategory = [String: Int]()
+    var _refHandle: DatabaseHandle!
     let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!)
     var tempCategory = ""
     var transType: String = "expense"
@@ -89,6 +90,10 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    deinit {
+        ref.removeObserver(withHandle: _refHandle)
+    }
+    
     //MARK: - Actions
     
     @IBAction func backwardBtnWasPressed(_ sender: Any) {
@@ -149,7 +154,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let month = Calendar.current.component(.month, from: Date())
         var sum = monthlyData[YearMonth(year:year, month:month)]
         
-        ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
+        _refHandle = ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
             var newItems = [String: Int]()
             var actualData = [String]()
             var intData = [Int]()

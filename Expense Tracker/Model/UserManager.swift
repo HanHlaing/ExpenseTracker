@@ -23,4 +23,8 @@ class UserManager {
             UserDefaults.standard.set(newValue, forKey: UserKeys.userIDKey.rawValue)
         }
     }
+    
+    func clearUserID() {
+        UserDefaults.standard.removeObject(forKey: UserKeys.userIDKey.rawValue)
+    }
 }
