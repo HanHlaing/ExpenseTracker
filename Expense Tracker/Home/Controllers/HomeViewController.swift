@@ -11,7 +11,7 @@ import Firebase
 import Foundation
 
 class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITableViewDelegate, UITableViewDataSource {
-
+    
     // MARK: Outlets
     @IBOutlet weak var balanceDisplay: UILabel!
     @IBOutlet weak var incomeDisplay: UILabel!
@@ -30,8 +30,8 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     
     // MARK: Variables
     var transactionDataArr = [Transaction]()
-    let ref = Database.database().reference(withPath:"transactions").child("DZIGIY2mpYdVVRyGcBmZGEnzRHm1") // firebase
-
+    let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!) // firebase
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         segment.sizeToFit()
         segment.tintColor = #colorLiteral(red: 0, green: 0.007843137255, blue: 0.1450980392, alpha: 1)
         segment.selectedSegmentIndex = tabBar.selectedSegment
-//        segment.frame = CGRect(x: 0, y: 0, width: 250, height: 10)
+        //        segment.frame = CGRect(x: 0, y: 0, width: 250, height: 10)
         switch (UIDevice().type) {
         case .iPhoneX, .iPhone6, .iPhone6S, .iPhone7, .iPhone8: //big screen iPhones
             segment.frame = CGRect(x: 0, y: 0, width: 220, height: 10)
@@ -54,23 +54,6 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         self.navigationItem.titleView = segment
         segment.addTarget(self, action: #selector(changeSegment(sender:)), for: .valueChanged)
         
-        
-        
-        // initialize balance on first day of month
-        if Calendar.current.component(.day, from: Date()) == 1 {
-            initBalance()
-        }
-        
-        // calculate current balance
-        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: "incomeBalance") - UserDefaults.standard.integer(forKey: "expenseBalance"), forKey: "currentBalance")
-        
-        // display balance
-        balanceDisplay.text = String(UserDefaults.standard.integer(forKey: "currentBalance"))
-        expenseDisplay.text = String( UserDefaults.standard.integer(forKey: "expenseBalance"))
-        incomeDisplay.text = String(UserDefaults.standard.integer(forKey: "incomeBalance"))
-        
-        //currentDate.text = formatter.string(from: date)
-        
         // display table
         transactionDataTableView.delegate = self
         transactionDataTableView.dataSource = self
@@ -82,18 +65,18 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         loadData(start,end)
         // Do any additional setup after loading the view.
     }
-        
+    
     func loadData(_ start: Int, _ end: Int){
         // synchronize data to table view from firebase
         ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe( .value, with: { snapshot in
-          var newItems: [Transaction] = []
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-               let nestedItem = Transaction(snapshot:snapshot){
-                
-                newItems.append(nestedItem)
+            var newItems: [Transaction] = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                   let nestedItem = Transaction(snapshot:snapshot){
+                    
+                    newItems.append(nestedItem)
+                }
             }
-          }
             self.transactionDataArr = newItems
             self.transactionDataTableView.reloadData()
             
@@ -115,7 +98,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         let tabBar = tabBarController as! RaisedTabBarViewController
-       
+        
         switch tabBar.selectedSegment {
         case 0:
             segment.selectedSegmentIndex = 0
@@ -166,7 +149,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         default:
             break
         }
-
+        
     }
     
     @objc func changeSegment(sender: UISegmentedControl) {
@@ -201,11 +184,11 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             dateLbl.text = tabBar.currentYear
             loadData(Int(startOfYear!.timeIntervalSince1970 * 1000), Int(endOfYear!.timeIntervalSince1970 * 1000) )
         }
-    
+        
     }
     
     func changeDate(_ sender: UIButton, currentDate: Foundation.Date, segment: Int, tab: RaisedTabBarViewController) {
-       
+        
         var start: Foundation.Date
         var end: Foundation.Date
         var nextStart: Foundation.Date
@@ -280,18 +263,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         let endTime = Int(nextEnd.timeIntervalSince1970 * 1000)
         
         loadData(startTime, endTime )
-    
-    }
-    
-    
-    // initialze balance and store to monthlyData table
-    func initBalance(){
-   
-        // initialize current month balance
-        let defaults = UserDefaults.standard
-        defaults.set(0, forKey: "currentBalance")
-        defaults.set(0, forKey: "expenseBalance")
-        defaults.set(0, forKey: "incomeBalance")
+        
     }
     
     // update expense
@@ -302,11 +274,8 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         
         
         let item = Transaction(date: date, amount:  expenseAmount, notes: notes, category: category,transDate: transDate, transType: transType)
-        let itemRef = self.ref.childByAutoId()//.child("expense")
+        let itemRef = self.ref.childByAutoId()
         itemRef.setValue(item.toAnyObject())
-        
-        // transactionDataArr.append(TransactionItem(date: transDate, amount: "-¥" + expenseAmount))
-        // transactionDataTableView.reloadData()
         
         viewDidLoad()
         
@@ -323,12 +292,9 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         let itemRef = self.ref.childByAutoId()//.child("income")
         itemRef.setValue(item.toAnyObject())
         
-        // transactionDataArr.append(TransactionItem(date: transDate, amount: "+¥" + incomeAmount))
-        // transactionDataTableView.reloadData()
-        
         viewDidLoad()
     }
-
+    
     // UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -336,7 +302,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionDataTableViewCell", for: indexPath) as! transactionDataTableViewCell
         cell.dateCell.text = transactionDataArr[indexPath.row].date
         cell.categoryCell.text = transactionDataArr[indexPath.row].category
@@ -352,12 +318,12 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     }
     
     // segue
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "addInput" {
-        let destinationNavigationController = segue.destination as! UINavigationController
-        let targetController = destinationNavigationController.topViewController as! AddTransactionViewController
-           targetController.delegate = self
-       }
-   }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addInput" {
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let targetController = destinationNavigationController.topViewController as! AddTransactionViewController
+            targetController.delegate = self
+        }
+    }
     
 }

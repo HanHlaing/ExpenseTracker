@@ -10,12 +10,12 @@ import Firebase
 import Charts
 
 class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-
+    
     
     // MARK: variables
     var statsCategory = [String: Int]() // get category from firebase
     //let ref = Database.database().reference(withPath:"transaction-data")
-    let ref = Database.database().reference(withPath:"transactions").child("DZIGIY2mpYdVVRyGcBmZGEnzRHm1")
+    let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!)
     var tempCategory = ""
     var transType: String = "expense"
     
@@ -33,16 +33,16 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var segment: UISegmentedControl!
     var empty = [String]()
     var now = Foundation.Date()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let tabBar = tabBarController as! RaisedTabBarViewController
         segment = UISegmentedControl(items: ["Week", "Month", "Year"])
         segment.sizeToFit()
         segment.tintColor = #colorLiteral(red: 0, green: 0.007843137255, blue: 0.1450980392, alpha: 1)
         segment.selectedSegmentIndex = tabBar.selectedSegment
-//        segment.frame = CGRect(x: 0, y: 0, width: 250, height: 10)
+        //        segment.frame = CGRect(x: 0, y: 0, width: 250, height: 10)
         switch (UIDevice().type) {
         case .iPhoneX, .iPhone6, .iPhone6S, .iPhone7, .iPhone8: //big screen iPhones
             segment.frame = CGRect(x: 0, y: 0, width: 220, height: 10)
@@ -63,8 +63,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM"
         currentMonth.text = formatter.string(from: date)
-       
-       
+        
         
         // display table
         expenseCategory.delegate = self
@@ -77,7 +76,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         let tabBar = tabBarController as! RaisedTabBarViewController
-       
+        
         switch tabBar.selectedSegment {
         case 0:
             segment.selectedSegmentIndex = 0
@@ -93,8 +92,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
         
-        // display sum
-        currentSum.text = String(UserDefaults.standard.integer(forKey: transType == "expense" ? "expenseBalance":"incomeBalance"))
         let year = Calendar.current.component(.year, from: Date())
         let month = Calendar.current.component(.month, from: Date())
         var sum = monthlyData[YearMonth(year:year, month:month)]
@@ -129,13 +126,13 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         newItems[item] = sum // add to dictonary
                         self.tempCategory = item
                     }
-                 }
-    
+                }
+                
             }
-          
+            
             
             self.statsCategory = newItems
-           
+            
             for (key, value) in self.statsCategory {
                 keyArray.append(key)
                 valueArray.append(value)
@@ -145,7 +142,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.expenseCategory.reloadData()
             // pie chart
             self.customizeChart(dataPoints: keyArray, values: percentArray)
-
+            
         })
     }
     
@@ -230,11 +227,11 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             dateLbl.text = tabBar.currentYear
             loadStaticstic(Int(startOfYear!.timeIntervalSince1970 * 1000), Int(endOfYear!.timeIntervalSince1970 * 1000),transType)
         }
-    
+        
     }
     
     func changeDate(_ sender: UIButton, currentDate: Foundation.Date, segment: Int, tab: RaisedTabBarViewController) {
-       
+        
         var start: Foundation.Date
         var end: Foundation.Date
         var nextStart: Foundation.Date
@@ -309,7 +306,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let endTime = Int(nextEnd.timeIntervalSince1970 * 1000)
         
         loadStaticstic(startTime, endTime,transType)
-    
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -335,7 +332,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var dataEntries = [ChartDataEntry]()
         for i in 0..<dataPoints.count {
             let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
-                dataEntries.append(dataEntry)
+            dataEntries.append(dataEntry)
         }
         let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
         pieChartDataSet.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
@@ -355,14 +352,14 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
-      var colors: [UIColor] = []
-      for _ in 0..<numbersOfColor {
-        let red = Double(arc4random_uniform(256))
-        let green = Double(arc4random_uniform(256))
-        let blue = Double(arc4random_uniform(256))
-        let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-        colors.append(color)
-      }
-      return colors
+        var colors: [UIColor] = []
+        for _ in 0..<numbersOfColor {
+            let red = Double(arc4random_uniform(256))
+            let green = Double(arc4random_uniform(256))
+            let blue = Double(arc4random_uniform(256))
+            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+            colors.append(color)
+        }
+        return colors
     }
 }

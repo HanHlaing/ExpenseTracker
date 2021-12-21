@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		684754CE47FEC52B5CBD43F5 /* Pods_Expense_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C074297A095E28D642536B /* Pods_Expense_Tracker.framework */; };
+		FF3F9E4827719C2500A9BCD8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F9E4727719C2500A9BCD8 /* UserManager.swift */; };
 		FF4A2A4B276DD1C500602E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4A2A4A276DD1C500602E30 /* AppDelegate.swift */; };
 		FF4A2A4D276DD1C500602E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4A2A4C276DD1C500602E30 /* SceneDelegate.swift */; };
 		FF4A2A54276DD1C700602E30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4A2A53276DD1C700602E30 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		4251AE70804CF4BA4859A0A9 /* Pods-Expense Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expense Tracker.release.xcconfig"; path = "Target Support Files/Pods-Expense Tracker/Pods-Expense Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		8F2816EE792B9CA54ACD5584 /* Pods-Expense Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expense Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Expense Tracker/Pods-Expense Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		D2C074297A095E28D642536B /* Pods_Expense_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expense_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF3F9E4727719C2500A9BCD8 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FF4A2A47276DD1C500602E30 /* Expense Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expense Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4A2A4A276DD1C500602E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF4A2A4C276DD1C500602E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				FFBCCF5C276F2A9E00C298FC /* User.swift */,
 				FFBCCF5E276F2ACB00C298FC /* Transaction.swift */,
 				FFBD3110277064540061322E /* MonthlyData.swift */,
+				FF3F9E4727719C2500A9BCD8 /* UserManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				FF5D8877276DF30B00EFA568 /* UIApplication.swift in Sources */,
 				FF4A2A66276DED6100602E30 /* SignupViewController.swift in Sources */,
 				FFBCCF5F276F2ACB00C298FC /* Transaction.swift in Sources */,
+				FF3F9E4827719C2500A9BCD8 /* UserManager.swift in Sources */,
 				FFBD3111277064540061322E /* MonthlyData.swift in Sources */,
 				FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */,
 				FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */,

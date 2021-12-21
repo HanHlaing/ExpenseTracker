@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
                         // Show home page
+                        UserManager.shared.userID = user?.uid
                         let homeVC = RaisedTabBarViewController.instantiate(from: .Home)
                         window.rootViewController = homeVC
                         self.window = window
