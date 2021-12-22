@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     @IBOutlet weak var forwardBtn: UIButton!
     
     // MARK: Variables
-    
+    var selectedIndex = 0
     var segment: UISegmentedControl!
     var empty = [String]()
     var now = Foundation.Date()
@@ -91,6 +91,12 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         }
     }
     //MARK: - Actions
+    @IBAction func addTransaction(_ sender: Any) {
+        
+        selectedIndex = -1
+        print("Index \(selectedIndex)")
+        performSegue(withIdentifier: "addInput", sender: nil)
+    }
     
     @IBAction func backwardBtnWasPressed(_ sender: Any) {
         
@@ -149,16 +155,17 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             
             let filteredIncome = self.transactionDataArr.filter( {$0.transType == "income"} )
             let amountArr = filteredIncome.map( {Double($0.amount)! })
-            let totalIncome = amountArr.reduce(0, +).clean
-            self.incomeDisplay.text = totalIncome
+            //let totalIncome = amountArr.reduce(0, +).clean
+            let income = amountArr.reduce(0, +)
+            self.incomeDisplay.text = income.clean
             
             
             let filteredExpense = self.transactionDataArr.filter( {$0.transType == "expense"} )
             let amountArr1 = filteredExpense.map( {Double($0.amount)! })
-            let totalExpense = String(amountArr1.reduce(0, +).clean)
-            self.expenseDisplay.text = totalExpense
+            let expense = amountArr1.reduce(0, +)
+            self.expenseDisplay.text = expense.clean
             
-            let currentBalance = String((Double(totalIncome)! - Double(totalExpense)!).clean)
+            let currentBalance = Double(income - expense).clean
             self.balanceDisplay.text = currentBalance
         })
     }
@@ -277,11 +284,11 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         
     }
     
-    // update expense
-    func updateExpense(date: String, expenseAmount: String, notes: String, category: String,transDate: Int, transType: String) {
+    // add expense/income transaction
+    func addTransaction(date: String, amount: String, notes: String, category: String,transDate: Int, transType: String) {
     
         // add entry to table
-        let item = Transaction(date: date, amount:  expenseAmount, notes: notes, category: category,transDate: transDate, transType: transType)
+        let item = Transaction(date: date, amount:  amount, notes: notes, category: category,transDate: transDate, transType: transType)
         let itemRef = self.ref.childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
@@ -289,15 +296,15 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         
     }
     
-    // update income
-    func updateIncome(date: String, incomeAmount: String, notes: String, category: String, transDate: Int, transType: String) {
+    // update expense/income transaction
+    func updateTransaction(transaction: Transaction) {
         
-        // add entry to table
-        let item = Transaction(date: date, amount: incomeAmount, notes: notes, category: category,transDate: transDate,transType: transType)
-        let itemRef = self.ref.childByAutoId()//.child("income")
-        itemRef.setValue(item.toAnyObject())
-        
-        viewDidLoad()
+        transaction.ref?.updateChildValues(["date": transaction.date,
+                                                  "amount": transaction.amount,
+                                                  "notes": transaction.notes,
+                                                  "category": transaction.category,
+                                                  "transDate": transaction.transDate,
+                                                  "transType": transaction.transType])
     }
     
     //MARK: - Delegate methods
@@ -324,12 +331,23 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedIndex = indexPath.row
+        print("Index \(selectedIndex)")
+        performSegue(withIdentifier: "addInput", sender: nil)
+    }
+    
     // segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addInput" {
             let destinationNavigationController = segue.destination as! UINavigationController
             let targetController = destinationNavigationController.topViewController as! AddTransactionViewController
             targetController.delegate = self
+            if selectedIndex != -1 {
+                targetController.transaction = transactionDataArr[selectedIndex]
+            }
         }
     }
     

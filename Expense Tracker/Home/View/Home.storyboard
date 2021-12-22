@@ -19,7 +19,7 @@
         <!--New Transaction-->
         <scene sceneID="Gme-5I-X5f">
             <objects>
-                <viewController id="Q7E-vj-cQF" customClass="AddTransactionViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddTransactionViewController" id="Q7E-vj-cQF" customClass="AddTransactionViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AUi-D5-TNv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,7 +282,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="l6Z-Yi-qh9" kind="presentation" identifier="addInput" id="mOY-aT-S0I"/>
+                                    <action selector="addTransaction:" destination="ZRJ-zJ-pUY" eventType="touchUpInside" id="oo6-7v-lAh"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eK1-6Q-Dbj">
@@ -372,6 +372,7 @@
                         <outlet property="forwardBtn" destination="NgE-r1-1r9" id="cdK-oe-OS8"/>
                         <outlet property="incomeDisplay" destination="0Qg-v7-u0j" id="W7R-BP-Udw"/>
                         <outlet property="transactionDataTableView" destination="WuV-oo-kxI" id="6Bd-O2-GQn"/>
+                        <segue destination="l6Z-Yi-qh9" kind="presentation" identifier="addInput" id="ygY-b2-guF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwk-aD-AHO" sceneMemberID="firstResponder"/>
@@ -579,6 +580,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l6Z-Yi-qh9" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="cmQ-Zn-Ixi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zvG-a4-PTf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>

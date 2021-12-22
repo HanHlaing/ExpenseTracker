@@ -9,11 +9,19 @@ import UIKit
 
 
 protocol MyDataSendingDelegateProtocol {
-    func updateExpense(date: String, expenseAmount: String, notes: String, category: String,transDate:Int, transType: String)
-    func updateIncome(date: String, incomeAmount: String, notes: String, category: String, transDate:Int,transType: String)
+    func addTransaction(date: String, amount: String, notes: String, category: String,transDate:Int, transType: String)
+    
+    func updateTransaction(transaction: Transaction)
 }
 
 class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProtocol, ExpenseCategoryDelegateProtocol {
+    
+    class func instantiateVC() -> AddTransactionViewController {
+        guard let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as? AddTransactionViewController else {
+            return AddTransactionViewController()
+        }
+        return vc
+    }
     
     // MARK: Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -24,6 +32,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     
     // MARK: - Variables
     
+    var transaction: Transaction? = nil
     var delegate: MyDataSendingDelegateProtocol? = nil
     var inputStatus: String = "expense" // set to expense by default
     var categoryInput: String = ""
@@ -32,6 +41,16 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
         super.viewDidLoad()
         datePicker.timeZone = TimeZone.init(identifier: "UTC")
         inputAmount.delegate = self
+        
+        if (transaction != nil) {
+            
+            self.title = "Edit transaction"
+            datePicker.setDate(Date(timeIntervalSince1970: TimeInterval(transaction!.transDate/1000)), animated: false)
+            inputAmount.text = transaction?.amount
+            notes.text = transaction?.notes
+            categoryInput = transaction?.category ?? ""
+            inputCategory.setTitle(transaction?.category ?? "Not Selected", for: .normal)
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -63,7 +82,17 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             
             let transDate = Int(self.datePicker.date.timeIntervalSince1970 * 1000)
             // delegate
-            self.delegate?.updateExpense(date: date, expenseAmount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: "expense")
+            if transaction != nil {
+                transaction?.date = date
+                transaction?.amount = amount!
+                transaction?.notes = notes
+                transaction?.category = categoryInput
+                transaction?.transType = "expense"
+                self.delegate?.updateTransaction(transaction: self.transaction!)
+            } else {
+                self.delegate?.addTransaction(date: date, amount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: "expense")
+            }
+           
             dismiss(animated: true, completion: nil)
         }
         // income
@@ -79,7 +108,17 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             
             let transDate = Int(self.datePicker.date.timeIntervalSince1970 * 1000)
             // delegate
-            self.delegate?.updateIncome(date: date, incomeAmount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: "income")
+            if transaction != nil {
+                transaction?.date = date
+                transaction?.amount = amount!
+                transaction?.notes = notes
+                transaction?.category = categoryInput
+                transaction?.transType = "expense"
+                self.delegate?.updateTransaction(transaction: self.transaction!)
+            } else {
+                self.delegate?.addTransaction(date: date, amount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: "income")
+            }
+
             dismiss(animated: true, completion: nil)
         }
     }

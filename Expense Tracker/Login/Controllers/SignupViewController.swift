@@ -11,13 +11,6 @@ import Firebase
 
 class SignupViewController: UIViewController {
     
-    class func instantiateVC() -> SignupViewController {
-        guard let vc = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController else {
-            return SignupViewController()
-        }
-        return vc
-    }
-    
     // MARK: - Properties
     
     @IBOutlet var nameTextField: UITextField!
