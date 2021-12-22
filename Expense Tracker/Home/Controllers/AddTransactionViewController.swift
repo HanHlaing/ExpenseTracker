@@ -50,6 +50,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             notes.text = transaction?.notes
             categoryInput = transaction?.category ?? ""
             inputCategory.setTitle(transaction?.category ?? "Not Selected", for: .normal)
+            segmentedControl.selectedSegmentIndex = (transaction?.transType == "income") ? 1 : 0
         }
         // Do any additional setup after loading the view.
     }
