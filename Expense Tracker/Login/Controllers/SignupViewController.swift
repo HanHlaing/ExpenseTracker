@@ -132,9 +132,8 @@ class SignupViewController: UIViewController {
                     } else {
                         
                         let userRoot = self.rootRef.child("users/" + userfound.user.uid)
-                        userRoot.child("email").setValue(self.emailTextField.text!)
-                        userRoot.child("name").setValue(self.nameTextField.text!)
-                        userRoot.child("uid").setValue(userfound.user.uid)
+                        let user = User(uid: userfound.user.uid, name: self.nameTextField.text!, email: self.emailTextField.text!)
+                        userRoot.setValue(user.toAnyObject())
                     }
                 }
             }

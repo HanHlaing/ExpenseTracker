@@ -91,7 +91,9 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     deinit {
-        ref.removeObserver(withHandle: _refHandle)
+        if let refHandle = _refHandle {
+            ref.removeObserver(withHandle: refHandle)
+        }
     }
     
     //MARK: - Actions

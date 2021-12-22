@@ -11,17 +11,17 @@ import Firebase
 class User {
     
     let ref: DatabaseReference?
+    var uid: String
     var name: String
     var email: String
-    var password: String
     var timestamp: Int
     
-    init(name: String, email: String, password: String, timestamp: String){
+    init(uid: String, name: String, email: String){
         self.ref = nil
         
         self.name = name
         self.email = email
-        self.password = password
+        self.uid = uid
         self.timestamp = 0
     }
     
@@ -30,14 +30,14 @@ class User {
         let value = snapshot.value as? [String: AnyObject],
         let name = value["name"] as? String,
         let email = value["email"] as? String,
-        let password = value["password"] as? String,
+        let uid = value["uid"] as? String,
         let timestamp = value["timestamp"] as? Int else {
         return nil
       }
         self.ref = snapshot.ref
         self.name = name
         self.email = email
-        self.password = password
+        self.uid = uid
         self.timestamp = timestamp
     }
     
@@ -46,6 +46,7 @@ class User {
       return [
         "name": name,
         "email": email,
+        "uid": uid,
         "timestamp": [".sv": "timestamp"]
       ]
     }
