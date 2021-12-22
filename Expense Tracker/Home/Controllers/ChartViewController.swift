@@ -31,8 +31,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var empty = [String]()
     var now = Foundation.Date()
     var keyArray = [String]()
-    var valueArray = [Int]()
-    var percentArray = [Double]()
+    var valueArray = [Double]()
     
     // MARK: - Life Cycle
     
@@ -152,9 +151,12 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
         
+        keyArray.removeAll()
+        valueArray.removeAll()
         _refHandle = ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
-            var newItems = [String: Int]()
-            var totalAmount = 0
+            var newItems = [String: Double]()
+            var totalAmount = 0.0
+            var percentArray = [Double]()
             
             for child in snapshot.children.allObjects {
                 
@@ -166,11 +168,11 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     
                     if(transType == type){
                         
-                        totalAmount += Int(amount)!
+                        totalAmount += Double(amount)!
                         if let value = newItems[item] {
-                            newItems[item] = value + Int(amount)!
+                            newItems[item] = value + Double(amount)!
                         } else {
-                            newItems[item] = Int(amount)!
+                            newItems[item] = Double(amount)!
                         }
                     }
                 }
@@ -182,12 +184,12 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             for (key, value) in sortedDictionary {
                 self.keyArray.append(key)
                 self.valueArray.append(value)
-                self.percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
+                percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
             }
-            self.currentSum.text = String(self.valueArray.reduce(0, +))
+            self.currentSum.text = String((self.valueArray.reduce(0, +)).clean)
             self.expenseCategory.reloadData()
             // pie chart
-            self.customizeChart(dataPoints: self.keyArray, values: self.percentArray)
+            self.customizeChart(dataPoints: self.keyArray, values: percentArray)
             
         })
     }
@@ -351,7 +353,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
         cell.textLabel?.text = keyArray[indexPath.row]
-        cell.detailTextLabel?.text = String(valueArray[indexPath.row])
+        cell.detailTextLabel?.text = String(valueArray[indexPath.row].clean)
         return cell
     }
 }

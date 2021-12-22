@@ -14,7 +14,7 @@ protocol MyDataSendingDelegateProtocol {
 }
 
 class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProtocol, ExpenseCategoryDelegateProtocol {
-
+    
     // MARK: Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -31,6 +31,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.timeZone = TimeZone.init(identifier: "UTC")
+        inputAmount.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -120,14 +121,37 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     }
     
     // segue
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "addExpenseCategory" {
-           let secondVC = segue.destination as! ExpenseCategoryViewController
-           secondVC.delegate = self
-       }
-       else if segue.identifier == "addIncomeCategory" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addExpenseCategory" {
+            let secondVC = segue.destination as! ExpenseCategoryViewController
+            secondVC.delegate = self
+        }
+        else if segue.identifier == "addIncomeCategory" {
             let secondVC = segue.destination as! IncomeCategoryViewController
             secondVC.delegate = self
-       }
-   }
+        }
+    }
+}
+
+extension AddTransactionViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let oldText = textField.text, let r = Range(range, in: oldText) else {
+            return true
+        }
+        
+        let newText = oldText.replacingCharacters(in: r, with: string)
+        let isNumeric = newText.isEmpty || (Double(newText) != nil)
+        let numberOfDots = newText.components(separatedBy: ".").count - 1
+        
+        let numberOfDecimalDigits: Int
+        if let dotIndex = newText.firstIndex(of: ".") {
+            numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+        } else {
+            numberOfDecimalDigits = 0
+        }
+        
+        return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2 && newText.count <= (newText.contains(".") ? 12 : 9)
+    }
 }

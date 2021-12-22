@@ -148,17 +148,17 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             self.transactionDataTableView.reloadData()
             
             let filteredIncome = self.transactionDataArr.filter( {$0.transType == "income"} )
-            let amountArr = filteredIncome.map( {Int($0.amount)! })
-            let totalIncome = String(amountArr.reduce(0, +))
+            let amountArr = filteredIncome.map( {Double($0.amount)! })
+            let totalIncome = String(amountArr.reduce(0, +).clean)
             self.incomeDisplay.text = totalIncome
             
             
             let filteredExpense = self.transactionDataArr.filter( {$0.transType == "expense"} )
-            let amountArr1 = filteredExpense.map( {Int($0.amount)! })
-            let totalExpense = String(amountArr1.reduce(0, +))
+            let amountArr1 = filteredExpense.map( {Double($0.amount)! })
+            let totalExpense = String(amountArr1.reduce(0, +).clean)
             self.expenseDisplay.text = totalExpense
             
-            let currentBalance = String(Int(totalIncome)! - Int(totalExpense)!)
+            let currentBalance = String((Double(totalIncome)! - Double(totalExpense)!).clean)
             self.balanceDisplay.text = currentBalance
         })
     }

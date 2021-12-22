@@ -38,6 +38,7 @@
 		FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */; };
 		FFBCCF7C276F4DCF00C298FC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */; };
 		FFBD310F277059CF0061322E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD310E277059CF0061322E /* ProfileViewController.swift */; };
+		FFFA8EF227730EA900BBED71 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA8EF127730EA900BBED71 /* Double.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCategoryViewController.swift; sourceTree = "<group>"; };
 		FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		FFBD310E277059CF0061322E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FFFA8EF127730EA900BBED71 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 				FFBCCF64276F490700C298FC /* String.swift */,
 				FFBCCF66276F491F00C298FC /* Date.swift */,
 				FFBCCF68276F496A00C298FC /* Model+Extension.swift */,
+				FFFA8EF127730EA900BBED71 /* Double.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				FFBCCF5F276F2ACB00C298FC /* Transaction.swift in Sources */,
 				FF3F9E4827719C2500A9BCD8 /* UserManager.swift in Sources */,
 				FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */,
+				FFFA8EF227730EA900BBED71 /* Double.swift in Sources */,
 				FF3F9E4A2771EFAD00A9BCD8 /* SplashViewController.swift in Sources */,
 				FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */,
 				FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */,
