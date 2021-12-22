@@ -24,15 +24,15 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var forwardBtn: UIButton!
     
     // MARK: variables
-    
-    var statsCategory = [String: Int]()
     var _refHandle: DatabaseHandle!
     let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!)
-    var tempCategory = ""
     var transType: String = "expense"
     var segment: UISegmentedControl!
     var empty = [String]()
     var now = Foundation.Date()
+    var keyArray = [String]()
+    var valueArray = [Int]()
+    var percentArray = [Double]()
     
     // MARK: - Life Cycle
     
@@ -44,7 +44,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         segment.sizeToFit()
         segment.tintColor = #colorLiteral(red: 0, green: 0.007843137255, blue: 0.1450980392, alpha: 1)
         segment.selectedSegmentIndex = tabBar.selectedSegment
-       
+        
         switch (UIDevice().type) {
         case .iPhoneX, .iPhone6, .iPhone6S, .iPhone7, .iPhone8: //big screen iPhones
             segment.frame = CGRect(x: 0, y: 0, width: 220, height: 10)
@@ -152,17 +152,8 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
         
-        let year = Calendar.current.component(.year, from: Date())
-        let month = Calendar.current.component(.month, from: Date())
-        var sum = monthlyData[YearMonth(year:year, month:month)]
-        
         _refHandle = ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
             var newItems = [String: Int]()
-            var actualData = [String]()
-            var intData = [Int]()
-            var keyArray = [String]()
-            var valueArray = [Int]()
-            var percentArray = [Double]()
             var totalAmount = 0
             
             for child in snapshot.children.allObjects {
@@ -175,32 +166,28 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     
                     if(transType == type){
                         
-                        if(self.tempCategory != item) {
-                            actualData.removeAll() // initialze array
-                        }
-                        
-                        actualData.append(amount)
                         totalAmount += Int(amount)!
-                        intData = actualData.compactMap{ Int($0) }
-                        sum = intData.reduce(0, +)
-                        newItems[item] = sum // add to dictonary
-                        self.tempCategory = item
+                        if let value = newItems[item] {
+                            newItems[item] = value + Int(amount)!
+                        } else {
+                            newItems[item] = Int(amount)!
+                        }
                     }
                 }
                 
             }
             
-            self.statsCategory = newItems
+            let sortedDictionary = newItems.sorted { $0.1 > $1.1 } .map { $0 }
             
-            for (key, value) in self.statsCategory {
-                keyArray.append(key)
-                valueArray.append(value)
-                percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
+            for (key, value) in sortedDictionary {
+                self.keyArray.append(key)
+                self.valueArray.append(value)
+                self.percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
             }
-            self.currentSum.text = String(valueArray.reduce(0, +))
+            self.currentSum.text = String(self.valueArray.reduce(0, +))
             self.expenseCategory.reloadData()
             // pie chart
-            self.customizeChart(dataPoints: keyArray, values: percentArray)
+            self.customizeChart(dataPoints: self.keyArray, values: self.percentArray)
             
         })
     }
@@ -357,17 +344,11 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //MARK: - Delegate methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.statsCategory.count
+        return self.keyArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var keyArray = [String]()
-        var valueArray = [Int]()
-        for (key, value) in self.statsCategory {
-            keyArray.append(key)
-            valueArray.append(value)
-        }
-        valueArray = valueArray.sorted { $0 > $1 }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
         cell.textLabel?.text = keyArray[indexPath.row]
         cell.detailTextLabel?.text = String(valueArray[indexPath.row])

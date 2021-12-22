@@ -38,7 +38,6 @@
 		FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */; };
 		FFBCCF7C276F4DCF00C298FC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */; };
 		FFBD310F277059CF0061322E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD310E277059CF0061322E /* ProfileViewController.swift */; };
-		FFBD3111277064540061322E /* MonthlyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD3110277064540061322E /* MonthlyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +76,6 @@
 		FFBCCF79276F4D3C00C298FC /* IncomeCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCategoryViewController.swift; sourceTree = "<group>"; };
 		FFBCCF7B276F4DCF00C298FC /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		FFBD310E277059CF0061322E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		FFBD3110277064540061322E /* MonthlyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,7 +238,6 @@
 			children = (
 				FFBCCF5C276F2A9E00C298FC /* User.swift */,
 				FFBCCF5E276F2ACB00C298FC /* Transaction.swift */,
-				FFBD3110277064540061322E /* MonthlyData.swift */,
 				FF3F9E4727719C2500A9BCD8 /* UserManager.swift */,
 			);
 			path = Model;
@@ -379,7 +376,6 @@
 				FF4A2A66276DED6100602E30 /* SignupViewController.swift in Sources */,
 				FFBCCF5F276F2ACB00C298FC /* Transaction.swift in Sources */,
 				FF3F9E4827719C2500A9BCD8 /* UserManager.swift in Sources */,
-				FFBD3111277064540061322E /* MonthlyData.swift in Sources */,
 				FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */,
 				FF3F9E4A2771EFAD00A9BCD8 /* SplashViewController.swift in Sources */,
 				FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */,
