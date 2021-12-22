@@ -32,6 +32,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var now = Foundation.Date()
     var keyArray = [String]()
     var valueArray = [Double]()
+    var percentArray = [Double]()
     
     // MARK: - Life Cycle
     
@@ -153,10 +154,10 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         keyArray.removeAll()
         valueArray.removeAll()
+        percentArray.removeAll()
         _refHandle = ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
             var newItems = [String: Double]()
             var totalAmount = 0.0
-            var percentArray = [Double]()
             
             for child in snapshot.children.allObjects {
                 
@@ -184,12 +185,12 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             for (key, value) in sortedDictionary {
                 self.keyArray.append(key)
                 self.valueArray.append(value)
-                percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
+                self.percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
             }
             self.currentSum.text = (self.valueArray.reduce(0, +)).clean
             self.expenseCategory.reloadData()
             // pie chart
-            self.customizeChart(dataPoints: self.keyArray, values: percentArray)
+            self.customizeChart(dataPoints: self.keyArray, values: self.percentArray)
             
         })
     }
