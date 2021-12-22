@@ -144,12 +144,12 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
                     newItems.append(nestedItem)
                 }
             }
-            self.transactionDataArr = newItems
+            self.transactionDataArr = newItems.reversed()
             self.transactionDataTableView.reloadData()
             
             let filteredIncome = self.transactionDataArr.filter( {$0.transType == "income"} )
             let amountArr = filteredIncome.map( {Double($0.amount)! })
-            let totalIncome = String(amountArr.reduce(0, +).clean)
+            let totalIncome = amountArr.reduce(0, +).clean
             self.incomeDisplay.text = totalIncome
             
             

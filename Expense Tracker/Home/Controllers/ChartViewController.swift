@@ -186,7 +186,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.valueArray.append(value)
                 percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
             }
-            self.currentSum.text = String((self.valueArray.reduce(0, +)).clean)
+            self.currentSum.text = (self.valueArray.reduce(0, +)).clean
             self.expenseCategory.reloadData()
             // pie chart
             self.customizeChart(dataPoints: self.keyArray, values: percentArray)
@@ -353,7 +353,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
         cell.textLabel?.text = keyArray[indexPath.row]
-        cell.detailTextLabel?.text = String(valueArray[indexPath.row].clean)
+        cell.detailTextLabel?.text = valueArray[indexPath.row].clean
         return cell
     }
 }
