@@ -49,6 +49,9 @@ class ExpenseCategoryViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCategory = self.expenseCategory[indexPath.row]
         self.delegate?.getCategory(category: selectedCategory)
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
     
 }

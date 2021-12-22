@@ -49,5 +49,8 @@ class IncomeCategoryViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCategory = self.incomeCategory[indexPath.row]
         self.delegate?.getIncomeCategory(category: selectedCategory)
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }

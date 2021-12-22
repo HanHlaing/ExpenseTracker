@@ -92,12 +92,20 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     // income expense segmented control
     @IBAction func segmentedControl(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex{
-        case 0: inputStatus = "expense";
-        case 1: inputStatus = "income";
+        case 0:
+            clearCategory()
+            inputStatus = "expense";
+        case 1:
+            clearCategory()
+            inputStatus = "income";
         default: break;
         }
     }
     
+    func clearCategory() {
+        categoryInput = ""
+        inputCategory.setTitle("Not Selected", for: .normal)
+    }
     // category button
     @IBAction func categoryButton(_ sender: Any) {
         if inputStatus == "expense" {
