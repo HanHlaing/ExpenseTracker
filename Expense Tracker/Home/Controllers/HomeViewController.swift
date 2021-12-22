@@ -293,7 +293,6 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         itemRef.setValue(item.toAnyObject())
         
         viewDidLoad()
-        
     }
     
     // update expense/income transaction
@@ -335,8 +334,16 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         
         tableView.deselectRow(at: indexPath, animated: true)
         selectedIndex = indexPath.row
-        print("Index \(selectedIndex)")
         performSegue(withIdentifier: "addInput", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            transactionDataArr[indexPath.row].ref?.removeValue()
+            transactionDataArr.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
     // segue
