@@ -465,15 +465,9 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-hx-xX4" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="42" y="242" width="291" height="276"/>
+                                <rect key="frame" x="42" y="199" width="291" height="319"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPk-oF-PU5">
-                                <rect key="frame" x="42" y="189" width="124" height="41"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfL-Bl-qSn">
                                 <rect key="frame" x="19.999999999999993" y="541" width="97.333333333333314" height="23.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="20"/>
@@ -481,8 +475,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVI-5R-hHg">
-                                <rect key="frame" x="266" y="189" width="67" height="35"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
+                                <rect key="frame" x="288.33333333333331" y="541" width="44.666666666666686" height="23.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -551,18 +545,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lyi-EW-H1s" firstAttribute="bottom" secondItem="b6q-tE-3fn" secondAttribute="bottom" id="47q-2E-EtH"/>
-                            <constraint firstItem="nVI-5R-hHg" firstAttribute="top" secondItem="KsV-k9-vky" secondAttribute="bottom" constant="20" id="7lo-f6-sJi"/>
+                            <constraint firstItem="nVI-5R-hHg" firstAttribute="top" secondItem="Rl7-hx-xX4" secondAttribute="bottom" constant="23" id="7lo-f6-sJi"/>
                             <constraint firstItem="KsV-k9-vky" firstAttribute="leading" secondItem="b6q-tE-3fn" secondAttribute="leading" constant="42" id="DOW-P3-OHe" userLabel="Segmented Control.leading = Safe Area.leading + 42"/>
                             <constraint firstItem="DfL-Bl-qSn" firstAttribute="leading" secondItem="b6q-tE-3fn" secondAttribute="leading" constant="20" id="E2l-e1-UIh"/>
                             <constraint firstItem="DfL-Bl-qSn" firstAttribute="top" secondItem="Rl7-hx-xX4" secondAttribute="bottom" constant="23" id="FBJ-xs-Tlz"/>
-                            <constraint firstItem="ZPk-oF-PU5" firstAttribute="top" secondItem="KsV-k9-vky" secondAttribute="bottom" constant="20" id="MfC-hG-OMu"/>
                             <constraint firstItem="KsV-k9-vky" firstAttribute="top" secondItem="hCW-Ul-nWi" secondAttribute="bottom" constant="10" id="RJi-Jm-4ML" userLabel="Segmented Control.top = Safe Area.top + 30"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="trailing" secondItem="KsV-k9-vky" secondAttribute="trailing" constant="42" id="RW9-Pe-gxu" userLabel="Safe Area.trailing = Segmented Control.trailing + 42"/>
                             <constraint firstItem="lyi-EW-H1s" firstAttribute="bottom" secondItem="Rl7-hx-xX4" secondAttribute="bottom" constant="211" id="SdV-sd-UmV"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="trailing" secondItem="nVI-5R-hHg" secondAttribute="trailing" constant="42" id="Wnc-Zh-TDc"/>
-                            <constraint firstItem="Rl7-hx-xX4" firstAttribute="top" secondItem="KsV-k9-vky" secondAttribute="bottom" constant="73" id="bcp-Ds-Daw"/>
+                            <constraint firstItem="Rl7-hx-xX4" firstAttribute="top" secondItem="KsV-k9-vky" secondAttribute="bottom" constant="30" id="bcp-Ds-Daw"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="trailing" secondItem="Rl7-hx-xX4" secondAttribute="trailing" constant="42" id="cAm-Zf-arS"/>
-                            <constraint firstItem="ZPk-oF-PU5" firstAttribute="leading" secondItem="b6q-tE-3fn" secondAttribute="leading" constant="42" id="fv3-vF-IXi"/>
                             <constraint firstItem="Rl7-hx-xX4" firstAttribute="leading" secondItem="b6q-tE-3fn" secondAttribute="leading" constant="42" id="ipr-FD-HH9"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="trailing" secondItem="lyi-EW-H1s" secondAttribute="trailing" constant="42" id="nfL-TO-gKT"/>
                             <constraint firstItem="hCW-Ul-nWi" firstAttribute="top" secondItem="b6q-tE-3fn" secondAttribute="top" id="nhO-g9-ZLL"/>
@@ -575,7 +567,6 @@
                     <navigationItem key="navigationItem" id="yuo-Yd-PPf"/>
                     <connections>
                         <outlet property="backwardBtn" destination="FDu-A8-tAa" id="KRI-ea-9ls"/>
-                        <outlet property="currentMonth" destination="ZPk-oF-PU5" id="OPL-fX-Zf1"/>
                         <outlet property="currentSum" destination="nVI-5R-hHg" id="Z7z-Os-eCj"/>
                         <outlet property="dateLbl" destination="soy-qo-I7Z" id="03Q-vc-PND"/>
                         <outlet property="expenseCategory" destination="lyi-EW-H1s" id="36b-xr-ZVW"/>

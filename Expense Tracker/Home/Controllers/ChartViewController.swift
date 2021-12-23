@@ -14,7 +14,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: Outlets
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var currentMonth: UILabel!
     @IBOutlet weak var currentSum: UILabel!
     @IBOutlet weak var expenseCategory: UITableView!
     @IBOutlet weak var pieChart: PieChartView!
@@ -57,13 +56,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         segment.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Avenir Next", size: 15)!], for: .normal)
         self.navigationItem.titleView = segment
         segment.addTarget(self, action: #selector(changeSegment(sender:)), for: .valueChanged)
-        
-        // display month
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM"
-        currentMonth.text = formatter.string(from: date)
-        
         
         // display table
         expenseCategory.delegate = self
