@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     @IBOutlet weak var expenseDisplay: UILabel!
     @IBOutlet weak var transactionDataTableView: UITableView!
     
-    @IBOutlet weak var btnAddTransaction: UIButton!
+    @IBOutlet weak var addTransactionButton: UIButton!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var backwardBtn: UIButton!
     @IBOutlet weak var forwardBtn: UIButton!
@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         super.viewDidLoad()
         
         let tabBar = tabBarController as! RaisedTabBarViewController
+        view.bringSubviewToFront(addTransactionButton)
         segment = UISegmentedControl(items: ["Week", "Month", "Year"])
         segment.sizeToFit()
         segment.tintColor = #colorLiteral(red: 0, green: 0.007843137255, blue: 0.1450980392, alpha: 1)
@@ -94,7 +95,6 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     @IBAction func addTransaction(_ sender: Any) {
         
         selectedIndex = -1
-        print("Index \(selectedIndex)")
         performSegue(withIdentifier: "addInput", sender: nil)
     }
     
