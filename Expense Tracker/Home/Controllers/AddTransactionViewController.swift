@@ -114,7 +114,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
                 transaction?.amount = amount!
                 transaction?.notes = notes
                 transaction?.category = categoryInput
-                transaction?.transType = "expense"
+                transaction?.transType = "income"
                 self.delegate?.updateTransaction(transaction: self.transaction!)
             } else {
                 self.delegate?.addTransaction(date: date, amount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: "income")

@@ -152,12 +152,13 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
         
-        keyArray.removeAll()
-        valueArray.removeAll()
-        percentArray.removeAll()
+       
         _refHandle = ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
             var newItems = [String: Double]()
             var totalAmount = 0.0
+            self.keyArray.removeAll()
+            self.valueArray.removeAll()
+            self.percentArray.removeAll()
             
             for child in snapshot.children.allObjects {
                 
