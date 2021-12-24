@@ -63,9 +63,9 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         
         transactionDataTableView.register(UINib(nibName: "transactionDataTableViewCell", bundle: nil), forCellReuseIdentifier: "transactionDataTableViewCell")
         
-        let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
-        let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
-        loadTransactions(start,end)
+        //let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
+        //let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
+        loadTransactions(tabBar.start,tabBar.end)
         // Do any additional setup after loading the view.
     }
     
@@ -83,6 +83,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             segment.selectedSegmentIndex = 2
             dateLbl.text = tabBar.currentYear
         }
+        loadTransactions(tabBar.start,tabBar.end)
     }
     
     deinit {
@@ -183,7 +184,8 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             tabBar.currentEndWeek = endWeek?.convertDateToString()
             tabBar.selectedSegment = 0
             dateLbl.text = "\(tabBar.currentStartWeek!) - \(tabBar.currentEndWeek!)"
-            loadTransactions(Int(startWeek!.timeIntervalSince1970 * 1000), Int(endWeek!.timeIntervalSince1970 * 1000) )
+            tabBar.start = Int(startWeek!.timeIntervalSince1970 * 1000)
+            tabBar.end = Int(endWeek!.timeIntervalSince1970 * 1000)
         case 1:
             let startMonth = now.startOfMonth
             let endMonth = now.endOfMonth
@@ -191,7 +193,8 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             tabBar.currentMonth = startMonth?.getMonthName()
             tabBar.selectedSegment = 1
             dateLbl.text = tabBar.currentMonth
-            loadTransactions(Int(startMonth!.timeIntervalSince1970 * 1000), Int(endMonth!.timeIntervalSince1970 * 1000) )
+            tabBar.start = Int(startMonth!.timeIntervalSince1970 * 1000)
+            tabBar.end = Int(endMonth!.timeIntervalSince1970 * 1000)
         default:
             let startOfYear = now.startOfYear
             let endOfYear = now.endOfYear
@@ -199,9 +202,11 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             tabBar.currentYear = startOfYear?.getYear()
             tabBar.selectedSegment = 2
             dateLbl.text = tabBar.currentYear
-            loadTransactions(Int(startOfYear!.timeIntervalSince1970 * 1000), Int(endOfYear!.timeIntervalSince1970 * 1000) )
+            tabBar.start = Int(startOfYear!.timeIntervalSince1970 * 1000)
+            tabBar.end = Int(endOfYear!.timeIntervalSince1970 * 1000)
         }
         
+        loadTransactions(tabBar.start, tabBar.end)
     }
     
     func changeDate(_ sender: UIButton, currentDate: Foundation.Date, segment: Int, tab: RaisedTabBarViewController) {
@@ -278,7 +283,8 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         
         let startTime = Int(nextStart.timeIntervalSince1970 * 1000)
         let endTime = Int(nextEnd.timeIntervalSince1970 * 1000)
-        
+        tab.start = startTime
+        tab.end = endTime
         loadTransactions(startTime, endTime )
         
     }

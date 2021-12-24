@@ -16,6 +16,8 @@ class RaisedTabBarViewController: UITabBarController {
     var currentYear: String?
     var startOfMonth: NSDate!
     var endOfMonth: NSDate!
+    var start = 0
+    var end = 0
     
     var now = Foundation.Date()
     var dateChanged: Bool?
@@ -28,6 +30,9 @@ class RaisedTabBarViewController: UITabBarController {
         
         currentMonth = now.getMonthName()
         currentYear = now.getYear()
+        
+        start = Int(startOfMonth.timeIntervalSince1970 * 1000)
+        end = Int(endOfMonth.timeIntervalSince1970 * 1000)
         
         dateChanged = false
     }

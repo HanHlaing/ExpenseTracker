@@ -61,9 +61,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         expenseCategory.delegate = self
         expenseCategory.dataSource = self
         
-        let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
-        let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
-        loadStaticstic(start,end,transType)
+        loadStaticstic(tabBar.start,tabBar.end,transType)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +78,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             segment.selectedSegmentIndex = 2
             dateLbl.text = tabBar.currentYear
         }
+        loadStaticstic(tabBar.start,tabBar.end,transType)
     }
     
     deinit {
@@ -128,13 +127,13 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func segmentedControl(_ sender: Any) {
         let tabBar = tabBarController as! RaisedTabBarViewController
-        let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
-        let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
+        //let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
+        //let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
         
         switch segmentedControl.selectedSegmentIndex{
-        case 0: loadStaticstic(start,end,"expense")
+        case 0: loadStaticstic(tabBar.start,tabBar.end,"expense")
             transType = "expense"
-        case 1: loadStaticstic(start,end,"income")
+        case 1: loadStaticstic(tabBar.start,tabBar.end,"income")
             transType = "income"
         default: break;
         }
@@ -202,7 +201,8 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tabBar.currentEndWeek = endWeek?.convertDateToString()
             tabBar.selectedSegment = 0
             dateLbl.text = "\(tabBar.currentStartWeek!) - \(tabBar.currentEndWeek!)"
-            loadStaticstic(Int(startWeek!.timeIntervalSince1970 * 1000), Int(endWeek!.timeIntervalSince1970 * 1000),transType)
+            tabBar.start = Int(startWeek!.timeIntervalSince1970 * 1000)
+            tabBar.end = Int(endWeek!.timeIntervalSince1970 * 1000)
         case 1:
             let startMonth = now.startOfMonth
             let endMonth = now.endOfMonth
@@ -210,15 +210,19 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tabBar.currentMonth = startMonth?.getMonthName()
             tabBar.selectedSegment = 1
             dateLbl.text = tabBar.currentMonth
-            loadStaticstic(Int(startMonth!.timeIntervalSince1970 * 1000), Int(endMonth!.timeIntervalSince1970 * 1000),transType)
+            tabBar.start = Int(startMonth!.timeIntervalSince1970 * 1000)
+            tabBar.end = Int(endMonth!.timeIntervalSince1970 * 1000)
         default:
             let startOfYear = now.startOfYear
             let endOfYear = now.endOfYear
             tabBar.currentYear = startOfYear?.getYear()
             tabBar.selectedSegment = 2
             dateLbl.text = tabBar.currentYear
-            loadStaticstic(Int(startOfYear!.timeIntervalSince1970 * 1000), Int(endOfYear!.timeIntervalSince1970 * 1000),transType)
+            tabBar.start = Int(startOfYear!.timeIntervalSince1970 * 1000)
+            tabBar.end = Int(endOfYear!.timeIntervalSince1970 * 1000)
         }
+        
+        loadStaticstic(tabBar.start, tabBar.end,transType)
         
     }
     
@@ -296,7 +300,8 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let startTime = Int(nextStart.timeIntervalSince1970 * 1000)
         let endTime = Int(nextEnd.timeIntervalSince1970 * 1000)
-        
+        tab.start = startTime
+        tab.end = endTime
         loadStaticstic(startTime, endTime,transType)
         
     }
