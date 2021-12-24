@@ -437,7 +437,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lyi-EW-H1s">
-                                <rect key="frame" x="42" y="671.5" width="330" height="141.5"/>
+                                <rect key="frame" x="42" y="548.5" width="330" height="264.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statsCategory" textLabel="YHM-SQ-XCS" detailTextLabel="p24-7r-Ybl" style="IBUITableViewCellStyleValue1" id="Wql-aP-beR">
@@ -467,17 +467,20 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-hx-xX4" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="42" y="199" width="330" height="403"/>
+                                <rect key="frame" x="42" y="179" width="330" height="300"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Mij-c7-lhs"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfL-Bl-qSn">
-                                <rect key="frame" x="20" y="625" width="97.5" height="23.5"/>
+                                <rect key="frame" x="20" y="502" width="97.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVI-5R-hHg">
-                                <rect key="frame" x="327.5" y="625" width="44.5" height="23.5"/>
+                                <rect key="frame" x="327.5" y="502" width="44.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -553,9 +556,8 @@
                             <constraint firstItem="DfL-Bl-qSn" firstAttribute="top" secondItem="Rl7-hx-xX4" secondAttribute="bottom" constant="23" id="FBJ-xs-Tlz"/>
                             <constraint firstItem="KsV-k9-vky" firstAttribute="top" secondItem="hCW-Ul-nWi" secondAttribute="bottom" constant="10" id="RJi-Jm-4ML" userLabel="Segmented Control.top = Safe Area.top + 30"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="trailing" secondItem="KsV-k9-vky" secondAttribute="trailing" constant="42" id="RW9-Pe-gxu" userLabel="Safe Area.trailing = Segmented Control.trailing + 42"/>
-                            <constraint firstItem="lyi-EW-H1s" firstAttribute="bottom" secondItem="Rl7-hx-xX4" secondAttribute="bottom" constant="211" id="SdV-sd-UmV"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="trailing" secondItem="nVI-5R-hHg" secondAttribute="trailing" constant="42" id="Wnc-Zh-TDc"/>
-                            <constraint firstItem="Rl7-hx-xX4" firstAttribute="top" secondItem="KsV-k9-vky" secondAttribute="bottom" constant="30" id="bcp-Ds-Daw"/>
+                            <constraint firstItem="Rl7-hx-xX4" firstAttribute="top" secondItem="KsV-k9-vky" secondAttribute="bottom" constant="10" id="bcp-Ds-Daw"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="trailing" secondItem="Rl7-hx-xX4" secondAttribute="trailing" constant="42" id="cAm-Zf-arS"/>
                             <constraint firstItem="Rl7-hx-xX4" firstAttribute="leading" secondItem="b6q-tE-3fn" secondAttribute="leading" constant="42" id="ipr-FD-HH9"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="trailing" secondItem="lyi-EW-H1s" secondAttribute="trailing" constant="42" id="nfL-TO-gKT"/>
