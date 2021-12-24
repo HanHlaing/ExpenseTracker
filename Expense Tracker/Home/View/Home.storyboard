@@ -282,10 +282,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WuV-oo-kxI">
-                                        <rect key="frame" x="40" y="262.5" width="334" height="400"/>
+                                        <rect key="frame" x="40" y="262.5" width="334" height="500"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="400" id="Om1-HS-Dxk"/>
+                                            <constraint firstAttribute="height" constant="500" id="Om1-HS-Dxk"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="dataSource" destination="ZRJ-zJ-pUY" id="86W-vS-4HW"/>
@@ -710,7 +710,7 @@
                                             <constraint firstAttribute="height" constant="100" id="cXu-jd-T3g"/>
                                         </constraints>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rhS-it-vgu" userLabel="Quote">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Quote for you is loading..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rhS-it-vgu" userLabel="Quote">
                                         <rect key="frame" x="20" y="235" width="374" height="400"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
