@@ -38,7 +38,6 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         super.viewDidLoad()
         
         let tabBar = tabBarController as! RaisedTabBarViewController
-        view.bringSubviewToFront(addTransactionButton)
         segment = UISegmentedControl(items: ["Week", "Month", "Year"])
         segment.sizeToFit()
         segment.tintColor = #colorLiteral(red: 0, green: 0.007843137255, blue: 0.1450980392, alpha: 1)
