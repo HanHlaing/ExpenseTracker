@@ -127,9 +127,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func segmentedControl(_ sender: Any) {
         let tabBar = tabBarController as! RaisedTabBarViewController
-        //let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
-        //let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
-        
         switch segmentedControl.selectedSegmentIndex{
         case 0: loadStaticstic(tabBar.start,tabBar.end,"expense")
             transType = "expense"

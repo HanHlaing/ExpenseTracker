@@ -63,7 +63,7 @@ class ProfileViewController: UIViewController {
     func handleQuoteDataResponse(quote: Quote?, error:Error?) {
         
         if let quote = quote {
-            quoteTextView.text = " \" \(quote.content ?? "") \" \n \n \(quote.author ?? "")"
+            quoteTextView.text = "\" \(quote.content ?? "")\" \n \n \(quote.author ?? "")"
         } else {
             
             if let localData = self.readLocalFile(forName: "quotes") {
@@ -94,7 +94,7 @@ class ProfileViewController: UIViewController {
                                                        from: jsonData)
             
             let randomInt = Int.random(in: 0..<decodedData.count)
-            quoteTextView.text = " \" \(decodedData[randomInt].content ?? "") \" \n \n \(decodedData[randomInt].author ?? "")"
+            quoteTextView.text = "\" \(decodedData[randomInt].content ?? "")\" \n \n \(decodedData[randomInt].author ?? "")"
         } catch {
             print("decode error \(error)")
         }
