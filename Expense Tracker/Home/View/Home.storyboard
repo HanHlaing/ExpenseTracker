@@ -687,36 +687,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwY-8h-whk" userLabel="Username">
-                                <rect key="frame" x="161.5" y="401.5" width="91" height="29"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="joedoe@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAQ-eZ-WXK" userLabel="Email">
-                                <rect key="frame" x="123" y="438.5" width="168" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-pD-Vde" userLabel="profile">
-                                <rect key="frame" x="157" y="278" width="100" height="99"/>
-                                <color key="tintColor" systemColor="systemGrayColor"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuM-Vt-vX7">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwY-8h-whk" userLabel="Username">
+                                        <rect key="frame" x="161.5" y="144" width="91" height="29"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="joedoe@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAQ-eZ-WXK" userLabel="Email">
+                                        <rect key="frame" x="123" y="181" width="168" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-pD-Vde" userLabel="profile">
+                                        <rect key="frame" x="157" y="20.5" width="100" height="99"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="rhh-pD-Vde" secondAttribute="height" multiplier="1:1" id="851-Dd-QBS"/>
+                                            <constraint firstAttribute="height" constant="100" id="cXu-jd-T3g"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rhS-it-vgu" userLabel="Quote">
+                                        <rect key="frame" x="20" y="235" width="374" height="400"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="400" id="tt9-iy-SHF"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" name="GillSans-Italic" family="Gill Sans" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="rhh-pD-Vde" secondAttribute="height" multiplier="1:1" id="851-Dd-QBS"/>
-                                    <constraint firstAttribute="height" constant="100" id="cXu-jd-T3g"/>
+                                    <constraint firstItem="rhh-pD-Vde" firstAttribute="top" secondItem="XuM-Vt-vX7" secondAttribute="top" constant="20" id="3aP-wp-kG9"/>
+                                    <constraint firstItem="rhh-pD-Vde" firstAttribute="centerX" secondItem="zwY-8h-whk" secondAttribute="centerX" id="BhY-qa-U63"/>
+                                    <constraint firstAttribute="bottom" secondItem="rhS-it-vgu" secondAttribute="bottom" constant="53" id="O0L-ft-ItJ"/>
+                                    <constraint firstItem="zwY-8h-whk" firstAttribute="top" secondItem="rhh-pD-Vde" secondAttribute="bottom" constant="24" id="Z9E-5t-jN0"/>
+                                    <constraint firstItem="bAQ-eZ-WXK" firstAttribute="top" secondItem="zwY-8h-whk" secondAttribute="bottom" constant="8" id="a4L-vK-eR7"/>
+                                    <constraint firstItem="zwY-8h-whk" firstAttribute="centerX" secondItem="XuM-Vt-vX7" secondAttribute="centerX" id="bbd-62-KO8"/>
+                                    <constraint firstItem="rhS-it-vgu" firstAttribute="top" secondItem="bAQ-eZ-WXK" secondAttribute="bottom" constant="30" id="cSE-Vq-VCf"/>
+                                    <constraint firstItem="rhS-it-vgu" firstAttribute="leading" secondItem="XuM-Vt-vX7" secondAttribute="leading" constant="20" id="eqR-TW-d5S"/>
+                                    <constraint firstItem="bAQ-eZ-WXK" firstAttribute="centerX" secondItem="XuM-Vt-vX7" secondAttribute="centerX" id="gyc-AT-ghC"/>
+                                    <constraint firstAttribute="trailing" secondItem="rhS-it-vgu" secondAttribute="trailing" constant="20" id="tUX-M1-bXq"/>
+                                    <constraint firstItem="rhS-it-vgu" firstAttribute="centerX" secondItem="XuM-Vt-vX7" secondAttribute="centerX" id="vqo-fG-Kb0"/>
                                 </constraints>
-                            </imageView>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oRL-P3-Hpe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bAQ-eZ-WXK" firstAttribute="top" secondItem="zwY-8h-whk" secondAttribute="bottom" constant="8" id="8HZ-zM-uSr"/>
-                            <constraint firstItem="rhh-pD-Vde" firstAttribute="centerX" secondItem="oRL-P3-Hpe" secondAttribute="centerX" id="IT1-7z-Bs9"/>
-                            <constraint firstItem="bAQ-eZ-WXK" firstAttribute="centerX" secondItem="UkK-ZH-W7V" secondAttribute="centerX" id="OBX-X0-hak"/>
-                            <constraint firstItem="zwY-8h-whk" firstAttribute="top" secondItem="rhh-pD-Vde" secondAttribute="bottom" constant="24" id="W7o-Ud-OQ1"/>
-                            <constraint firstItem="zwY-8h-whk" firstAttribute="centerX" secondItem="UkK-ZH-W7V" secondAttribute="centerX" id="oSn-9V-SPW"/>
-                            <constraint firstItem="bAQ-eZ-WXK" firstAttribute="centerY" secondItem="oRL-P3-Hpe" secondAttribute="centerY" id="yvn-Gr-x8T"/>
+                            <constraint firstItem="oRL-P3-Hpe" firstAttribute="trailing" secondItem="XuM-Vt-vX7" secondAttribute="trailing" id="1Tv-vk-K8k"/>
+                            <constraint firstItem="XuM-Vt-vX7" firstAttribute="top" secondItem="oRL-P3-Hpe" secondAttribute="top" id="A0L-vH-gCJ"/>
+                            <constraint firstItem="XuM-Vt-vX7" firstAttribute="leading" secondItem="oRL-P3-Hpe" secondAttribute="leading" id="J3k-hZ-HxL"/>
+                            <constraint firstItem="oRL-P3-Hpe" firstAttribute="bottom" secondItem="XuM-Vt-vX7" secondAttribute="bottom" id="ft9-iC-ejQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="YcH-Up-WrQ">
@@ -729,12 +755,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emailLabel" destination="bAQ-eZ-WXK" id="VL9-X0-XyE"/>
+                        <outlet property="quoteTextView" destination="rhS-it-vgu" id="xgF-US-kaS"/>
                         <outlet property="usernameLabel" destination="zwY-8h-whk" id="GoF-We-8sq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4E-Ws-027" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="501" y="1040"/>
+            <point key="canvasLocation" x="500" y="1039.6551724137933"/>
         </scene>
     </scenes>
     <resources>
@@ -744,6 +771,9 @@
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" width="256" height="256"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

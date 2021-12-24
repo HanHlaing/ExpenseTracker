@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		684754CE47FEC52B5CBD43F5 /* Pods_Expense_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C074297A095E28D642536B /* Pods_Expense_Tracker.framework */; };
+		FF144611277595C400E81599 /* QuoteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF144610277595C400E81599 /* QuoteClient.swift */; };
 		FF3F9E4827719C2500A9BCD8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F9E4727719C2500A9BCD8 /* UserManager.swift */; };
 		FF3F9E4A2771EFAD00A9BCD8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F9E492771EFAD00A9BCD8 /* SplashViewController.swift */; };
 		FF4A2A4B276DD1C500602E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4A2A4A276DD1C500602E30 /* AppDelegate.swift */; };
@@ -23,6 +24,8 @@
 		FF5D887B276E03D200EFA568 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF5D887A276E03D200EFA568 /* GoogleService-Info.plist */; };
 		FF5D887E276E046D00EFA568 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5D887D276E046D00EFA568 /* Home.storyboard */; };
 		FF5D8881276E049600EFA568 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8880276E049600EFA568 /* HomeViewController.swift */; };
+		FFBCB98F2774838500389924 /* quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = FFBCB98E2774838500389924 /* quotes.json */; };
+		FFBCB991277483FE00389924 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCB990277483FE00389924 /* Quote.swift */; };
 		FFBCCF5D276F2A9E00C298FC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF5C276F2A9E00C298FC /* User.swift */; };
 		FFBCCF5F276F2ACB00C298FC /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF5E276F2ACB00C298FC /* Transaction.swift */; };
 		FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBCCF60276F2F4500C298FC /* NetworkStatus.swift */; };
@@ -45,6 +48,7 @@
 		4251AE70804CF4BA4859A0A9 /* Pods-Expense Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expense Tracker.release.xcconfig"; path = "Target Support Files/Pods-Expense Tracker/Pods-Expense Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		8F2816EE792B9CA54ACD5584 /* Pods-Expense Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expense Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Expense Tracker/Pods-Expense Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		D2C074297A095E28D642536B /* Pods_Expense_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expense_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF144610277595C400E81599 /* QuoteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteClient.swift; sourceTree = "<group>"; };
 		FF3F9E4727719C2500A9BCD8 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FF3F9E492771EFAD00A9BCD8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FF4A2A47276DD1C500602E30 /* Expense Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expense Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +66,8 @@
 		FF5D887A276E03D200EFA568 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF5D887D276E046D00EFA568 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		FF5D8880276E049600EFA568 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FFBCB98E2774838500389924 /* quotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quotes.json; sourceTree = "<group>"; };
+		FFBCB990277483FE00389924 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		FFBCCF5C276F2A9E00C298FC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FFBCCF5E276F2ACB00C298FC /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		FFBCCF60276F2F4500C298FC /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
@@ -107,6 +113,14 @@
 				4251AE70804CF4BA4859A0A9 /* Pods-Expense Tracker.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF14460F2775938400E81599 /* Quote Client */ = {
+			isa = PBXGroup;
+			children = (
+				FF144610277595C400E81599 /* QuoteClient.swift */,
+			);
+			path = "Quote Client";
 			sourceTree = "<group>";
 		};
 		FF4A2A3E276DD1C500602E30 = {
@@ -170,6 +184,7 @@
 		FF4A2A68276DEFF900602E30 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FFBCB98E2774838500389924 /* quotes.json */,
 				FF4A2A4A276DD1C500602E30 /* AppDelegate.swift */,
 				FF4A2A4C276DD1C500602E30 /* SceneDelegate.swift */,
 				FF4A2A53276DD1C700602E30 /* Assets.xcassets */,
@@ -239,9 +254,11 @@
 		FFBCCF59276F264B00C298FC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FF14460F2775938400E81599 /* Quote Client */,
 				FFBCCF5C276F2A9E00C298FC /* User.swift */,
 				FFBCCF5E276F2ACB00C298FC /* Transaction.swift */,
 				FF3F9E4727719C2500A9BCD8 /* UserManager.swift */,
+				FFBCB990277483FE00389924 /* Quote.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,6 +334,7 @@
 				FF4A2A61276DECFF00602E30 /* Login.storyboard in Resources */,
 				FF5D887E276E046D00EFA568 /* Home.storyboard in Resources */,
 				FFBCCF72276F4C2100C298FC /* transactionDataTableViewCell.xib in Resources */,
+				FFBCB98F2774838500389924 /* quotes.json in Resources */,
 				FF4A2A57276DD1C700602E30 /* LaunchScreen.storyboard in Resources */,
 				FF5D887B276E03D200EFA568 /* GoogleService-Info.plist in Resources */,
 				FF4A2A54276DD1C700602E30 /* Assets.xcassets in Resources */,
@@ -382,6 +400,7 @@
 				FFBCCF61276F2F4500C298FC /* NetworkStatus.swift in Sources */,
 				FFFA8EF227730EA900BBED71 /* Double.swift in Sources */,
 				FF3F9E4A2771EFAD00A9BCD8 /* SplashViewController.swift in Sources */,
+				FF144611277595C400E81599 /* QuoteClient.swift in Sources */,
 				FFBCCF6C276F4AA900C298FC /* Model.swift in Sources */,
 				FFBCCF7A276F4D3C00C298FC /* IncomeCategoryViewController.swift in Sources */,
 				FFBCCF74276F4C5B00C298FC /* transactionDataTableViewCell.swift in Sources */,
@@ -390,6 +409,7 @@
 				FFBCCF5D276F2A9E00C298FC /* User.swift in Sources */,
 				FFBCCF67276F491F00C298FC /* Date.swift in Sources */,
 				FFBD310F277059CF0061322E /* ProfileViewController.swift in Sources */,
+				FFBCB991277483FE00389924 /* Quote.swift in Sources */,
 				FFBCCF63276F48DA00C298FC /* RaisedTabBarViewController.swift in Sources */,
 				FF5D8874276DF2DE00EFA568 /* AppStoryboard.swift in Sources */,
 				FFBCCF76276F4CAD00C298FC /* AddTransactionViewController.swift in Sources */,
