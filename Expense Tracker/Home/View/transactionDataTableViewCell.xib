@@ -22,26 +22,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6Y-77-fqb" userLabel="Category">
-                        <rect key="frame" x="16" y="31" width="60.5" height="41"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Shopping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6Y-77-fqb" userLabel="Category">
+                        <rect key="frame" x="10" y="41.5" width="60.5" height="24.5"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKn-o3-3JA">
-                        <rect key="frame" x="16" y="12" width="54.5" height="24"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <rect key="frame" x="10" y="10" width="50" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vz-1w-xVo" userLabel="Amount">
-                        <rect key="frame" x="243.5" y="11" width="60.5" height="24"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="$1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vz-1w-xVo" userLabel="Amount">
+                        <rect key="frame" x="255.5" y="10" width="54.5" height="29.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIW-rQ-Cvh" userLabel="Date">
-                        <rect key="frame" x="261.5" y="45" width="42.5" height="16.5"/>
+                        <rect key="frame" x="267.5" y="49.5" width="42.5" height="16.5"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -49,15 +49,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="pIW-rQ-Cvh" firstAttribute="top" secondItem="1Vz-1w-xVo" secondAttribute="bottom" constant="10" id="2qn-ZC-e2n"/>
-                    <constraint firstItem="1Vz-1w-xVo" firstAttribute="top" secondItem="VWu-9w-YY5" secondAttribute="top" constant="11" id="9qe-lh-EBk"/>
-                    <constraint firstItem="S6Y-77-fqb" firstAttribute="top" secondItem="VWu-9w-YY5" secondAttribute="top" constant="31" id="L0l-A0-ISq"/>
-                    <constraint firstItem="rKn-o3-3JA" firstAttribute="leading" secondItem="VWu-9w-YY5" secondAttribute="leading" constant="16" id="NWm-ah-Szu"/>
-                    <constraint firstAttribute="trailing" secondItem="pIW-rQ-Cvh" secondAttribute="trailing" constant="16" id="PwM-uo-iXb"/>
-                    <constraint firstAttribute="trailing" secondItem="1Vz-1w-xVo" secondAttribute="trailing" constant="16" id="byD-Iz-eLd"/>
-                    <constraint firstItem="rKn-o3-3JA" firstAttribute="top" secondItem="VWu-9w-YY5" secondAttribute="top" constant="12" id="fvB-lZ-HiG"/>
-                    <constraint firstAttribute="bottom" secondItem="S6Y-77-fqb" secondAttribute="bottom" constant="4" id="llN-ck-fEi"/>
-                    <constraint firstItem="S6Y-77-fqb" firstAttribute="leading" secondItem="VWu-9w-YY5" secondAttribute="leading" constant="16" id="n1r-8k-lhC"/>
-                    <constraint firstAttribute="bottom" secondItem="rKn-o3-3JA" secondAttribute="bottom" constant="40" id="nFD-t8-NCT"/>
+                    <constraint firstItem="1Vz-1w-xVo" firstAttribute="top" secondItem="VWu-9w-YY5" secondAttribute="top" constant="10" id="9qe-lh-EBk"/>
+                    <constraint firstAttribute="bottom" secondItem="pIW-rQ-Cvh" secondAttribute="bottom" constant="10" id="GHK-Sy-icZ"/>
+                    <constraint firstItem="S6Y-77-fqb" firstAttribute="top" secondItem="rKn-o3-3JA" secondAttribute="bottom" constant="10" id="L0l-A0-ISq"/>
+                    <constraint firstItem="rKn-o3-3JA" firstAttribute="leading" secondItem="VWu-9w-YY5" secondAttribute="leading" constant="10" id="NWm-ah-Szu"/>
+                    <constraint firstAttribute="trailing" secondItem="pIW-rQ-Cvh" secondAttribute="trailing" constant="10" id="PwM-uo-iXb"/>
+                    <constraint firstAttribute="trailing" secondItem="1Vz-1w-xVo" secondAttribute="trailing" constant="10" id="byD-Iz-eLd"/>
+                    <constraint firstItem="rKn-o3-3JA" firstAttribute="top" secondItem="VWu-9w-YY5" secondAttribute="top" constant="10" id="fvB-lZ-HiG"/>
+                    <constraint firstAttribute="bottom" secondItem="S6Y-77-fqb" secondAttribute="bottom" constant="10" id="llN-ck-fEi"/>
+                    <constraint firstItem="S6Y-77-fqb" firstAttribute="leading" secondItem="VWu-9w-YY5" secondAttribute="leading" constant="10" id="n1r-8k-lhC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="TZH-QJ-YPO"/>

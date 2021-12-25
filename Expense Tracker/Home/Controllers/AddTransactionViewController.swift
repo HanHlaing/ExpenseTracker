@@ -49,7 +49,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             inputAmount.text = transaction?.amount
             notes.text = transaction?.notes
             categoryInput = transaction?.category ?? ""
-            inputCategory.setTitle(transaction?.category ?? "Not Selected", for: .normal)
+            inputCategory.setTitle(transaction?.category ?? "Select category", for: .normal)
             segmentedControl.selectedSegmentIndex = (transaction?.transType == "income") ? 1 : 0
         }
         // Do any additional setup after loading the view.
@@ -144,7 +144,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     
     func clearCategory() {
         categoryInput = ""
-        inputCategory.setTitle("Not Selected", for: .normal)
+        inputCategory.setTitle("Select category", for: .normal)
     }
     // category button
     @IBAction func categoryButton(_ sender: Any) {
