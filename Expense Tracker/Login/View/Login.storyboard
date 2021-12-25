@@ -39,14 +39,12 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="eCt-jv-Jsy"/>
                                                 </constraints>
-                                                <color key="textColor" red="0.20000000000000001" green="0.37647058820000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yfc-kK-DsH">
                                                 <rect key="frame" x="0.0" y="66" width="374" height="50"/>
                                                 <color key="tintColor" red="0.30980392159999998" green="0.6705882353" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="textColor" red="0.20000000000000001" green="0.37647058820000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
@@ -66,8 +64,8 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYY-24-eWi">
-                                                <rect key="frame" x="258" y="0.0" width="116" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="253" y="0.0" width="121" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <state key="normal" title="Forgot password?">
                                                     <color key="titleColor" name="AccentColor"/>
                                                 </state>
@@ -100,7 +98,7 @@
                                         <rect key="frame" x="0.0" y="375.5" width="374" height="30"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YAy-8q-oXZ">
-                                                <rect key="frame" x="54" y="0.0" width="266" height="30"/>
+                                                <rect key="frame" x="53" y="0.0" width="268" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Dont have an account?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2t-8s-LrW">
                                                         <rect key="frame" x="20" y="4.5" width="174" height="20.5"/>
@@ -112,7 +110,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Izz-Bn-Fpe">
-                                                        <rect key="frame" x="198" y="0.0" width="48" height="30"/>
+                                                        <rect key="frame" x="198" y="0.0" width="50" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                         <state key="normal" title="Signup">
                                                             <color key="titleColor" name="AccentColor"/>
                                                         </state>
@@ -198,7 +197,6 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VhJ-uW-Dom" userLabel="Name Textfield">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                                 <color key="tintColor" red="0.30980392159999998" green="0.6705882353" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="textColor" red="0.20000000000000001" green="0.37647058820000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -208,14 +206,12 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Y1T-Be-ETA"/>
                                                 </constraints>
-                                                <color key="textColor" red="0.20000000000000001" green="0.37647058820000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jLw-rg-1ep">
                                                 <rect key="frame" x="0.0" y="132" width="374" height="50"/>
                                                 <color key="tintColor" red="0.30980392159999998" green="0.6705882353" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="textColor" red="0.20000000000000001" green="0.37647058820000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
@@ -244,7 +240,7 @@
                                         <rect key="frame" x="0.0" y="422" width="374" height="30"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rxu-kl-BYC">
-                                                <rect key="frame" x="48.5" y="0.0" width="277" height="30"/>
+                                                <rect key="frame" x="47.5" y="0.0" width="279" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Already have an account?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3U-Na-iGx">
                                                         <rect key="frame" x="20" y="5" width="195" height="20.5"/>
@@ -256,7 +252,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IP-3a-cEJ">
-                                                        <rect key="frame" x="219" y="0.0" width="38" height="30"/>
+                                                        <rect key="frame" x="219" y="0.0" width="40" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                         <state key="normal" title="Login">
                                                             <color key="titleColor" name="AccentColor"/>
                                                         </state>
