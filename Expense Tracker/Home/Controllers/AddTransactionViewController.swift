@@ -26,8 +26,8 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     // MARK: Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var inputAmount: UITextField!
-    @IBOutlet weak var notes: UITextField!
+    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var inputCategory: UIButton!
     
     // MARK: - Variables
@@ -39,19 +39,21 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dismissKeyboard()
         datePicker.timeZone = TimeZone.init(identifier: "UTC")
-        inputAmount.delegate = self
-        notes.delegate = self
+        amountTextField.delegate = self
+        noteTextField.delegate = self
         
         if (transaction != nil) {
             
             self.title = "Edit transaction"
             datePicker.setDate(Date(timeIntervalSince1970: TimeInterval(transaction!.transDate/1000)), animated: false)
-            inputAmount.text = transaction?.amount
-            notes.text = transaction?.notes
+            amountTextField.text = transaction?.amount
+            noteTextField.text = transaction?.notes
             categoryInput = transaction?.category ?? ""
             inputCategory.setTitle(transaction?.category ?? "Select category", for: .normal)
             segmentedControl.selectedSegmentIndex = (transaction?.transType == "income") ? 1 : 0
+            inputStatus = transaction?.transType ?? "expense"
         }
         // Do any additional setup after loading the view.
     }
@@ -61,7 +63,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     // done button
     @IBAction func finishInput(_ sender: Any) {
         // alert if textfield is empty
-        if self.inputAmount.text?.isEmpty == true {
+        if self.amountTextField.text?.isEmpty == true {
             let alertController = UIAlertController(title: "Error", message: "Please enter an amount", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alertController, animated:true, completion:nil)}
@@ -78,9 +80,9 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             dateFormatter.dateFormat = "MMM d, yyyy"
             let date = dateFormatter.string(from: self.datePicker.date)
             // amount
-            let amount = self.inputAmount.text
+            let amount = self.amountTextField.text
             // notes
-            let notes = self.notes.text!
+            let notes = self.noteTextField.text!
             
             let transDate = Int(self.datePicker.date.timeIntervalSince1970 * 1000)
             // delegate
@@ -104,9 +106,9 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             dateFormatter.dateFormat = "MMM d, yyyy"
             let date = dateFormatter.string(from: self.datePicker.date)
             // amount
-            let amount = self.inputAmount.text
+            let amount = self.amountTextField.text
             // notes
-            let notes = self.notes.text!
+            let notes = self.noteTextField.text!
             
             let transDate = Int(self.datePicker.date.timeIntervalSince1970 * 1000)
             // delegate
@@ -184,9 +186,14 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
 
 extension AddTransactionViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           self.view.endEditing(true)
+           return false
+       }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if textField == notes {
+        if textField == noteTextField {
             
             let maxLength = 36
                 let currentString: NSString = (textField.text ?? "") as NSString
