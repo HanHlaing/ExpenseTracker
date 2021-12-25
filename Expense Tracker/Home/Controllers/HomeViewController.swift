@@ -330,7 +330,14 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             cell.notesCell.text = transactionDataArr[indexPath.row].category
         }
         else {
-            cell.notesCell.text = transactionDataArr[indexPath.row].notes
+            
+            var note = transactionDataArr[indexPath.row].notes
+            
+            if(note.count >= 20){
+                let index = note.index(note.startIndex, offsetBy: 20)
+                note = String(note[..<index]).appending("...")
+            }
+            cell.notesCell.text = note
         }
         return cell
     }

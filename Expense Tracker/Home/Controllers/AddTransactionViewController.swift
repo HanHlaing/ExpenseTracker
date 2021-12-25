@@ -41,6 +41,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
         super.viewDidLoad()
         datePicker.timeZone = TimeZone.init(identifier: "UTC")
         inputAmount.delegate = self
+        notes.delegate = self
         
         if (transaction != nil) {
             
@@ -185,21 +186,31 @@ extension AddTransactionViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        guard let oldText = textField.text, let r = Range(range, in: oldText) else {
-            return true
-        }
-        
-        let newText = oldText.replacingCharacters(in: r, with: string)
-        let isNumeric = newText.isEmpty || (Double(newText) != nil)
-        let numberOfDots = newText.components(separatedBy: ".").count - 1
-        
-        let numberOfDecimalDigits: Int
-        if let dotIndex = newText.firstIndex(of: ".") {
-            numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+        if textField == notes {
+            
+            let maxLength = 36
+                let currentString: NSString = (textField.text ?? "") as NSString
+                let newString: NSString =
+                    currentString.replacingCharacters(in: range, with: string) as NSString
+                return newString.length <= maxLength
         } else {
-            numberOfDecimalDigits = 0
+         
+            guard let oldText = textField.text, let r = Range(range, in: oldText) else {
+                return true
+            }
+            
+            let newText = oldText.replacingCharacters(in: r, with: string)
+            let isNumeric = newText.isEmpty || (Double(newText) != nil)
+            let numberOfDots = newText.components(separatedBy: ".").count - 1
+            
+            let numberOfDecimalDigits: Int
+            if let dotIndex = newText.firstIndex(of: ".") {
+                numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+            } else {
+                numberOfDecimalDigits = 0
+            }
+            
+            return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2 && newText.count <= (newText.contains(".") ? 12 : 9)
         }
-        
-        return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2 && newText.count <= (newText.contains(".") ? 12 : 9)
     }
 }
