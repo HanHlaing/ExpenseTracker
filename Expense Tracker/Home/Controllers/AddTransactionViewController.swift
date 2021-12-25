@@ -29,6 +29,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var inputCategory: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
     
     // MARK: - Variables
     
@@ -41,9 +42,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
         super.viewDidLoad()
         dismissKeyboard()
         datePicker.timeZone = TimeZone.init(identifier: "UTC")
-        amountTextField.delegate = self
-        noteTextField.delegate = self
-        
+        configureUI()
         if (transaction != nil) {
             
             self.title = "Edit transaction"
@@ -145,10 +144,6 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
         }
     }
     
-    func clearCategory() {
-        categoryInput = ""
-        inputCategory.setTitle("Select category", for: .normal)
-    }
     // category button
     @IBAction func categoryButton(_ sender: Any) {
         if inputStatus == "expense" {
@@ -160,6 +155,18 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     }
     
     // MARK: - Private Methods
+    
+    private func configureUI() {
+
+        amountTextField.delegate = self
+        noteTextField.delegate = self
+        submitButton.makecoloredButton()
+    }
+    
+    func clearCategory() {
+        categoryInput = ""
+        inputCategory.setTitle("Select category", for: .normal)
+    }
     
     func getCategory(category: String) {
         categoryInput = category
