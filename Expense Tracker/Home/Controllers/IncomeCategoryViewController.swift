@@ -12,34 +12,34 @@ protocol IncomeCategoryDelegateProtocol {
 }
 
 class IncomeCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-
+    
     @IBOutlet weak var categoryTableView: UITableView!
     
     // MARK: variables
-    var incomeCategory: [String] = ["Salary", "Bonus", "Carry Over"]
+    var incomeCategory: [String] = ["Salary", "Bonus", "Awards", "Sale","Rental", "Refunds", "Coupons", "Lottery", "Investments", "Adjustment", "Others"]
     
     var delegate: IncomeCategoryDelegateProtocol? = nil
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         categoryTableView.register(UITableViewCell.self,
-                               forCellReuseIdentifier: "incomeCategoryCell")
+                                   forCellReuseIdentifier: "incomeCategoryCell")
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         
         categoryTableView.reloadData()
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.incomeCategory.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "incomeCategoryCell", for: indexPath)
         cell.textLabel?.text = self.incomeCategory[indexPath.row]
