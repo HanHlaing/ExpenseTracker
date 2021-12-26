@@ -7,18 +7,25 @@
 
 import UIKit
 
+// send data to add transaction
 protocol ExpenseCategoryDelegateProtocol {
     func getCategory(category: String)
 }
 
-class ExpenseCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class ExpenseCategoryViewController: UIViewController {
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var categoryTableView: UITableView!
     
     // MARK: variables
-    var expenseCategory: [String] = ["Food","Drinks", "Shopping", "Bills", "Transportation", "Home", "Car","Entertainment", "Shopping", "Clothing", "Insurance", "Tax", "Telephone", "Cigarette", "Beer", "Health", "Sport", "Baby", "Pet", "Beauty", "Electronics", "Hamburger", "Wine", "Vegetables", "Snacks", "Gift", "Social", "Travel","Education", "Fruits", "Book", "Office", "Rent", "Others"]
+    
+    // static expense categories
+    var expenseCategory: [String] = ["Food","Drinks", "Shopping", "Bills", "Transportation", "Home", "Car","Entertainment", "Clothing", "Insurance", "Tax", "Telephone", "Cigarette", "Beer", "Health", "Sport", "Baby", "Pet", "Beauty", "Electronics", "Hamburger", "Wine", "Vegetables", "Snacks", "Gift", "Social", "Travel","Education", "Fruits", "Book", "Office", "Rent", "Others"]
     
     var delegate: ExpenseCategoryDelegateProtocol? = nil
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +35,14 @@ class ExpenseCategoryViewController: UIViewController, UITableViewDelegate, UITa
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
-        
         categoryTableView.reloadData()
     }
+    
+}
+
+//MARK: - Extensions
+
+extension ExpenseCategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -53,5 +65,4 @@ class ExpenseCategoryViewController: UIViewController, UITableViewDelegate, UITa
             navigationController.popToRootViewController(animated: true)
         }
     }
-    
 }

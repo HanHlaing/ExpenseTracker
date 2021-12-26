@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+// send data to home
 protocol MyDataSendingDelegateProtocol {
     func addTransaction(date: String, amount: String, notes: String, category: String,transDate:Int, transType: String)
     
@@ -21,7 +21,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var noteTextField: UITextField!
-    @IBOutlet weak var inputCategory: UIButton!
+    @IBOutlet weak var inputCategoryButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     
     // MARK: - Variables
@@ -31,39 +31,27 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     var inputStatus: String = "expense" // set expense by default
     var categoryInput: String = ""
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        dismissKeyboard()
-        datePicker.timeZone = TimeZone.init(identifier: "UTC")
-        configureUI()
-        if (transaction != nil) {
-            
-            title = "Edit transaction"
-            datePicker.setDate(Date(timeIntervalSince1970: TimeInterval(transaction!.transDate/1000)), animated: false)
-            amountTextField.text = transaction?.amount
-            noteTextField.text = transaction?.notes
-            categoryInput = transaction?.category ?? ""
-            inputCategory.setTitle(transaction?.category ?? "Select category", for: .normal)
-            segmentedControl.selectedSegmentIndex = (transaction?.transType == TransactionType.income) ? 1 : 0
-            inputStatus = transaction?.transType ?? TransactionType.expense
-        }
-        // Do any additional setup after loading the view.
+        
+       configureUI()
     }
     
     // MARK: - Actions
     
-    // done button
+    // submit button
     @IBAction func finishInput(_ sender: Any) {
+        
         // alert if textfield is empty
         if amountTextField.text?.isEmpty == true {
-            let alertController = UIAlertController(title: "Error", message: "Please enter an amount", preferredStyle: UIAlertController.Style.alert)
-            alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
-            present(alertController, animated:true, completion:nil)}
+            showErrorAlert("Error","Please enter an amount")
+        }
         // alert if category is not selected
         else if categoryInput.isEmpty == true {
-            let alertController = UIAlertController(title: "Error", message: "Please select a category", preferredStyle: UIAlertController.Style.alert)
-            alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
-            present(alertController, animated:true, completion:nil)}
+            showErrorAlert("Error","Please select a category")
+        }
         // expense
         else if delegate != nil && inputStatus == TransactionType.expense
         {
@@ -78,17 +66,16 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             
             let transDate = Int(datePicker.date.timeIntervalSince1970 * 1000)
             // delegate
-            if transaction != nil {
+            if transaction != nil { // update transaction
                 transaction?.date = date
                 transaction?.amount = amount!
                 transaction?.notes = notes
                 transaction?.category = categoryInput
                 transaction?.transType = TransactionType.expense
                 delegate?.updateTransaction(transaction: transaction!)
-            } else {
+            } else { // add transaction
                 delegate?.addTransaction(date: date, amount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: TransactionType.expense)
             }
-            
             dismiss(animated: true, completion: nil)
         }
         // income
@@ -104,14 +91,14 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             
             let transDate = Int(datePicker.date.timeIntervalSince1970 * 1000)
             // delegate
-            if transaction != nil {
+            if transaction != nil { // update transaction
                 transaction?.date = date
                 transaction?.amount = amount!
                 transaction?.notes = notes
                 transaction?.category = categoryInput
                 transaction?.transType = TransactionType.income
                 delegate?.updateTransaction(transaction: transaction!)
-            } else {
+            } else { // add transaction
                 delegate?.addTransaction(date: date, amount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: TransactionType.income)
             }
             
@@ -151,28 +138,43 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     
     private func configureUI() {
         
+        dismissKeyboard()
+        datePicker.timeZone = TimeZone.init(identifier: "UTC")
         amountTextField.delegate = self
         noteTextField.delegate = self
         submitButton.makecoloredButton()
+        
+        if (transaction != nil) {
+            
+            title = "Edit transaction"
+            datePicker.setDate(Date(timeIntervalSince1970: TimeInterval(transaction!.transDate/1000)), animated: false)
+            amountTextField.text = transaction?.amount
+            noteTextField.text = transaction?.notes
+            categoryInput = transaction?.category ?? ""
+            inputCategoryButton.setTitle(transaction?.category ?? "Select category", for: .normal)
+            segmentedControl.selectedSegmentIndex = (transaction?.transType == TransactionType.income) ? 1 : 0
+            inputStatus = transaction?.transType ?? TransactionType.expense
+        }
     }
     
     func clearCategory() {
         categoryInput = ""
-        inputCategory.setTitle("Select category", for: .normal)
+        inputCategoryButton.setTitle("Select category", for: .normal)
     }
     
     func getCategory(category: String) {
         categoryInput = category
-        inputCategory.setTitle(category, for: .normal)
+        inputCategoryButton.setTitle(category, for: .normal)
     }
     
     func getIncomeCategory(category: String) {
         categoryInput = category
-        inputCategory.setTitle(category, for: .normal)
+        inputCategoryButton.setTitle(category, for: .normal)
     }
     
     // segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == Identifier.addExpenseCategory {
             let secondVC = segue.destination as! ExpenseCategoryViewController
             secondVC.delegate = self
@@ -183,6 +185,8 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
         }
     }
 }
+
+//MARK: - Extensions
 
 extension AddTransactionViewController: UITextFieldDelegate {
     

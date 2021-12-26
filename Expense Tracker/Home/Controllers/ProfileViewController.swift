@@ -30,10 +30,10 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         if NetworkStatus.isConnectedToNetwork() {
-            
+            // show quote from online data source
             QuoteClient.getQuote(completion: handleQuoteDataResponse(quote:error:))
         } else {
-            
+            // show local quote when offline
             if let localData = readLocalFile(forName: "quotes") {
                 parse(jsonData: localData)
             }

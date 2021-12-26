@@ -11,7 +11,7 @@ import Foundation
 
 class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
     
-    // MARK: Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var balanceDisplayLabel: UILabel!
     @IBOutlet weak var incomeDisplayLabel: UILabel!
@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
     @IBOutlet weak var backwardButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     
-    // MARK: Variables
+    // MARK: - Variables
     
     var selectedIndex = -1 // set default -1 for new transaction
     var segment: UISegmentedControl!
@@ -65,6 +65,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
     }
     
     //MARK: - Actions
+    
     @IBAction func addTransaction(_ sender: Any) {
         
         // set selected index to -1 for new transaction

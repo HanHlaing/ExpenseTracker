@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Roboto-Light.ttf">
-            <string>Roboto-Light</string>
-        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -146,7 +143,7 @@
                     <connections>
                         <outlet property="amountTextField" destination="QYh-oh-5v8" id="8Lv-ML-BWB"/>
                         <outlet property="datePicker" destination="TjM-vD-uaj" id="ssa-WX-SGv"/>
-                        <outlet property="inputCategory" destination="r0i-U9-boJ" id="mw3-QZ-X4i"/>
+                        <outlet property="inputCategoryButton" destination="r0i-U9-boJ" id="mw3-QZ-X4i"/>
                         <outlet property="noteTextField" destination="7TU-gB-tk4" id="T5B-TZ-iVU"/>
                         <outlet property="segmentedControl" destination="aVq-6T-f6E" id="K6Y-lQ-8tO"/>
                         <outlet property="submitButton" destination="s8G-CB-lKu" id="6h0-6F-4t1"/>
@@ -448,7 +445,7 @@
                                 <rect key="frame" x="0.0" y="68" width="414" height="765"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lyi-EW-H1s">
-                                        <rect key="frame" x="42" y="470.5" width="330" height="300"/>
+                                        <rect key="frame" x="42" y="471" width="330" height="300"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="VOQ-md-nsB"/>
@@ -488,14 +485,14 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfL-Bl-qSn">
-                                        <rect key="frame" x="42" y="424" width="97.5" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="20"/>
+                                        <rect key="frame" x="42" y="424" width="100.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVI-5R-hHg">
-                                        <rect key="frame" x="327.5" y="424" width="44.5" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                        <rect key="frame" x="321.5" y="424" width="50.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>

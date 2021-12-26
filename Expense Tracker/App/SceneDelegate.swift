@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
                 let window = UIWindow(windowScene: windowScene)
             
+            // Listen authentication changes to route specific screen
             _authHandle = Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
                         // Show home page

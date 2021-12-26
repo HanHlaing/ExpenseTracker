@@ -11,14 +11,19 @@ protocol IncomeCategoryDelegateProtocol {
     func getIncomeCategory(category: String)
 }
 
-class IncomeCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class IncomeCategoryViewController: UIViewController {
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var categoryTableView: UITableView!
     
-    // MARK: variables
-    var incomeCategory: [String] = ["Salary", "Bonus", "Awards", "Sale","Rental", "Refunds", "Coupons", "Lottery", "Investments", "Adjustment", "Others"]
+    // MARK: - Variables
     
+    // static income categories
+    var incomeCategory: [String] = ["Salary", "Bonus", "Awards", "Sale","Rental", "Refunds", "Coupons", "Lottery", "Investments", "Adjustment", "Others"]
     var delegate: IncomeCategoryDelegateProtocol? = nil
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +33,13 @@ class IncomeCategoryViewController: UIViewController, UITableViewDelegate, UITab
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
-        
         categoryTableView.reloadData()
     }
+}
+
+//MARK: - Extensions
+
+extension IncomeCategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
