@@ -16,7 +16,7 @@ class ExpenseCategoryViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var categoryTableView: UITableView!
     
     // MARK: variables
-    var expenseCategory: [String] = ["Food", "Shopping", "Bills", "Transportation", "Home", "Car","Entertainment", "Shopping", "Clothing", "Insurance", "Tax", "Telephone", "Cigarette", "Beer", "Health", "Sport", "Baby", "Pet", "Beauty", "Electronics", "Hamburger", "Wine", "Vegetables", "Snacks", "Gift", "Social", "Travel","Education", "Fruits", "Book", "Office", "Rent", "Others"]
+    var expenseCategory: [String] = ["Food","Drinks", "Shopping", "Bills", "Transportation", "Home", "Car","Entertainment", "Shopping", "Clothing", "Insurance", "Tax", "Telephone", "Cigarette", "Beer", "Health", "Sport", "Baby", "Pet", "Beauty", "Electronics", "Hamburger", "Wine", "Vegetables", "Snacks", "Gift", "Social", "Travel","Education", "Fruits", "Book", "Office", "Rent", "Others"]
     
     var delegate: ExpenseCategoryDelegateProtocol? = nil
     

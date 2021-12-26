@@ -31,52 +31,10 @@ class RaisedTabBarViewController: UITabBarController {
         currentMonth = now.getMonthName()
         currentYear = now.getYear()
         
+        // initialize start and end date of current month
         start = Int(startOfMonth.timeIntervalSince1970 * 1000)
         end = Int(endOfMonth.timeIntervalSince1970 * 1000)
         
         dateChanged = false
     }
-    
-    func insertEmptyClass(_ title: String, atIndex: Int) {
-        let vc = UIViewController()
-        vc.tabBarItem = UITabBarItem(title: title, image: nil, tag: 0)
-        vc.tabBarItem.isEnabled = false
-        
-        self.viewControllers?.insert(vc, at: atIndex)
-    }
-    
-    func addRaisedButton(_ buttonImage: UIImage?, highlightImage: UIImage?, offSet: CGFloat? = nil) {
-        if let btnImg = buttonImage {
-            let button = UIButton(type: .custom)
-            button.autoresizingMask = [UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleBottomMargin, UIView.AutoresizingMask.flexibleTopMargin]
-            
-            button.frame = CGRect(x: 0.0, y: 0.0, width: btnImg.size.width, height: btnImg.size.height)
-            button.setBackgroundImage(btnImg, for: UIControl.State())
-            button.setBackgroundImage(highlightImage, for: UIControl.State.highlighted)
-            
-            let heightDifference = btnImg.size.height - self.tabBar.frame.size.height
-            
-            if (heightDifference < 0) {
-                button.center = self.tabBar.center
-            } else {
-                var center = self.tabBar.center
-                center.y -= heightDifference / 2.0
-                button.center = center
-            }
-            
-            if (offSet != nil) {
-                var center = button.center
-                center.y = center.y + offSet!
-                button.center = center
-            }
-            
-            button.addTarget(self, action: #selector(onRaisedButton(_:)), for: UIControl.Event.touchUpInside)
-            self.view.addSubview(button)
-        }
-    }
-    
-    @objc func onRaisedButton(_ sender: UIButton!) {
-        
-    }
-
 }

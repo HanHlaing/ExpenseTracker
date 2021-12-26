@@ -388,12 +388,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addTransactionButton" destination="hT2-9A-lnl" id="qpw-UP-eOt"/>
-                        <outlet property="backwardBtn" destination="KaT-Da-mI8" id="kST-VR-o2r"/>
-                        <outlet property="balanceDisplay" destination="5d4-tF-kAm" id="XV5-bC-gNJ"/>
-                        <outlet property="dateLbl" destination="ITx-1U-iYq" id="o7k-fT-fzX"/>
-                        <outlet property="expenseDisplay" destination="8Lm-aU-JQd" id="s4Y-aB-Seb"/>
-                        <outlet property="forwardBtn" destination="NgE-r1-1r9" id="cdK-oe-OS8"/>
-                        <outlet property="incomeDisplay" destination="0Qg-v7-u0j" id="W7R-BP-Udw"/>
+                        <outlet property="backwardButton" destination="KaT-Da-mI8" id="kST-VR-o2r"/>
+                        <outlet property="balanceDisplayLabel" destination="5d4-tF-kAm" id="XV5-bC-gNJ"/>
+                        <outlet property="dateLabel" destination="ITx-1U-iYq" id="o7k-fT-fzX"/>
+                        <outlet property="expenseDisplayLabel" destination="8Lm-aU-JQd" id="s4Y-aB-Seb"/>
+                        <outlet property="forwardButton" destination="NgE-r1-1r9" id="cdK-oe-OS8"/>
+                        <outlet property="incomeDisplayLabel" destination="0Qg-v7-u0j" id="W7R-BP-Udw"/>
                         <outlet property="transactionDataTableView" destination="WuV-oo-kxI" id="6Bd-O2-GQn"/>
                         <segue destination="l6Z-Yi-qh9" kind="presentation" identifier="addInput" id="ygY-b2-guF"/>
                     </connections>
