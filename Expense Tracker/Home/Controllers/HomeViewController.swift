@@ -17,7 +17,6 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
     @IBOutlet weak var incomeDisplayLabel: UILabel!
     @IBOutlet weak var expenseDisplayLabel: UILabel!
     @IBOutlet weak var transactionDataTableView: UITableView!
-    
     @IBOutlet weak var addTransactionButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var backwardButton: UIButton!
@@ -141,26 +140,27 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
         transactionDataTableView.dataSource = self
         transactionDataTableView.register(UINib(nibName: Identifier.transactionViewCell, bundle: nil), forCellReuseIdentifier: Identifier.transactionViewCell)
         
-       // load transactions of current month
+        // load transactions of current month
         loadTransactions(tabBar.start,tabBar.end)
     }
     
+    // get transactions from firebase and show in table view
     func loadTransactions(_ start: Int, _ end: Int) {
         
         // synchronize data to table view from firebase by using transDate
         _refHandle = ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe( .value, with: { snapshot in
             
-            var newItems: [Transaction] = []
+            var transactions: [Transaction] = []
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                    let nestedItem = Transaction(snapshot:snapshot){
                     
-                    newItems.append(nestedItem)
+                    transactions.append(nestedItem)
                 }
             }
             
             // sort desc order by date
-            self.transactionDataArr = newItems.reversed()
+            self.transactionDataArr = transactions.reversed()
             self.transactionDataTableView.reloadData()
             
             // calculate and show total income

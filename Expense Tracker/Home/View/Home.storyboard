@@ -593,11 +593,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="yuo-Yd-PPf"/>
                     <connections>
-                        <outlet property="backwardBtn" destination="FDu-A8-tAa" id="KRI-ea-9ls"/>
-                        <outlet property="currentSum" destination="nVI-5R-hHg" id="Z7z-Os-eCj"/>
-                        <outlet property="dateLbl" destination="soy-qo-I7Z" id="03Q-vc-PND"/>
-                        <outlet property="expenseCategory" destination="lyi-EW-H1s" id="36b-xr-ZVW"/>
-                        <outlet property="forwardBtn" destination="B0i-jv-VKG" id="32H-EP-12l"/>
+                        <outlet property="backwardButton" destination="FDu-A8-tAa" id="KRI-ea-9ls"/>
+                        <outlet property="categoryTableView" destination="lyi-EW-H1s" id="36b-xr-ZVW"/>
+                        <outlet property="currentSumLabel" destination="nVI-5R-hHg" id="Z7z-Os-eCj"/>
+                        <outlet property="dateLabel" destination="soy-qo-I7Z" id="03Q-vc-PND"/>
+                        <outlet property="forwardButton" destination="B0i-jv-VKG" id="32H-EP-12l"/>
                         <outlet property="pieChart" destination="Rl7-hx-xX4" id="HUe-rW-b6S"/>
                         <outlet property="segmentedControl" destination="KsV-k9-vky" id="Daf-h9-Zsu"/>
                     </connections>

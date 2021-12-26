@@ -9,35 +9,115 @@ import UIKit
 import Firebase
 import Charts
 
-class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class ChartViewController: UIViewController  {
     
-    // MARK: Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var currentSum: UILabel!
-    @IBOutlet weak var expenseCategory: UITableView!
+    @IBOutlet weak var currentSumLabel: UILabel!
+    @IBOutlet weak var categoryTableView: UITableView!
     @IBOutlet weak var pieChart: PieChartView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var backwardButton: UIButton!
+    @IBOutlet weak var forwardButton: UIButton!
     
-    @IBOutlet weak var dateLbl: UILabel!
-    @IBOutlet weak var backwardBtn: UIButton!
-    @IBOutlet weak var forwardBtn: UIButton!
+    // MARK: - Variables
     
-    // MARK: variables
     var _refHandle: DatabaseHandle!
     let ref = Database.database().reference(withPath:FirebaseDatabase.transactions).child(UserManager.shared.userID!)
     var transType: String = "expense" // set expense by default
     var segment: UISegmentedControl!
-    var empty = [String]()
     var now = Foundation.Date()
-    var keyArray = [String]()
-    var valueArray = [Double]()
+    var categroyKeyArray = [String]()
+    var categoryValueArray = [Double]()
     var percentArray = [Double]()
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let tabBar = tabBarController as! RaisedTabBarViewController
+        // set common date label to synchronize changes from chart view
+        switch tabBar.selectedSegment {
+        case 0:
+            segment.selectedSegmentIndex = 0
+            dateLabel.text = "\(tabBar.currentStartWeek!) - \(tabBar.currentEndWeek!)"
+        case 1:
+            segment.selectedSegmentIndex = 1
+            dateLabel.text = tabBar.currentMonth
+        default:
+            segment.selectedSegmentIndex = 2
+            dateLabel.text = tabBar.currentYear
+        }
+        // reload data to synchronize changes from home
+        loadStaticstic(tabBar.start,tabBar.end,transType)
+    }
+    
+    deinit {
+        if let refHandle = _refHandle {
+            ref.removeObserver(withHandle: refHandle)
+        }
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func backwardBtnWasPressed(_ sender: Any) {
         
+        dateLabel.rightTransition(0.2)
+        let tabBar = tabBarController as! RaisedTabBarViewController
+        changeDate(sender as! UIButton, currentDate: tabBar.now, segment: tabBar.selectedSegment, tab: tabBar)
+        
+        switch tabBar.selectedSegment {
+        case 0:// days
+            tabBar.now = tabBar.now.subtract(days: 7)
+        case 1:// month
+            tabBar.now = tabBar.now.subtract(months: 1)
+        case 2:// year
+            tabBar.now = tabBar.now.subtract(years: 1)
+        default:
+            break
+        }
+    }
+    
+    @IBAction func forwardBtnWasPressed(_ sender: Any) {
+        
+        dateLabel.leftTransition(0.2)
+        let tabBar = tabBarController as! RaisedTabBarViewController
+        changeDate(sender as! UIButton, currentDate: tabBar.now, segment: tabBar.selectedSegment, tab: tabBar)
+        
+        switch tabBar.selectedSegment {
+        case 0:// week
+            tabBar.now = tabBar.now.add(days: 7)
+        case 1:// month
+            tabBar.now = tabBar.now.add(months: 1)
+        case 2:// year
+            tabBar.now = tabBar.now.add(years: 1)
+        default:
+            break
+        }
+    }
+    
+    @IBAction func segmentedControl(_ sender: Any) {
+        let tabBar = tabBarController as! RaisedTabBarViewController
+        switch segmentedControl.selectedSegmentIndex{
+        case 0: loadStaticstic(tabBar.start,tabBar.end,TransactionType.expense)
+            transType = TransactionType.expense
+        case 1: loadStaticstic(tabBar.start,tabBar.end,TransactionType.income)
+            transType = TransactionType.income
+        default: break;
+        }
+    }
+    
+    //MARK: - Private Methods
+    
+    func configureUI() {
+        
+        // setup tab bar
         let tabBar = tabBarController as! RaisedTabBarViewController
         segment = UISegmentedControl(items: ["Week", "Month", "Year"])
         segment.sizeToFit()
@@ -58,128 +138,60 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         segment.addTarget(self, action: #selector(changeSegment(sender:)), for: .valueChanged)
         
         // display table
-        expenseCategory.delegate = self
-        expenseCategory.dataSource = self
+        categoryTableView.delegate = self
+        categoryTableView.dataSource = self
         
+        // load expense transactions of current month
         loadStaticstic(tabBar.start,tabBar.end,transType)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let tabBar = tabBarController as! RaisedTabBarViewController
-        
-        switch tabBar.selectedSegment {
-        case 0:
-            segment.selectedSegmentIndex = 0
-            dateLbl.text = "\(tabBar.currentStartWeek!) - \(tabBar.currentEndWeek!)"
-        case 1:
-            segment.selectedSegmentIndex = 1
-            dateLbl.text = tabBar.currentMonth
-        default:
-            segment.selectedSegmentIndex = 2
-            dateLbl.text = tabBar.currentYear
-        }
-        loadStaticstic(tabBar.start,tabBar.end,transType)
-    }
-    
-    deinit {
-        if let refHandle = _refHandle {
-            ref.removeObserver(withHandle: refHandle)
-        }
-    }
-    
-    //MARK: - Actions
-    
-    @IBAction func backwardBtnWasPressed(_ sender: Any) {
-        
-        dateLbl.rightTransition(0.2)
-        let tabBar = tabBarController as! RaisedTabBarViewController
-        changeDate(sender as! UIButton, currentDate: tabBar.now, segment: tabBar.selectedSegment, tab: tabBar)
-        
-        switch tabBar.selectedSegment {
-        case 0:
-            tabBar.now = tabBar.now.subtract(days: 7)
-        case 1:
-            tabBar.now = tabBar.now.subtract(months: 1)
-        case 2:
-            tabBar.now = tabBar.now.subtract(years: 1)
-        default:
-            break
-        }
-    }
-    
-    @IBAction func forwardBtnWasPressed(_ sender: Any) {
-        
-        dateLbl.leftTransition(0.2)
-        let tabBar = tabBarController as! RaisedTabBarViewController
-        changeDate(sender as! UIButton, currentDate: tabBar.now, segment: tabBar.selectedSegment, tab: tabBar)
-        
-        switch tabBar.selectedSegment {
-        case 0:
-            tabBar.now = tabBar.now.add(days: 7)
-        case 1:
-            tabBar.now = tabBar.now.add(months: 1)
-        case 2:
-            tabBar.now = tabBar.now.add(years: 1)
-        default:
-            break
-        }
-    }
-    
-    @IBAction func segmentedControl(_ sender: Any) {
-        let tabBar = tabBarController as! RaisedTabBarViewController
-        switch segmentedControl.selectedSegmentIndex{
-        case 0: loadStaticstic(tabBar.start,tabBar.end,TransactionType.expense)
-            transType = TransactionType.expense
-        case 1: loadStaticstic(tabBar.start,tabBar.end,TransactionType.income)
-            transType = TransactionType.income
-        default: break;
-        }
-    }
-    
-    //MARK: - Private Methods
     
     func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
-        
        
+        // synchronize data to table and chart from firebase by using transDate
         _refHandle = ref.queryOrdered(byChild: "transDate").queryStarting(atValue: start).queryEnding(atValue:end).observe(.value, with: {  snapshot in
-            var newItems = [String: Double]()
+            
+            var transactions = [String: Double]()
             var totalAmount = 0.0
-            self.keyArray.removeAll()
-            self.valueArray.removeAll()
+            self.categroyKeyArray.removeAll()
+            self.categoryValueArray.removeAll()
             self.percentArray.removeAll()
             
             for child in snapshot.children.allObjects {
                 
                 if let nestedSnapshot = child as? DataSnapshot,
                    let type = nestedSnapshot.childSnapshot(forPath: "transType").value as? String,
-                   let item = nestedSnapshot.childSnapshot(forPath: "category").value as? String,
+                   let category = nestedSnapshot.childSnapshot(forPath: "category").value as? String,
                    let amount = nestedSnapshot.childSnapshot(forPath: "amount").value as? String {
                     
-                    
+                    // add transactions depend on transaction type by grouping category
                     if(transType == type){
                         
                         totalAmount += Double(amount)!
-                        if let value = newItems[item] {
-                            newItems[item] = value + Double(amount)!
+                        if let value = transactions[category] {
+                            transactions[category] = value + Double(amount)!
                         } else {
-                            newItems[item] = Double(amount)!
+                            transactions[category] = Double(amount)!
                         }
                     }
                 }
                 
             }
             
-            let sortedDictionary = newItems.sorted { $0.1 > $1.1 } .map { $0 }
+            // sort desc order by amount
+            let sortedDictionary = transactions.sorted { $0.1 > $1.1 } .map { $0 }
             
             for (key, value) in sortedDictionary {
-                self.keyArray.append(key)
-                self.valueArray.append(value)
+                self.categroyKeyArray.append(key)
+                self.categoryValueArray.append(value)
                 self.percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
             }
-            self.currentSum.text = (self.valueArray.reduce(0, +)).clean
-            self.expenseCategory.reloadData()
+            
+            // show total amount and reload table
+            self.currentSumLabel.text = (self.categoryValueArray.reduce(0, +)).clean
+            self.categoryTableView.reloadData()
+            
             // pie chart
-            self.customizeChart(dataPoints: self.keyArray, values: self.percentArray)
+            self.customizeChart(dataPoints: self.categroyKeyArray, values: self.percentArray)
             
         })
     }
@@ -191,38 +203,42 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tabBar.now = now
         
         switch sender.selectedSegmentIndex {
-        case 0:
+        case 0:// week
+            // set start and end day of current week
             let startWeek = now.startOfWeek
             let endWeek = now.endOfWeek
             tabBar.currentStartWeek = startWeek?.convertDateToString()
             tabBar.currentEndWeek = endWeek?.convertDateToString()
             tabBar.selectedSegment = 0
-            dateLbl.text = "\(tabBar.currentStartWeek!) - \(tabBar.currentEndWeek!)"
+            dateLabel.text = "\(tabBar.currentStartWeek!) - \(tabBar.currentEndWeek!)"
             tabBar.start = Int(startWeek!.timeIntervalSince1970 * 1000)
             tabBar.end = Int(endWeek!.timeIntervalSince1970 * 1000)
-        case 1:
+        case 1:// month
+            // set start and end day of current month
             let startMonth = now.startOfMonth
             let endMonth = now.endOfMonth
             
             tabBar.currentMonth = startMonth?.getMonthName()
             tabBar.selectedSegment = 1
-            dateLbl.text = tabBar.currentMonth
+            dateLabel.text = tabBar.currentMonth
             tabBar.start = Int(startMonth!.timeIntervalSince1970 * 1000)
             tabBar.end = Int(endMonth!.timeIntervalSince1970 * 1000)
-        default:
+        default:// year
+            // set start and end day of current year
             let startOfYear = now.startOfYear
             let endOfYear = now.endOfYear
             tabBar.currentYear = startOfYear?.getYear()
             tabBar.selectedSegment = 2
-            dateLbl.text = tabBar.currentYear
+            dateLabel.text = tabBar.currentYear
             tabBar.start = Int(startOfYear!.timeIntervalSince1970 * 1000)
             tabBar.end = Int(endOfYear!.timeIntervalSince1970 * 1000)
         }
         
+        // load current week/month/year transactions depend on selected segment
         loadStaticstic(tabBar.start, tabBar.end,transType)
-        
     }
     
+    // change date depend on next/back buttons and week/month/year segment
     func changeDate(_ sender: UIButton, currentDate: Foundation.Date, segment: Int, tab: RaisedTabBarViewController) {
         
         var start: Foundation.Date
@@ -236,10 +252,10 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         nextEnd = end.add(months: 1)
         
         switch segment {
-        case 0:
+        case 0:// week
             start = currentDate.startOfWeek!
             end = currentDate.endOfWeek!
-            if(sender == forwardBtn) {
+            if(sender == forwardButton) {
                 nextStart = start.add(days: 7)
                 nextEnd = end.add(days: 7)
             } else {
@@ -254,14 +270,14 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tab.currentEndWeek = nextEndString
             
             if (nextEnd.getYear() != Foundation.Date().getYear()) {
-                dateLbl.text = "\(tab.currentStartWeek!) - \(tab.currentEndWeek!), '\(nextStart.getYearInShortFormat())"
+                dateLabel.text = "\(tab.currentStartWeek!) - \(tab.currentEndWeek!), '\(nextStart.getYearInShortFormat())"
             } else {
-                dateLbl.text = "\(tab.currentStartWeek!) - \(tab.currentEndWeek!)"
+                dateLabel.text = "\(tab.currentStartWeek!) - \(tab.currentEndWeek!)"
             }
-        case 1:
+        case 1:// month
             start = currentDate.startOfMonth!
             end = currentDate.endOfMonth!
-            if (sender == forwardBtn) {
+            if (sender == forwardButton) {
                 nextStart = start.add(months: 1)
                 nextEnd = end.add(months: 1)
             } else {
@@ -272,15 +288,15 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tab.currentMonth = nextStart.getMonthName()
             
             if (nextStart.getYear() != Foundation.Date().getYear()) {
-                dateLbl.text = tab.currentMonth! + " " + (nextStart.getYear())
+                dateLabel.text = tab.currentMonth! + " " + (nextStart.getYear())
             } else {
-                dateLbl.text = tab.currentMonth
+                dateLabel.text = tab.currentMonth
             }
-        case 2:
+        case 2:// year
             start = currentDate.startOfYear!
             end = currentDate.endOfYear!
             
-            if(sender == forwardBtn) {
+            if(sender == forwardButton) {
                 nextStart = start.add(years: 1)
                 nextEnd = end.add(years: 1)
             } else {
@@ -290,7 +306,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             tab.currentYear = nextStart.getYear()
             
-            dateLbl.text = tab.currentYear
+            dateLabel.text = tab.currentYear
         default:
             break
         }
@@ -299,11 +315,12 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let endTime = Int(nextEnd.timeIntervalSince1970 * 1000)
         tab.start = startTime
         tab.end = endTime
+        // load changed week/month/year transactions
         loadStaticstic(startTime, endTime,transType)
         
     }
     
-    // pie chart
+    // show pie chart with percentage
     func customizeChart(dataPoints: [String], values: [Double]) {
         var dataEntries = [ChartDataEntry]()
         for i in 0..<dataPoints.count {
@@ -327,6 +344,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         pieChart.setNeedsDisplay()
     }
     
+    // show ramdon color in pie chart
     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
         var colors: [UIColor] = []
         for _ in 0..<numbersOfColor {
@@ -338,18 +356,22 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         return colors
     }
-    
-    //MARK: - Delegate methods
+
+}
+
+//MARK: - Extension
+
+extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return keyArray.count
+        return categroyKeyArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
-        cell.textLabel?.text = keyArray[indexPath.row]
-        cell.detailTextLabel?.text = valueArray[indexPath.row].clean
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.statsCategoryCell, for: indexPath)
+        cell.textLabel?.text = categroyKeyArray[indexPath.row]
+        cell.detailTextLabel?.text = categoryValueArray[indexPath.row].clean
         return cell
     }
 }

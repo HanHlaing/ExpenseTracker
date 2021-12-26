@@ -24,4 +24,5 @@ struct Identifier {
     static let addIncomeCategory = "addIncomeCategory"
     static let expenseCategoryCell = "categoryCell"
     static let incomeCategoryCell = "incomeCategoryCell"
+    static let statsCategoryCell = "statsCategory"
 }
