@@ -24,7 +24,7 @@ class ExpenseCategoryViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         
         categoryTableView.register(UITableViewCell.self,
-                                   forCellReuseIdentifier: "categoryCell")
+                                   forCellReuseIdentifier: Identifier.expenseCategoryCell)
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
@@ -37,18 +37,18 @@ class ExpenseCategoryViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.expenseCategory.count
+        return expenseCategory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        cell.textLabel?.text = self.expenseCategory[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.expenseCategoryCell, for: indexPath)
+        cell.textLabel?.text = expenseCategory[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCategory = self.expenseCategory[indexPath.row]
-        self.delegate?.getCategory(category: selectedCategory)
+        let selectedCategory = expenseCategory[indexPath.row]
+        delegate?.getCategory(category: selectedCategory)
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
         }

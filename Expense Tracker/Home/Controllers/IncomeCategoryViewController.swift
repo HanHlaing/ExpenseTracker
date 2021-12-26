@@ -24,7 +24,7 @@ class IncomeCategoryViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         
         categoryTableView.register(UITableViewCell.self,
-                                   forCellReuseIdentifier: "incomeCategoryCell")
+                                   forCellReuseIdentifier: Identifier.incomeCategoryCell)
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
@@ -37,18 +37,18 @@ class IncomeCategoryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.incomeCategory.count
+        return incomeCategory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "incomeCategoryCell", for: indexPath)
-        cell.textLabel?.text = self.incomeCategory[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.incomeCategoryCell, for: indexPath)
+        cell.textLabel?.text = incomeCategory[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCategory = self.incomeCategory[indexPath.row]
-        self.delegate?.getIncomeCategory(category: selectedCategory)
+        let selectedCategory = incomeCategory[indexPath.row]
+        delegate?.getIncomeCategory(category: selectedCategory)
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
         }

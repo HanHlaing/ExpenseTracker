@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import Foundation
 
-class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
     
     // MARK: Outlets
     
@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     var now = Foundation.Date()
     var transactionDataArr = [Transaction]()
     var _refHandle: DatabaseHandle!
-    let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!) // firebase
+    let ref = Database.database().reference(withPath: FirebaseDatabase.transactions).child(UserManager.shared.userID!)
     
     // MARK: - Life Cycle
     
@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         segment.sizeToFit()
         segment.tintColor = #colorLiteral(red: 0, green: 0.007843137255, blue: 0.1450980392, alpha: 1)
         segment.selectedSegmentIndex = tabBar.selectedSegment
-      
+        
         switch (UIDevice().type) {
             
         case .iPhoneX, .iPhone6, .iPhone6S, .iPhone7, .iPhone8: //big screen iPhones
@@ -54,14 +54,14 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         }
         
         segment.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Avenir Next", size: 15)!], for: .normal)
-        self.navigationItem.titleView = segment
+        navigationItem.titleView = segment
         segment.addTarget(self, action: #selector(changeSegment(sender:)), for: .valueChanged)
         
         // display table
         transactionDataTableView.delegate = self
         transactionDataTableView.dataSource = self
         
-        transactionDataTableView.register(UINib(nibName: "transactionDataTableViewCell", bundle: nil), forCellReuseIdentifier: "transactionDataTableViewCell")
+        transactionDataTableView.register(UINib(nibName: Identifier.transactionViewCell, bundle: nil), forCellReuseIdentifier: Identifier.transactionViewCell)
         
         //let start = Int(tabBar.now.startOfMonth!.timeIntervalSince1970 * 1000)
         //let end = Int(tabBar.now.endOfMonth!.timeIntervalSince1970 * 1000)
@@ -95,7 +95,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     @IBAction func addTransaction(_ sender: Any) {
         
         selectedIndex = -1
-        performSegue(withIdentifier: "addInput", sender: nil)
+        performSegue(withIdentifier: Identifier.addTransaction, sender: nil)
     }
     
     @IBAction func backwardBtnWasPressed(_ sender: Any) {
@@ -153,14 +153,14 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             self.transactionDataArr = newItems.reversed()
             self.transactionDataTableView.reloadData()
             
-            let filteredIncome = self.transactionDataArr.filter( {$0.transType == "income"} )
+            let filteredIncome = self.transactionDataArr.filter( {$0.transType == TransactionType.income} )
             let amountArr = filteredIncome.map( {Double($0.amount)! })
             //let totalIncome = amountArr.reduce(0, +).clean
             let income = amountArr.reduce(0, +)
             self.incomeDisplay.text = income.clean
             
             
-            let filteredExpense = self.transactionDataArr.filter( {$0.transType == "expense"} )
+            let filteredExpense = self.transactionDataArr.filter( {$0.transType == TransactionType.expense} )
             let amountArr1 = filteredExpense.map( {Double($0.amount)! })
             let expense = amountArr1.reduce(0, +)
             self.expenseDisplay.text = expense.clean
@@ -291,7 +291,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     
     // add expense/income transaction
     func addTransaction(date: String, amount: String, notes: String, category: String,transDate: Int, transType: String) {
-    
+        
         // add entry to table
         let item = Transaction(date: date, amount:  amount, notes: notes, category: category,transDate: transDate, transType: transType)
         let itemRef = self.ref.childByAutoId()
@@ -304,14 +304,18 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     func updateTransaction(transaction: Transaction) {
         
         transaction.ref?.updateChildValues(["date": transaction.date,
-                                                  "amount": transaction.amount,
-                                                  "notes": transaction.notes,
-                                                  "category": transaction.category,
-                                                  "transDate": transaction.transDate,
-                                                  "transType": transaction.transType])
+                                            "amount": transaction.amount,
+                                            "notes": transaction.notes,
+                                            "category": transaction.category,
+                                            "transDate": transaction.transDate,
+                                            "transType": transaction.transType])
     }
     
-    //MARK: - Delegate methods
+}
+
+//MARK: - Extensions
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     // UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -321,10 +325,10 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionDataTableViewCell", for: indexPath) as! transactionDataTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.transactionViewCell, for: indexPath) as! transactionDataTableViewCell
         cell.dateCell.text = transactionDataArr[indexPath.row].date
         cell.categoryCell.text = transactionDataArr[indexPath.row].category
-        cell.amountCell.text = (transactionDataArr[indexPath.row].transType == "income" ? "+ ": "- ") + transactionDataArr[indexPath.row].amount
+        cell.amountCell.text = (transactionDataArr[indexPath.row].transType == TransactionType.income ? "+ ": "- ") + transactionDataArr[indexPath.row].amount
         
         if transactionDataArr[indexPath.row].notes.isEmpty == true {
             cell.notesCell.text = transactionDataArr[indexPath.row].category
@@ -346,7 +350,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
         
         tableView.deselectRow(at: indexPath, animated: true)
         selectedIndex = indexPath.row
-        performSegue(withIdentifier: "addInput", sender: nil)
+        performSegue(withIdentifier: Identifier.addTransaction, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -360,7 +364,8 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
     
     // segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addInput" {
+        
+        if segue.identifier == Identifier.addTransaction {
             let destinationNavigationController = segue.destination as! UINavigationController
             let targetController = destinationNavigationController.topViewController as! AddTransactionViewController
             targetController.delegate = self
@@ -369,5 +374,4 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol, UITab
             }
         }
     }
-    
 }

@@ -24,8 +24,8 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: variables
     var _refHandle: DatabaseHandle!
-    let ref = Database.database().reference(withPath:"transactions").child(UserManager.shared.userID!)
-    var transType: String = "expense"
+    let ref = Database.database().reference(withPath:FirebaseDatabase.transactions).child(UserManager.shared.userID!)
+    var transType: String = "expense" // set expense by default
     var segment: UISegmentedControl!
     var empty = [String]()
     var now = Foundation.Date()
@@ -54,7 +54,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         segment.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Avenir Next", size: 15)!], for: .normal)
-        self.navigationItem.titleView = segment
+        navigationItem.titleView = segment
         segment.addTarget(self, action: #selector(changeSegment(sender:)), for: .valueChanged)
         
         // display table
@@ -128,10 +128,10 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func segmentedControl(_ sender: Any) {
         let tabBar = tabBarController as! RaisedTabBarViewController
         switch segmentedControl.selectedSegmentIndex{
-        case 0: loadStaticstic(tabBar.start,tabBar.end,"expense")
-            transType = "expense"
-        case 1: loadStaticstic(tabBar.start,tabBar.end,"income")
-            transType = "income"
+        case 0: loadStaticstic(tabBar.start,tabBar.end,TransactionType.expense)
+            transType = TransactionType.expense
+        case 1: loadStaticstic(tabBar.start,tabBar.end,TransactionType.income)
+            transType = TransactionType.income
         default: break;
         }
     }
@@ -342,7 +342,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //MARK: - Delegate methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.keyArray.count
+        return keyArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

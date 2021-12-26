@@ -38,7 +38,6 @@ class SignupViewController: UIViewController {
     
     @IBAction func signupButtonTapped(_ sender: Any) {
         
-        //close the keyboard
         passwordTextfield.resignFirstResponder()
         validateInputs()
     }
@@ -124,7 +123,7 @@ class SignupViewController: UIViewController {
                         self.showErrorAlert( "Error!", error?.localizedDescription ?? "Please correct errors and try again")
                     } else {
                         
-                        let userRoot = self.rootRef.child("users/" + userfound.user.uid)
+                        let userRoot = self.rootRef.child("\(FirebaseDatabase.users)/" + userfound.user.uid)
                         let user = User(uid: userfound.user.uid, name: self.nameTextField.text!, email: self.emailTextField.text!)
                         userRoot.setValue(user.toAnyObject())
                     }
@@ -142,6 +141,7 @@ class SignupViewController: UIViewController {
 //MARK: - Extensions
 
 extension SignupViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         switch textField {

@@ -37,7 +37,6 @@ class SigninViewController: UIViewController {
         super.viewWillDisappear(animated)
         emailTextField.resignFirstResponder()
         passwordTextfield.resignFirstResponder()
-        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: - Actions
@@ -69,21 +68,24 @@ class SigninViewController: UIViewController {
         
         let identifier = "SignupViewController"
         let vc = storyboard?.instantiateViewController(identifier: identifier) as! SignupViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func forgotPasswordTapped(_ sender: Any) {
         
         if NetworkStatus.isConnectedToNetwork() {
+            
             let forgotPasswordAlert = UIAlertController(title: "Forgot password?", message: "Enter email address", preferredStyle: .alert)
             forgotPasswordAlert.addTextField { (textField) in
+                
                 textField.placeholder = "Enter email address"
             }
             forgotPasswordAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             forgotPasswordAlert.addAction(UIAlertAction(title: "Reset Password", style: .default, handler: { (action) in
+                
                 let resetEmail = forgotPasswordAlert.textFields?.first?.text
                 Auth.auth().sendPasswordReset(withEmail: resetEmail!, completion: { (error) in
-                    //Make sure you execute the following code on the main queue
+                    
                     DispatchQueue.main.async {
                         //Use "if let" to access the error, if it is non-nil
                         if let error = error {
@@ -153,17 +155,6 @@ class SigninViewController: UIViewController {
         loginButton.isEnabled = !loggingIn
         signupButton.isEnabled = !loggingIn
     }
-    
-    // Set the view origin y after showing keyboard
-    @objc func keyboardWillAppear(notification: Notification){
-        
-        let info = notification.userInfo!
-        let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        loginButton.center = CGPoint(x: view.center.x,
-                                     y: view.frame.height - keyboardFrame.height - 16.0 - loginButton.frame.height / 2)
-    }
-    
     
 }
 

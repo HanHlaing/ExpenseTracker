@@ -34,8 +34,8 @@ class ProfileViewController: UIViewController {
             QuoteClient.getQuote(completion: handleQuoteDataResponse(quote:error:))
         } else {
             
-            if let localData = self.readLocalFile(forName: "quotes") {
-                self.parse(jsonData: localData)
+            if let localData = readLocalFile(forName: "quotes") {
+                parse(jsonData: localData)
             }
         }
     }
@@ -52,7 +52,6 @@ class ProfileViewController: UIViewController {
         }))
         
         singoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
         }))
         
         present(singoutAlert, animated: true, completion: nil)
