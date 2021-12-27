@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class RaisedTabBarViewController: UITabBarController {
     
@@ -19,7 +20,7 @@ class RaisedTabBarViewController: UITabBarController {
     var start = 0
     var end = 0
     
-    var now = Foundation.Date()
+    var now = Date()
     var dateChanged: Bool?
     
     override func viewDidLoad() {
@@ -29,7 +30,7 @@ class RaisedTabBarViewController: UITabBarController {
         endOfMonth = now.endOfMonth! as NSDate
         
         currentMonth = now.getMonthName()
-        currentYear = now.getYear()
+        currentYear = "\(Calendar.current.component(.year, from: Date()))"
         
         // initialize start and end date of current month
         start = Int(startOfMonth.timeIntervalSince1970 * 1000)

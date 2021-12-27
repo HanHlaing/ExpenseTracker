@@ -50,7 +50,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
             dateLabel.text = "\(tabBar.currentStartWeek!) - \(tabBar.currentEndWeek!)"
         case 1:
             segment.selectedSegmentIndex = 1
-            dateLabel.text = tabBar.currentMonth
+            dateLabel.text = tabBar.currentMonth! + " " + tabBar.currentYear!
         default:
             segment.selectedSegmentIndex = 2
             dateLabel.text = tabBar.currentYear
@@ -217,7 +217,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
             
             tabBar.currentMonth = startMonth?.getMonthName()
             tabBar.selectedSegment = 1
-            dateLabel.text = tabBar.currentMonth
+            dateLabel.text = tabBar.currentMonth! + " " + tabBar.currentYear!
             tabBar.start = Int(startMonth!.timeIntervalSince1970 * 1000)
             tabBar.end = Int(endMonth!.timeIntervalSince1970 * 1000)
         default:// year
@@ -285,11 +285,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
             
             tab.currentMonth = nextStart.getMonthName()
             
-            if (nextStart.getYear() != Foundation.Date().getYear()) {
-                dateLabel.text = tab.currentMonth! + " " + (nextStart.getYear())
-            } else {
-                dateLabel.text = tab.currentMonth
-            }
+            dateLabel.text = tab.currentMonth! + " " + (nextStart.getYear())
         case 2:// year
             start = currentDate.startOfYear!
             end = currentDate.endOfYear!
