@@ -282,10 +282,10 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eK1-6Q-Dbj">
-                                        <rect key="frame" x="37.5" y="10" width="245" height="40"/>
+                                        <rect key="frame" x="40" y="10" width="240" height="40"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pn5-E5-EOC">
-                                                <rect key="frame" x="15" y="0.0" width="215" height="40"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="pn5-E5-EOC">
+                                                <rect key="frame" x="15" y="0.0" width="210" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaT-Da-mI8" userLabel="Backward">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -299,13 +299,13 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec 31 - Jan 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITx-1U-iYq" userLabel="Date Label">
-                                                        <rect key="frame" x="40" y="0.0" width="135" height="40"/>
+                                                        <rect key="frame" x="40" y="0.0" width="130" height="40"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgE-r1-1r9" userLabel="Forward">
-                                                        <rect key="frame" x="175" y="0.0" width="40" height="40"/>
+                                                        <rect key="frame" x="170" y="0.0" width="40" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="40" id="EaQ-mf-OYq"/>
                                                         </constraints>
@@ -342,7 +342,7 @@
                                     <constraint firstItem="WuV-oo-kxI" firstAttribute="top" secondItem="8Lm-aU-JQd" secondAttribute="bottom" constant="20" id="OwY-ZX-Fvg"/>
                                     <constraint firstItem="8Lm-aU-JQd" firstAttribute="top" secondItem="4zU-4F-1Hw" secondAttribute="bottom" constant="5" id="Q3u-zH-eeW"/>
                                     <constraint firstItem="eK1-6Q-Dbj" firstAttribute="centerX" secondItem="Rwu-lJ-vKE" secondAttribute="centerX" id="RU0-ir-n8Z"/>
-                                    <constraint firstAttribute="trailing" secondItem="eK1-6Q-Dbj" secondAttribute="trailing" constant="20" id="SHK-Xn-Flm"/>
+                                    <constraint firstAttribute="trailing" secondItem="eK1-6Q-Dbj" secondAttribute="trailing" constant="40" id="SHK-Xn-Flm"/>
                                     <constraint firstItem="WuV-oo-kxI" firstAttribute="top" secondItem="0Qg-v7-u0j" secondAttribute="bottom" constant="20" id="aI0-PG-rX4"/>
                                     <constraint firstItem="4zU-4F-1Hw" firstAttribute="trailing" secondItem="WuV-oo-kxI" secondAttribute="trailing" id="g4Y-mS-iep"/>
                                     <constraint firstItem="CMY-Ai-laW" firstAttribute="leading" secondItem="WuV-oo-kxI" secondAttribute="leading" id="hFF-fU-qTC"/>
@@ -351,6 +351,7 @@
                                     <constraint firstItem="WuV-oo-kxI" firstAttribute="bottom" secondItem="xey-c4-vKL" secondAttribute="bottom" id="mdC-t1-4NC"/>
                                     <constraint firstItem="0Qg-v7-u0j" firstAttribute="leading" secondItem="WuV-oo-kxI" secondAttribute="leading" id="pXb-Dv-tfH"/>
                                     <constraint firstItem="WuV-oo-kxI" firstAttribute="centerX" secondItem="xey-c4-vKL" secondAttribute="centerX" id="siI-7V-1ch"/>
+                                    <constraint firstItem="eK1-6Q-Dbj" firstAttribute="leading" secondItem="xey-c4-vKL" secondAttribute="leading" constant="40" id="w0g-W4-5Vh"/>
                                 </constraints>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNe-wP-gWx" userLabel="No transaction">
