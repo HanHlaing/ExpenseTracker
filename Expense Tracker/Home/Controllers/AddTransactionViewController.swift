@@ -71,6 +71,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
                 transaction?.amount = Double(amount!)!
                 transaction?.notes = notes
                 transaction?.category = categoryInput
+                transaction?.transDate = transDate
                 transaction?.transType = TransactionType.expense
                 delegate?.updateTransaction(transaction: transaction!)
             } else { // add transaction
@@ -95,6 +96,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
                 transaction?.date = date
                 transaction?.amount = Double(amount!)!
                 transaction?.notes = notes
+                transaction?.transDate = transDate
                 transaction?.category = categoryInput
                 transaction?.transType = TransactionType.income
                 delegate?.updateTransaction(transaction: transaction!)
@@ -143,6 +145,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
         amountTextField.delegate = self
         noteTextField.delegate = self
         submitButton.makecoloredButton()
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         
         if (transaction != nil) {
             
@@ -170,6 +173,10 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     func getIncomeCategory(category: String) {
         categoryInput = category
         inputCategoryButton.setTitle(category, for: .normal)
+    }
+    
+    @objc private func dateChanged() {
+        dismiss(animated: true, completion: nil)
     }
     
     // segue
