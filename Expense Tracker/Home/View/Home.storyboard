@@ -27,7 +27,7 @@
                                 <rect key="frame" x="42" y="157" width="330" height="290"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="eTB-tS-rih">
-                                        <rect key="frame" x="0.0" y="0.0" width="149" height="290"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="290"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5O-1v-H63">
                                                 <rect key="frame" x="0.0" y="0.0" width="42" height="50"/>
@@ -58,23 +58,29 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="zkA-Z6-5LV">
-                                        <rect key="frame" x="169" y="0.0" width="161" height="290"/>
+                                        <rect key="frame" x="170" y="0.0" width="160" height="290"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="TjM-vD-uaj">
-                                                <rect key="frame" x="51.5" y="0.0" width="109.5" height="50"/>
+                                                <rect key="frame" x="50.5" y="0.0" width="109.5" height="50"/>
                                             </datePicker>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QYh-oh-5v8">
-                                                <rect key="frame" x="69.5" y="80" width="91.5" height="50"/>
+                                                <rect key="frame" x="0.0" y="80" width="160" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="160" id="bqm-u7-hyc"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Notes (Optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7TU-gB-tk4">
-                                                <rect key="frame" x="0.0" y="160" width="161" height="50"/>
+                                                <rect key="frame" x="0.0" y="160" width="160" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="160" id="xDn-IO-KT9"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0i-U9-boJ">
-                                                <rect key="frame" x="21" y="240" width="140" height="50"/>
+                                                <rect key="frame" x="20" y="240" width="140" height="50"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <state key="normal" title="Select category"/>
                                                 <connections>
