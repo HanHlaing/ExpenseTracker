@@ -161,16 +161,16 @@ class ChartViewController: UIViewController  {
                 if let nestedSnapshot = child as? DataSnapshot,
                    let type = nestedSnapshot.childSnapshot(forPath: "transType").value as? String,
                    let category = nestedSnapshot.childSnapshot(forPath: "category").value as? String,
-                   let amount = nestedSnapshot.childSnapshot(forPath: "amount").value as? String {
+                   let amount = nestedSnapshot.childSnapshot(forPath: "amount").value as? Double {
                     
                     // add transactions depend on transaction type by grouping category
                     if(transType == type){
                         
-                        totalAmount += Double(amount)!
+                        totalAmount += amount
                         if let value = transactions[category] {
-                            transactions[category] = value + Double(amount)!
+                            transactions[category] = value + amount
                         } else {
-                            transactions[category] = Double(amount)!
+                            transactions[category] = amount
                         }
                     }
                 }

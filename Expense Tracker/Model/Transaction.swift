@@ -13,13 +13,13 @@ class Transaction {
     let ref: DatabaseReference?
     var timestamp: Int
     var date: String
-    var amount: String
+    var amount: Double
     var notes: String
     var category: String
     var transDate: Int
     var transType: String
     
-    init(date: String, amount: String, notes: String, category: String,transDate: Int,transType: String){
+    init(date: String, amount: Double, notes: String, category: String,transDate: Int,transType: String){
         self.ref = nil
         self.date = date
         self.amount = amount
@@ -34,7 +34,7 @@ class Transaction {
       guard
         let value = snapshot.value as? [String: AnyObject],
         let date = value["date"] as? String,
-        let amount = value["amount"] as? String,
+        let amount = value["amount"] as? Double,
         let notes = value["notes"] as? String,
         let category = value["category"] as? String,
         let transDate = value["transDate"] as? Int,

@@ -166,13 +166,13 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
             
             // calculate and show total income
             let filteredIncome = self.transactionDataArr.filter( {$0.transType == TransactionType.income} )
-            let amountArr = filteredIncome.map( {Double($0.amount)! })
+            let amountArr = filteredIncome.map( {$0.amount})
             let income = amountArr.reduce(0, +)
             self.incomeDisplayLabel.text = income.clean
             
             // calculate and show total expense
             let filteredExpense = self.transactionDataArr.filter( {$0.transType == TransactionType.expense} )
-            let amountArr1 = filteredExpense.map( {Double($0.amount)! })
+            let amountArr1 = filteredExpense.map( {$0.amount})
             let expense = amountArr1.reduce(0, +)
             self.expenseDisplayLabel.text = expense.clean
             
@@ -309,7 +309,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
     }
     
     // add expense/income transaction
-    func addTransaction(date: String, amount: String, notes: String, category: String,transDate: Int, transType: String) {
+    func addTransaction(date: String, amount: Double, notes: String, category: String,transDate: Int, transType: String) {
         
         let item = Transaction(date: date, amount:  amount, notes: notes, category: category,transDate: transDate, transType: transType)
         let itemRef = self.ref.childByAutoId()
@@ -346,7 +346,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.categoryCell.text = transactionDataArr[indexPath.row].category
         
         // check income or expense
-        cell.amountCell.text = (transactionDataArr[indexPath.row].transType == TransactionType.income ? "+ ": "- ") + transactionDataArr[indexPath.row].amount
+        cell.amountCell.text = (transactionDataArr[indexPath.row].transType == TransactionType.income ? "+ ": "- ") + transactionDataArr[indexPath.row].amount.clean
         
         if transactionDataArr[indexPath.row].notes.isEmpty == true {
             // show category if note is empty

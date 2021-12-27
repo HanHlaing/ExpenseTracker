@@ -9,7 +9,7 @@ import UIKit
 
 // send data to home
 protocol MyDataSendingDelegateProtocol {
-    func addTransaction(date: String, amount: String, notes: String, category: String,transDate:Int, transType: String)
+    func addTransaction(date: String, amount: Double, notes: String, category: String,transDate:Int, transType: String)
     
     func updateTransaction(transaction: Transaction)
 }
@@ -68,13 +68,13 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             // delegate
             if transaction != nil { // update transaction
                 transaction?.date = date
-                transaction?.amount = amount!
+                transaction?.amount = Double(amount!)!
                 transaction?.notes = notes
                 transaction?.category = categoryInput
                 transaction?.transType = TransactionType.expense
                 delegate?.updateTransaction(transaction: transaction!)
             } else { // add transaction
-                delegate?.addTransaction(date: date, amount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: TransactionType.expense)
+                delegate?.addTransaction(date: date, amount: Double(amount!)!, notes: notes, category: categoryInput,transDate: transDate, transType: TransactionType.expense)
             }
             dismiss(animated: true, completion: nil)
         }
@@ -93,13 +93,13 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             // delegate
             if transaction != nil { // update transaction
                 transaction?.date = date
-                transaction?.amount = amount!
+                transaction?.amount = Double(amount!)!
                 transaction?.notes = notes
                 transaction?.category = categoryInput
                 transaction?.transType = TransactionType.income
                 delegate?.updateTransaction(transaction: transaction!)
             } else { // add transaction
-                delegate?.addTransaction(date: date, amount: amount!, notes: notes, category: categoryInput,transDate: transDate, transType: TransactionType.income)
+                delegate?.addTransaction(date: date, amount: Double(amount!)!, notes: notes, category: categoryInput,transDate: transDate, transType: TransactionType.income)
             }
             
             dismiss(animated: true, completion: nil)
@@ -148,7 +148,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             
             title = "Edit transaction"
             datePicker.setDate(Date(timeIntervalSince1970: TimeInterval(transaction!.transDate/1000)), animated: false)
-            amountTextField.text = transaction?.amount
+            amountTextField.text = transaction?.amount.clean
             noteTextField.text = transaction?.notes
             categoryInput = transaction?.category ?? ""
             inputCategoryButton.setTitle(transaction?.category ?? "Select category", for: .normal)

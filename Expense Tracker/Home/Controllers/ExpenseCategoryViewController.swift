@@ -21,7 +21,7 @@ class ExpenseCategoryViewController: UIViewController {
     // MARK: variables
     
     // static expense categories
-    var expenseCategory: [String] = ["Food","Drinks", "Shopping", "Bills", "Transportation", "Home", "Car","Entertainment", "Clothing", "Insurance", "Tax", "Telephone", "Cigarette", "Beer", "Health", "Sport", "Baby", "Pet", "Beauty", "Electronics", "Hamburger", "Wine", "Vegetables", "Snacks", "Gift", "Social", "Travel","Education", "Fruits", "Book", "Office", "Rent", "Others"]
+    var expenseCategory: [String] = ["Food","Drinks", "Shopping", "Bills", "Eating Out", "Transportation", "Home", "Car","Entertainment", "Clothing", "Insurance", "Tax", "Telephone", "Cigarette", "Beer", "Health", "Sport", "Baby", "Pet", "Beauty", "Electronics", "Hamburger", "Wine", "Vegetables", "Snacks", "Gift", "Social", "Travel","Education", "Fruits", "Book", "Office", "Rent", "Others"]
     
     var delegate: ExpenseCategoryDelegateProtocol? = nil
     
