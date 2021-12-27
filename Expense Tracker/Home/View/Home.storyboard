@@ -102,11 +102,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="QtE-YS-7K4"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Submit">
-                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="finishInput:" destination="Q7E-vj-cQF" eventType="touchUpInside" id="Luj-GE-gjr"/>
                                 </connections>
@@ -128,7 +127,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="New Transaction" id="lCF-fL-yq1">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="buX-1Z-Pl8">
+                        <barButtonItem key="leftBarButtonItem" id="buX-1Z-Pl8">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="TJ9-5D-Koi">
                                 <rect key="frame" x="20" y="13" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -429,7 +428,7 @@
         <scene sceneID="gjG-2y-kdO">
             <objects>
                 <navigationController id="Qrj-G9-x9c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chart" image="chart.line.uptrend.xyaxis.circle.fill" catalog="system" id="Qdy-e2-V49"/>
+                    <tabBarItem key="tabBarItem" title="Chart" image="chart.pie.fill" catalog="system" id="Qdy-e2-V49"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NiR-He-yAg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -803,7 +802,7 @@
     <resources>
         <image name="Backward" width="10" height="17"/>
         <image name="Forward" width="10" height="17"/>
-        <image name="chart.line.uptrend.xyaxis.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="chart.pie.fill" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" width="128" height="128"/>
