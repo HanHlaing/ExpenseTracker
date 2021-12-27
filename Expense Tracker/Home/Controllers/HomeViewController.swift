@@ -164,32 +164,31 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
                 // reset default value when there is no transaction
                 self.noTransactionLabel.isHidden = false
                 self.noTransactionLabel.text = "Tap + to add transaction!"
-                self.incomeDisplayLabel.text = "0"
-                self.expenseDisplayLabel.text = "0"
-                self.balanceDisplayLabel.text = "0"
             } else {
                 
                 self.noTransactionLabel.isHidden = true
-                // sort desc order by date
-                self.transactionDataArr = transactions.reversed()
-                self.transactionDataTableView.reloadData()
-                
-                // calculate and show total income
-                let filteredIncome = self.transactionDataArr.filter( {$0.transType == TransactionType.income} )
-                let amountArr = filteredIncome.map( {$0.amount})
-                let income = amountArr.reduce(0, +)
-                self.incomeDisplayLabel.text = income.clean
-                
-                // calculate and show total expense
-                let filteredExpense = self.transactionDataArr.filter( {$0.transType == TransactionType.expense} )
-                let amountArr1 = filteredExpense.map( {$0.amount})
-                let expense = amountArr1.reduce(0, +)
-                self.expenseDisplayLabel.text = expense.clean
-                
-                // calculate and show total balance
-                let currentBalance = Double(income - expense).clean
-                self.balanceDisplayLabel.text = currentBalance
             }
+            
+            // sort desc order by date
+            self.transactionDataArr = transactions.reversed()
+            self.transactionDataTableView.reloadData()
+            // calculate and show total income
+            let filteredIncome = self.transactionDataArr.filter( {$0.transType == TransactionType.income} )
+            let amountArr = filteredIncome.map( {$0.amount})
+            let income = amountArr.reduce(0, +)
+            self.incomeDisplayLabel.text = income.clean
+            
+            // calculate and show total expense
+            let filteredExpense = self.transactionDataArr.filter( {$0.transType == TransactionType.expense} )
+            let amountArr1 = filteredExpense.map( {$0.amount})
+            let expense = amountArr1.reduce(0, +)
+            self.expenseDisplayLabel.text = expense.clean
+            
+            // calculate and show total balance
+            let currentBalance = Double(income - expense).clean
+            self.balanceDisplayLabel.text = currentBalance
+            
+            
         })
     }
     
@@ -352,7 +351,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.transactionViewCell, for: indexPath) as! transactionDataTableViewCell
-    
+        
         cell.dateCell.text = transactionDataArr[indexPath.row].date
         cell.categoryCell.text = transactionDataArr[indexPath.row].category
         
