@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
     @IBOutlet weak var balanceDisplayLabel: UILabel!
     @IBOutlet weak var incomeDisplayLabel: UILabel!
     @IBOutlet weak var expenseDisplayLabel: UILabel!
+    @IBOutlet weak var noTransactionLabel: UILabel!
     @IBOutlet weak var transactionDataTableView: UITableView!
     @IBOutlet weak var addTransactionButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
@@ -54,7 +55,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
             segment.selectedSegmentIndex = 2
             dateLabel.text = tabBar.currentYear
         }
-        // reload data to synchronize changes from chart view
+        // load transactions of current month and reload data to synchronize changes from chart view
         loadTransactions(tabBar.start,tabBar.end)
     }
     
@@ -141,8 +142,6 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
         transactionDataTableView.dataSource = self
         transactionDataTableView.register(UINib(nibName: Identifier.transactionViewCell, bundle: nil), forCellReuseIdentifier: Identifier.transactionViewCell)
         
-        // load transactions of current month
-        loadTransactions(tabBar.start,tabBar.end)
     }
     
     // get transactions from firebase and show in table view
@@ -160,25 +159,37 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
                 }
             }
             
-            // sort desc order by date
-            self.transactionDataArr = transactions.reversed()
-            self.transactionDataTableView.reloadData()
-            
-            // calculate and show total income
-            let filteredIncome = self.transactionDataArr.filter( {$0.transType == TransactionType.income} )
-            let amountArr = filteredIncome.map( {$0.amount})
-            let income = amountArr.reduce(0, +)
-            self.incomeDisplayLabel.text = income.clean
-            
-            // calculate and show total expense
-            let filteredExpense = self.transactionDataArr.filter( {$0.transType == TransactionType.expense} )
-            let amountArr1 = filteredExpense.map( {$0.amount})
-            let expense = amountArr1.reduce(0, +)
-            self.expenseDisplayLabel.text = expense.clean
-            
-            // calculate and show total balance
-            let currentBalance = Double(income - expense).clean
-            self.balanceDisplayLabel.text = currentBalance
+            if transactions.isEmpty {
+                
+                // reset default value when there is no transaction
+                self.noTransactionLabel.isHidden = false
+                self.noTransactionLabel.text = "Tap + to add transaction!"
+                self.incomeDisplayLabel.text = "0"
+                self.expenseDisplayLabel.text = "0"
+                self.balanceDisplayLabel.text = "0"
+            } else {
+                
+                self.noTransactionLabel.isHidden = true
+                // sort desc order by date
+                self.transactionDataArr = transactions.reversed()
+                self.transactionDataTableView.reloadData()
+                
+                // calculate and show total income
+                let filteredIncome = self.transactionDataArr.filter( {$0.transType == TransactionType.income} )
+                let amountArr = filteredIncome.map( {$0.amount})
+                let income = amountArr.reduce(0, +)
+                self.incomeDisplayLabel.text = income.clean
+                
+                // calculate and show total expense
+                let filteredExpense = self.transactionDataArr.filter( {$0.transType == TransactionType.expense} )
+                let amountArr1 = filteredExpense.map( {$0.amount})
+                let expense = amountArr1.reduce(0, +)
+                self.expenseDisplayLabel.text = expense.clean
+                
+                // calculate and show total balance
+                let currentBalance = Double(income - expense).clean
+                self.balanceDisplayLabel.text = currentBalance
+            }
         })
     }
     

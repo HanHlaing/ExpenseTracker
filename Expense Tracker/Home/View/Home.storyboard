@@ -352,6 +352,12 @@
                                     <constraint firstItem="WuV-oo-kxI" firstAttribute="centerX" secondItem="xey-c4-vKL" secondAttribute="centerX" id="siI-7V-1ch"/>
                                 </constraints>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNe-wP-gWx" userLabel="No transaction">
+                                <rect key="frame" x="207" y="448" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hT2-9A-lnl">
                                 <rect key="frame" x="344" y="743" width="50" height="50"/>
                                 <constraints>
@@ -375,8 +381,10 @@
                         <constraints>
                             <constraint firstItem="xey-c4-vKL" firstAttribute="leading" secondItem="3uj-N3-n8e" secondAttribute="leading" id="84L-XM-VAo"/>
                             <constraint firstItem="3uj-N3-n8e" firstAttribute="trailing" secondItem="hT2-9A-lnl" secondAttribute="trailing" constant="20" id="ceX-yW-3Tx"/>
+                            <constraint firstItem="UNe-wP-gWx" firstAttribute="centerY" secondItem="WNr-n8-XKw" secondAttribute="centerY" id="dpd-nj-bcT"/>
                             <constraint firstItem="3uj-N3-n8e" firstAttribute="top" secondItem="xey-c4-vKL" secondAttribute="top" id="e3l-py-pTe"/>
                             <constraint firstItem="3uj-N3-n8e" firstAttribute="bottom" secondItem="hT2-9A-lnl" secondAttribute="bottom" constant="20" id="iaN-O2-9bN"/>
+                            <constraint firstItem="UNe-wP-gWx" firstAttribute="centerX" secondItem="WNr-n8-XKw" secondAttribute="centerX" id="kpU-MY-yP0"/>
                             <constraint firstItem="3uj-N3-n8e" firstAttribute="trailing" secondItem="xey-c4-vKL" secondAttribute="trailing" id="lxb-sJ-Mff"/>
                             <constraint firstItem="xey-c4-vKL" firstAttribute="bottom" secondItem="3uj-N3-n8e" secondAttribute="bottom" id="uQF-1g-dYO"/>
                         </constraints>
@@ -391,6 +399,7 @@
                         <outlet property="expenseDisplayLabel" destination="8Lm-aU-JQd" id="s4Y-aB-Seb"/>
                         <outlet property="forwardButton" destination="NgE-r1-1r9" id="cdK-oe-OS8"/>
                         <outlet property="incomeDisplayLabel" destination="0Qg-v7-u0j" id="W7R-BP-Udw"/>
+                        <outlet property="noTransactionLabel" destination="UNe-wP-gWx" id="6EB-XA-Qco"/>
                         <outlet property="transactionDataTableView" destination="WuV-oo-kxI" id="6Bd-O2-GQn"/>
                         <segue destination="l6Z-Yi-qh9" kind="presentation" identifier="addInput" id="ygY-b2-guF"/>
                     </connections>
@@ -490,8 +499,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVI-5R-hHg">
-                                        <rect key="frame" x="321.5" y="424" width="50.5" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVI-5R-hHg">
+                                        <rect key="frame" x="359" y="424" width="13" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -578,11 +587,19 @@
                                     <constraint firstItem="KsV-k9-vky" firstAttribute="top" secondItem="hCW-Ul-nWi" secondAttribute="bottom" constant="10" id="zPC-Ct-307"/>
                                 </constraints>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fI3-to-zeG" userLabel="No Transaction">
+                                <rect key="frame" x="207" y="448" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b6q-tE-3fn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="fI3-to-zeG" firstAttribute="centerY" secondItem="U7z-DH-TrI" secondAttribute="centerY" id="BnX-oM-jOu"/>
                             <constraint firstItem="b6q-tE-3fn" firstAttribute="bottom" secondItem="CmM-cV-HYO" secondAttribute="bottom" constant="-20" id="Z7L-c4-JaX"/>
+                            <constraint firstItem="fI3-to-zeG" firstAttribute="centerX" secondItem="U7z-DH-TrI" secondAttribute="centerX" id="arD-of-7fR"/>
                             <constraint firstItem="CmM-cV-HYO" firstAttribute="trailing" secondItem="b6q-tE-3fn" secondAttribute="trailing" id="c0c-G3-pHR"/>
                             <constraint firstItem="CmM-cV-HYO" firstAttribute="leading" secondItem="b6q-tE-3fn" secondAttribute="leading" id="ciT-bF-uSV"/>
                             <constraint firstItem="CmM-cV-HYO" firstAttribute="top" secondItem="b6q-tE-3fn" secondAttribute="top" constant="-20" id="ijY-YL-kLf"/>
@@ -591,10 +608,12 @@
                     <navigationItem key="navigationItem" id="yuo-Yd-PPf"/>
                     <connections>
                         <outlet property="backwardButton" destination="FDu-A8-tAa" id="KRI-ea-9ls"/>
+                        <outlet property="categoryLabel" destination="DfL-Bl-qSn" id="N9s-7j-gSV"/>
                         <outlet property="categoryTableView" destination="lyi-EW-H1s" id="36b-xr-ZVW"/>
                         <outlet property="currentSumLabel" destination="nVI-5R-hHg" id="Z7z-Os-eCj"/>
                         <outlet property="dateLabel" destination="soy-qo-I7Z" id="03Q-vc-PND"/>
                         <outlet property="forwardButton" destination="B0i-jv-VKG" id="32H-EP-12l"/>
+                        <outlet property="noTransactionLabel" destination="fI3-to-zeG" id="bhJ-NO-DEM"/>
                         <outlet property="pieChart" destination="Rl7-hx-xX4" id="HUe-rW-b6S"/>
                         <outlet property="segmentedControl" destination="KsV-k9-vky" id="Daf-h9-Zsu"/>
                     </connections>

@@ -15,6 +15,8 @@ class ChartViewController: UIViewController  {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var currentSumLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var noTransactionLabel: UILabel!
     @IBOutlet weak var categoryTableView: UITableView!
     @IBOutlet weak var pieChart: PieChartView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -54,7 +56,7 @@ class ChartViewController: UIViewController  {
             segment.selectedSegmentIndex = 2
             dateLabel.text = tabBar.currentYear
         }
-        // reload data to synchronize changes from home
+        // load transactions of current month and reload data to synchronize changes from home
         loadStaticstic(tabBar.start,tabBar.end,transType)
     }
     
@@ -140,9 +142,6 @@ class ChartViewController: UIViewController  {
         // display table
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
-        
-        // load expense transactions of current month
-        loadStaticstic(tabBar.start,tabBar.end,transType)
     }
     
     func loadStaticstic(_ start: Int, _ end: Int,_ transType: String){
@@ -177,23 +176,37 @@ class ChartViewController: UIViewController  {
                 
             }
             
-            // sort desc order by amount
-            let sortedDictionary = transactions.sorted { $0.1 > $1.1 } .map { $0 }
-            
-            for (key, value) in sortedDictionary {
-                self.categroyKeyArray.append(key)
-                self.categoryValueArray.append(value)
-                self.percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
+            if transactions.isEmpty {
+                
+                self.noTransactionLabel.text = "No Chart Data Available"
+                self.setVisibility(false)
+            } else {
+                
+                self.setVisibility(true)
+                // sort desc order by amount
+                let sortedDictionary = transactions.sorted { $0.1 > $1.1 } .map { $0 }
+                
+                for (key, value) in sortedDictionary {
+                    self.categroyKeyArray.append(key)
+                    self.categoryValueArray.append(value)
+                    self.percentArray.append((Double(value) / Double(totalAmount)) * 100.0)
+                }
+                
+                // show total amount and reload table
+                self.currentSumLabel.text = (self.categoryValueArray.reduce(0, +)).clean
             }
             
-            // show total amount and reload table
-            self.currentSumLabel.text = (self.categoryValueArray.reduce(0, +)).clean
             self.categoryTableView.reloadData()
-            
             // pie chart
             self.customizeChart(dataPoints: self.categroyKeyArray, values: self.percentArray)
-            
         })
+    }
+    
+    func setVisibility(_ visibility:Bool) {
+        
+        noTransactionLabel.isHidden = visibility
+        categoryLabel.isHidden = !visibility
+        currentSumLabel.isHidden = !visibility
     }
     
     @objc func changeSegment(sender: UISegmentedControl) {
