@@ -98,10 +98,10 @@
                                         <rect key="frame" x="0.0" y="375.5" width="374" height="30"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YAy-8q-oXZ">
-                                                <rect key="frame" x="53" y="0.0" width="268" height="30"/>
+                                                <rect key="frame" x="50.5" y="0.0" width="273" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Dont have an account?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2t-8s-LrW">
-                                                        <rect key="frame" x="20" y="4.5" width="174" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Don't have an account?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2t-8s-LrW">
+                                                        <rect key="frame" x="20" y="4.5" width="179" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="166" id="Eni-CQ-w6p"/>
                                                         </constraints>
@@ -110,7 +110,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Izz-Bn-Fpe">
-                                                        <rect key="frame" x="198" y="0.0" width="50" height="30"/>
+                                                        <rect key="frame" x="203" y="0.0" width="50" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                         <state key="normal" title="Signup">
                                                             <color key="titleColor" name="AccentColor"/>
