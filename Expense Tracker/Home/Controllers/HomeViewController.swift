@@ -267,7 +267,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
             tab.currentStartWeek = nextStartString
             tab.currentEndWeek = nextEndString
             
-            if (nextEnd.getYear() != Foundation.Date().getYear()) {
+            if (nextEnd.getYear() != String(Calendar.current.component(.year, from: Date()))) {
                 dateLabel.text = "\(tab.currentStartWeek!) - \(tab.currentEndWeek!), '\(nextStart.getYearInShortFormat())"
             } else {
                 dateLabel.text = "\(tab.currentStartWeek!) - \(tab.currentEndWeek!)"

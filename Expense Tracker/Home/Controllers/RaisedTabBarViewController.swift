@@ -30,7 +30,7 @@ class RaisedTabBarViewController: UITabBarController {
         endOfMonth = now.endOfMonth! as NSDate
         
         currentMonth = now.getMonthName()
-        currentYear = "\(Calendar.current.component(.year, from: Date()))"
+        currentYear = String(Calendar.current.component(.year, from: Date()))
         
         // initialize start and end date of current month
         start = Int(startOfMonth.timeIntervalSince1970 * 1000)
