@@ -755,7 +755,7 @@
                                         </constraints>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Quote for you is loading..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rhS-it-vgu" userLabel="Quote">
-                                        <rect key="frame" x="20" y="245" width="374" height="400"/>
+                                        <rect key="frame" x="20" y="241" width="374" height="400"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="400" id="tt9-iy-SHF"/>
@@ -777,7 +777,7 @@
                                     <constraint firstItem="bAQ-eZ-WXK" firstAttribute="top" secondItem="zwY-8h-whk" secondAttribute="bottom" constant="8" id="a4L-vK-eR7"/>
                                     <constraint firstItem="hTs-fW-f9U" firstAttribute="centerX" secondItem="XuM-Vt-vX7" secondAttribute="centerX" id="aEE-hl-DYS"/>
                                     <constraint firstItem="zwY-8h-whk" firstAttribute="centerX" secondItem="XuM-Vt-vX7" secondAttribute="centerX" id="bbd-62-KO8"/>
-                                    <constraint firstItem="rhS-it-vgu" firstAttribute="top" secondItem="hTs-fW-f9U" secondAttribute="bottom" constant="10" id="cSE-Vq-VCf"/>
+                                    <constraint firstItem="rhS-it-vgu" firstAttribute="top" secondItem="hTs-fW-f9U" secondAttribute="bottom" constant="6" id="cSE-Vq-VCf"/>
                                     <constraint firstItem="rhS-it-vgu" firstAttribute="leading" secondItem="XuM-Vt-vX7" secondAttribute="leading" constant="20" id="eqR-TW-d5S"/>
                                     <constraint firstItem="bAQ-eZ-WXK" firstAttribute="centerX" secondItem="XuM-Vt-vX7" secondAttribute="centerX" id="gyc-AT-ghC"/>
                                     <constraint firstAttribute="trailing" secondItem="rhS-it-vgu" secondAttribute="trailing" constant="20" id="tUX-M1-bXq"/>
