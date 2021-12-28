@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var quoteTextView: UITextView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Life Cycle
     
@@ -31,6 +32,8 @@ class ProfileViewController: UIViewController {
         
         if NetworkStatus.isConnectedToNetwork() {
             // show quote from online data source
+            activityIndicator.startAnimating()
+            quoteTextView.text = "Quote for you is loading..."
             QuoteClient.getQuote(completion: handleQuoteDataResponse(quote:error:))
         } else {
             // show local quote when offline
@@ -61,12 +64,17 @@ class ProfileViewController: UIViewController {
     
     func handleQuoteDataResponse(quote: Quote?, error:Error?) {
         
+        activityIndicator.stopAnimating()
         if let quote = quote {
             quoteTextView.text = "\" \(quote.content ?? "")\" \n \n \(quote.author ?? "")"
         } else {
             
-            if let localData = self.readLocalFile(forName: "quotes") {
-                self.parse(jsonData: localData)
+            if error != nil, let myerr = error?.localizedDescription {
+                
+                self.showErrorAlert( "Error!", myerr)
+                if let localData = self.readLocalFile(forName: "quotes") {
+                    self.parse(jsonData: localData)
+                }
             }
         }
     }
