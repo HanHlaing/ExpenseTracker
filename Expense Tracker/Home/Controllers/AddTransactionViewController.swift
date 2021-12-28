@@ -36,8 +36,19 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       configureUI()
+        configureUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
     
     // MARK: - Actions
     
@@ -175,6 +186,38 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
         inputCategoryButton.setTitle(category, for: .normal)
     }
     
+    // Add the notification observer and call this when controller appears
+    func subscribeToKeyboardNotifications(){
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // Remove the notification observer and call this when controller disappears
+    func unsubscribeFromKeyboardNotifications() {
+        //Show keyboard
+        NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification,object: nil)
+        //Hide keyboard
+        NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
+    }
+    
+    // Set the view origin y after showing keyboard
+    @objc func keyboardWillShow(_ notification:Notification) {
+        
+        if noteTextField.isFirstResponder {
+            view.frame.origin.y = 0 - getKeyboardHeight(notification)
+        }
+    }
+    
+    // Set the view origin y after hiding keyboard
+    @objc override func keyboardWillHide(_ notification:Notification) {
+        
+        if (view.frame.origin.y != 0.0)
+        {
+            view.frame.origin.y = 0
+        }
+    }
+    
     @objc private func dateChanged() {
         dismiss(animated: true, completion: nil)
     }
@@ -191,6 +234,7 @@ class AddTransactionViewController: UIViewController, IncomeCategoryDelegateProt
             secondVC.delegate = self
         }
     }
+    
 }
 
 //MARK: - Extensions
@@ -205,7 +249,7 @@ extension AddTransactionViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == noteTextField {
-            
+           
             let maxLength = 36
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =

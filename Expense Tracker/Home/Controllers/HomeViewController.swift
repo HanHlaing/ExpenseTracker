@@ -333,6 +333,21 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
                                             "transType": transaction.transType])
     }
     
+    // segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == Identifier.addTransaction {
+            
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let targetController = destinationNavigationController.topViewController as! AddTransactionViewController
+            targetController.delegate = self
+            if selectedIndex != -1 {
+                // to update transaction (-1 is for new transaction and others are update)
+                targetController.transaction = transactionDataArr[selectedIndex]
+            }
+        }
+    }
+    
 }
 
 //MARK: - Extensions
@@ -387,21 +402,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             transactionDataArr[indexPath.row].ref?.removeValue()
             transactionDataArr.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-    
-    // segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == Identifier.addTransaction {
-            
-            let destinationNavigationController = segue.destination as! UINavigationController
-            let targetController = destinationNavigationController.topViewController as! AddTransactionViewController
-            targetController.delegate = self
-            if selectedIndex != -1 {
-                // to update transaction (-1 is for new transaction and others are update)
-                targetController.transaction = transactionDataArr[selectedIndex]
-            }
         }
     }
 }
