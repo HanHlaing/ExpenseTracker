@@ -163,7 +163,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
                 
                 // reset default value when there is no transaction
                 self.noTransactionLabel.isHidden = false
-                self.noTransactionLabel.text = "Tap + to add transaction!"
+                self.noTransactionLabel.text = "\n\n Tap + to add transaction!"
             } else {
                 
                 self.noTransactionLabel.isHidden = true
