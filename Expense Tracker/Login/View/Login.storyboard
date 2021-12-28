@@ -336,14 +336,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pie_icon" translatesAutoresizingMaskIntoConstraints="NO" id="5F4-lS-LoS">
-                                <rect key="frame" x="87" y="328" width="240" height="240"/>
+                                <rect key="frame" x="107" y="348" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="9zk-7S-SGI"/>
-                                    <constraint firstAttribute="width" constant="240" id="kSj-0B-FvP"/>
+                                    <constraint firstAttribute="height" constant="200" id="9zk-7S-SGI"/>
+                                    <constraint firstAttribute="width" constant="200" id="kSj-0B-FvP"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Tracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49x-ht-C3x">
-                                <rect key="frame" x="102.5" y="608" width="209.5" height="33.5"/>
+                                <rect key="frame" x="102.5" y="588" width="209.5" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
