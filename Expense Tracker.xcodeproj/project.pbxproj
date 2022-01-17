@@ -581,6 +581,7 @@
 				DEVELOPMENT_TEAM = 5YNCC5HF79;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Expense Tracker/App/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Manage Expense";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Login;
@@ -614,6 +615,7 @@
 				DEVELOPMENT_TEAM = 5YNCC5HF79;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Expense Tracker/App/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Manage Expense";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Login;
