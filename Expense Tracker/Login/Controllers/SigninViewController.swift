@@ -137,6 +137,10 @@ class SigninViewController: UIViewController {
                 if error != nil, let myerr = error?.localizedDescription {
                     
                     self.showErrorAlert( "Error!", myerr)
+                } else {
+                    UserManager.shared.userID = user?.user.uid
+                    let homeVC = RaisedTabBarViewController.instantiate(from: .Home)
+                    UIApplication.shared.windows.first?.rootViewController = homeVC
                 }
             })
         } else {

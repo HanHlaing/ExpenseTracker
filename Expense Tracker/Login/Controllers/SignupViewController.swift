@@ -126,6 +126,9 @@ class SignupViewController: UIViewController {
                         let userRoot = self.rootRef.child("\(FirebaseDatabase.users)/" + userfound.user.uid)
                         let user = User(uid: userfound.user.uid, name: self.nameTextField.text!, email: self.emailTextField.text!)
                         userRoot.setValue(user.toAnyObject())
+                        UserManager.shared.userID = userfound.user.uid
+                        let homeVC = RaisedTabBarViewController.instantiate(from: .Home)
+                        UIApplication.shared.windows.first?.rootViewController = homeVC
                     }
                 }
             }

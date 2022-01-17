@@ -52,6 +52,8 @@ class ProfileViewController: UIViewController {
         singoutAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
             UserManager.shared.clearUserID()
             try! Auth.auth().signOut()
+            let loginVC = SigninViewController.instantiate(from: .Login)
+            UIApplication.shared.windows.first?.rootViewController = UINavigationController(rootViewController: loginVC)
         }))
         
         singoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
