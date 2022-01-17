@@ -9,6 +9,9 @@ target 'Expense Tracker' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'FirebaseMessaging'
+  pod 'Firebase/InAppMessaging'
   pod 'Charts'
   
 end

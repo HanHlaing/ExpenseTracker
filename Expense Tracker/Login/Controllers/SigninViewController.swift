@@ -45,6 +45,9 @@ class SigninViewController: UIViewController {
         //close the keyboard
         passwordTextfield.resignFirstResponder()
         
+        //let numbers = [0]
+        //let _ = numbers[1]
+        
         let email = actualInput(for: emailTextField)
         let password = actualInput(for: passwordTextfield)
         switch (email.isEmpty, password.isEmpty) {
