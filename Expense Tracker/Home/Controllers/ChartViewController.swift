@@ -22,6 +22,7 @@ class ChartViewController: UIViewController  {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var backwardButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
+    @IBOutlet weak var constraintCategoryTableHeight: NSLayoutConstraint!
     
     // MARK: - Variables
     
@@ -199,6 +200,8 @@ class ChartViewController: UIViewController  {
             self.categoryTableView.reloadData()
             // pie chart
             self.customizeChart(dataPoints: self.categroyKeyArray, values: self.percentArray)
+            
+            self.constraintCategoryTableHeight.constant = CGFloat((43.5 * Double(self.categroyKeyArray.count)))
         })
     }
     

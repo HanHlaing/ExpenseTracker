@@ -22,6 +22,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var backwardButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
+    @IBOutlet weak var constraintTableHeight: NSLayoutConstraint!
     
     // MARK: - Variables
     
@@ -188,7 +189,7 @@ class HomeViewController: UIViewController, MyDataSendingDelegateProtocol {
             let currentBalance = Double(income - expense).clean
             self.balanceDisplayLabel.text = currentBalance
             
-            
+            self.constraintTableHeight.constant = CGFloat((76 * self.transactionDataArr.count))
         })
     }
     

@@ -277,10 +277,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WuV-oo-kxI">
-                                        <rect key="frame" x="30" y="226" width="354" height="500"/>
+                                        <rect key="frame" x="30" y="226" width="354" height="400"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="500" id="Om1-HS-Dxk"/>
+                                            <constraint firstAttribute="height" constant="400" id="Om1-HS-Dxk" userLabel="Constraint Table Height"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="dataSource" destination="ZRJ-zJ-pUY" id="86W-vS-4HW"/>
@@ -403,6 +403,7 @@
                         <outlet property="addTransactionButton" destination="hT2-9A-lnl" id="qpw-UP-eOt"/>
                         <outlet property="backwardButton" destination="KaT-Da-mI8" id="kST-VR-o2r"/>
                         <outlet property="balanceDisplayLabel" destination="5d4-tF-kAm" id="XV5-bC-gNJ"/>
+                        <outlet property="constraintTableHeight" destination="Om1-HS-Dxk" id="S9V-IF-ta6"/>
                         <outlet property="dateLabel" destination="ITx-1U-iYq" id="o7k-fT-fzX"/>
                         <outlet property="expenseDisplayLabel" destination="8Lm-aU-JQd" id="s4Y-aB-Seb"/>
                         <outlet property="forwardButton" destination="NgE-r1-1r9" id="cdK-oe-OS8"/>
@@ -462,10 +463,10 @@
                                 <rect key="frame" x="0.0" y="68" width="414" height="765"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lyi-EW-H1s">
-                                        <rect key="frame" x="30" y="471" width="354" height="300"/>
+                                        <rect key="frame" x="30" y="471" width="354" height="200"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="VOQ-md-nsB"/>
+                                            <constraint firstAttribute="height" constant="200" id="VOQ-md-nsB" userLabel="category table height"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statsCategory" textLabel="YHM-SQ-XCS" detailTextLabel="p24-7r-Ybl" style="IBUITableViewCellStyleValue1" id="Wql-aP-beR">
@@ -618,6 +619,7 @@
                         <outlet property="backwardButton" destination="FDu-A8-tAa" id="KRI-ea-9ls"/>
                         <outlet property="categoryLabel" destination="DfL-Bl-qSn" id="N9s-7j-gSV"/>
                         <outlet property="categoryTableView" destination="lyi-EW-H1s" id="36b-xr-ZVW"/>
+                        <outlet property="constraintCategoryTableHeight" destination="VOQ-md-nsB" id="NYr-NE-hnG"/>
                         <outlet property="currentSumLabel" destination="nVI-5R-hHg" id="Z7z-Os-eCj"/>
                         <outlet property="dateLabel" destination="soy-qo-I7Z" id="03Q-vc-PND"/>
                         <outlet property="forwardButton" destination="B0i-jv-VKG" id="32H-EP-12l"/>
